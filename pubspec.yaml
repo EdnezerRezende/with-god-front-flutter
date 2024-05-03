@@ -69,7 +69,6 @@ dependencies:
   plugin_platform_interface: 2.1.8
   postgrest: 1.5.2
   provider: 6.0.5
-  quill_html_editor: ^2.1.9
   realtime_client: 1.4.0
   rxdart: 0.27.7
   shared_preferences: 2.2.2

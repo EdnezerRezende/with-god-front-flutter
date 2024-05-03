@@ -1,9 +1,10 @@
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'devotionals_edit_widget.dart' show DevotionalsEditWidget;
+import 'devotionals_detalhe_widget.dart' show DevotionalsDetalheWidget;
 import 'package:flutter/material.dart';
 
-class DevotionalsEditModel extends FlutterFlowModel<DevotionalsEditWidget> {
+class DevotionalsDetalheModel
+    extends FlutterFlowModel<DevotionalsDetalheWidget> {
   ///  Local state fields for this page.
 
   String editorPage = 'editorB';
@@ -11,10 +12,10 @@ class DevotionalsEditModel extends FlutterFlowModel<DevotionalsEditWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Stores action output result for [Backend Call - Query Rows] action in DevotionalsEdit widget.
+  // Stores action output result for [Backend Call - Query Rows] action in DevotionalsDetalhe widget.
   List<ViewDevotionalsDetailsRow>? resultadoDetailsDevotional;
   // Stores action output result for [Custom Action - getTextHtmlEditorEnhanced] action in Button widget.
-  String? returnValueEditorB;
+  String? getDevotionalEdit;
 
   @override
   void initState(BuildContext context) {}

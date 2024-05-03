@@ -20,7 +20,7 @@ Future<String?> getTextHtmlEditorEnhanced(String editorKeyValue) async {
 
   if (thisWidgetKey?.currentState != null) {
     final String? htmlText =
-        await thisWidgetKey!.currentState!.controller.getText();
+        await thisWidgetKey!.currentState!.controller!.getText();
     return htmlText;
   } else {
     // FF community please handle the error how you see fit; this is just an example from me!!!

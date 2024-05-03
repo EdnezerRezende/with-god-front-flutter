@@ -202,7 +202,7 @@ class _DevotionalListWidgetState extends State<DevotionalListWidget> {
                                 ),
                                 onPressed: () async {
                                   context.pushNamed(
-                                    'DevotionalsEdit',
+                                    'DevotionalsDetalhe',
                                     queryParameters: {
                                       'prmDevotionalId': serializeParam(
                                         valueOrDefault<String>(
@@ -222,6 +222,10 @@ class _DevotionalListWidgetState extends State<DevotionalListWidget> {
                                       'prmChapter': serializeParam(
                                         listViewViewDevotionalsListRow.chapter,
                                         ParamType.int,
+                                      ),
+                                      'prmBookAbbrev': serializeParam(
+                                        listViewViewDevotionalsListRow.abbrev,
+                                        ParamType.String,
                                       ),
                                     }.withoutNulls,
                                     extra: <String, dynamic>{

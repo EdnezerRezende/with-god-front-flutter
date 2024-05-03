@@ -244,7 +244,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
     },
   },
-  // DevotionalsEdit
+  // DevotionalsDetalhe
   {
     'tfof1o28': {
       'pt': 'Salvar Devocional',

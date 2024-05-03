@@ -924,7 +924,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                       ),
                                       Text(
                                         valueOrDefault<String>(
-                                          functions.convertTestamentToUppercase(
+                                          functions.convertToUppercase(
                                               gridViewOptionsCardMenuRow.nome),
                                           '-',
                                         ),

@@ -249,7 +249,7 @@ class _CapitulosWidgetState extends State<CapitulosWidget>
                 ),
                 Row(
                   mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Text(
                       'Capítulo ${valueOrDefault<String>(
@@ -261,6 +261,50 @@ class _CapitulosWidgetState extends State<CapitulosWidget>
                             fontSize: 18.0,
                             letterSpacing: 0.0,
                           ),
+                    ),
+                    FlutterFlowIconButton(
+                      borderColor: FlutterFlowTheme.of(context).secondaryText,
+                      borderRadius: 20.0,
+                      borderWidth: 1.0,
+                      buttonSize: 45.0,
+                      fillColor: FlutterFlowTheme.of(context).accent1,
+                      icon: FaIcon(
+                        FontAwesomeIcons.edit,
+                        color: FlutterFlowTheme.of(context).primaryText,
+                        size: 30.0,
+                      ),
+                      onPressed: () async {
+                        context.pushNamed(
+                          'DevotionalsDetalhe',
+                          queryParameters: {
+                            'prmIsUpdate': serializeParam(
+                              false,
+                              ParamType.bool,
+                            ),
+                            'prmBookBible': serializeParam(
+                              widget.nomeLivro,
+                              ParamType.String,
+                            ),
+                            'prmChapter': serializeParam(
+                              valueOrDefault<int>(
+                                _model.capituloSelecionado,
+                                1,
+                              ),
+                              ParamType.int,
+                            ),
+                            'prmBookAbbrev': serializeParam(
+                              widget.bookAbbrev,
+                              ParamType.String,
+                            ),
+                          }.withoutNulls,
+                          extra: <String, dynamic>{
+                            kTransitionInfoKey: const TransitionInfo(
+                              hasTransition: true,
+                              transitionType: PageTransitionType.rightToLeft,
+                            ),
+                          },
+                        );
+                      },
                     ),
                   ],
                 ),

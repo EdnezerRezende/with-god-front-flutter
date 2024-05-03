@@ -12,13 +12,13 @@ import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
 import '/auth/supabase_auth/auth_util.dart';
 
-String? convertTestamentToUppercase(String? valor) {
+String convertToUppercase(String? valor) {
   // Converter qualquer string recebida para uppercase e devolver
   String? input = valor;
   if (input != null) {
     return input.toUpperCase();
   } else {
-    return null;
+    return "";
   }
 }
 

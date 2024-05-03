@@ -137,13 +137,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const HomeWidget(),
         ),
         FFRoute(
-          name: 'DevotionalsEdit',
-          path: '/devotionalsEdit',
-          builder: (context, params) => DevotionalsEditWidget(
-            prmVersesJson: params.getParam<dynamic>(
+          name: 'DevotionalsDetalhe',
+          path: '/devotionalsDetalhe',
+          builder: (context, params) => DevotionalsDetalheWidget(
+            prmVersesJson: params.getParam(
               'prmVersesJson',
-              ParamType.JSON,
-              isList: true,
+              ParamType.int,
             ),
             prmDevotionalId: params.getParam(
               'prmDevotionalId',
@@ -160,6 +159,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             prmChapter: params.getParam(
               'prmChapter',
               ParamType.int,
+            ),
+            prmBookAbbrev: params.getParam(
+              'prmBookAbbrev',
+              ParamType.String,
             ),
           ),
         ),

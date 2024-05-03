@@ -302,7 +302,7 @@ class _BibleAllBooksWidgetState extends State<BibleAllBooksWidget>
                               ),
                               Text(
                                 valueOrDefault<String>(
-                                  functions.convertTestamentToUppercase(
+                                  functions.convertToUppercase(
                                       valueOrDefault<String>(
                                     lvItensBooksGroupItem.abbrev,
                                     '-',

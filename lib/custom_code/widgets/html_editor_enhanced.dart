@@ -64,7 +64,7 @@ class HtmlEditorEnhancedState extends State<HtmlEditorEnhanced> {
           hint: "",
           shouldEnsureVisible: true,
           autoAdjustHeight: true,
-          adjustHeightForKeyboard: true,
+          adjustHeightForKeyboard: false,
           spellCheck: true,
         ),
         htmlToolbarOptions: HtmlToolbarOptions(
@@ -83,9 +83,9 @@ class HtmlEditorEnhancedState extends State<HtmlEditorEnhanced> {
                 increaseIndent: false,
                 textDirection: false),
           ],
-          // renderSeparatorWidget: true,
-          // gridViewVerticalSpacing: 2,
-          // gridViewHorizontalSpacing: 2,
+          renderSeparatorWidget: true,
+          gridViewVerticalSpacing: 2,
+          gridViewHorizontalSpacing: 2,
           // Customize the toolbar further from here
         ),
       ),
