@@ -1,0 +1,3 @@
+NSFaceIDUsageDescription = "Permitir acessar biometria do seu dispositivo";
+PermissionGroupNotification = "Conceder acesso para notificações";
+NSCameraUsageDescription = "Conceder acesso a câmera";

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "954443570394",
+    "project_id": "page-login-imlit0",
+    "storage_bucket": "page-login-imlit0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:954443570394:android:23b91ea04dd89b0d1799e3",
+        "android_client_info": {
+          "package_name": "com.withgod.pagelogin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAk32UUyIOettW-liFDTGGslYIWuOouC_c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
