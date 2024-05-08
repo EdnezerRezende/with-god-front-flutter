@@ -12,3 +12,4 @@ export '/anuncios/anuncios_widget.dart' show AnunciosWidget;
 export '/quiz/quiz_widget.dart' show QuizWidget;
 export '/quiz_perguntas/quiz_perguntas_widget.dart' show QuizPerguntasWidget;
 export '/quiz_finish/quiz_finish_widget.dart' show QuizFinishWidget;
+export '/notificacao/notificacao_widget.dart' show NotificacaoWidget;

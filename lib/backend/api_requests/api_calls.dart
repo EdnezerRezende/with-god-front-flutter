@@ -263,7 +263,7 @@ class GetAllBooksBibleCall {
     String? authorizationToken =
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdHIiOiJTYXQgQXByIDIwIDIwMjQgMTA6NDc6NTggR01UKzAwMDAuNjUzM2Q1YTM5MWQyNGMwMDJhYWE2N2UwIiwiaWF0IjoxNzEzNjEwMDc4fQ.LrxLAcfaSsjgbX96ZA6a4ef8Q_UfH4ae1ECcfyL-n78',
     String? book = '--',
-    String? email = 'admin2@gmail.com',
+    String? email = 'testes2@gmail.com',
     String? password = '102030',
     String? name = 'Admin general',
     String? range = 'month',
@@ -294,7 +294,7 @@ class GetBookBibleWithCommentCall {
     String? authorizationToken =
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdHIiOiJTYXQgQXByIDIwIDIwMjQgMTA6NDc6NTggR01UKzAwMDAuNjUzM2Q1YTM5MWQyNGMwMDJhYWE2N2UwIiwiaWF0IjoxNzEzNjEwMDc4fQ.LrxLAcfaSsjgbX96ZA6a4ef8Q_UfH4ae1ECcfyL-n78',
     String? book = '--',
-    String? email = 'admin2@gmail.com',
+    String? email = 'testes2@gmail.com',
     String? password = '102030',
     String? name = 'Admin general',
     String? range = 'month',
@@ -325,7 +325,7 @@ class LoginAndUpdateTokenByEmailCall {
     String? authorizationToken =
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdHIiOiJTYXQgQXByIDIwIDIwMjQgMTA6NDc6NTggR01UKzAwMDAuNjUzM2Q1YTM5MWQyNGMwMDJhYWE2N2UwIiwiaWF0IjoxNzEzNjEwMDc4fQ.LrxLAcfaSsjgbX96ZA6a4ef8Q_UfH4ae1ECcfyL-n78',
     String? book = '--',
-    String? email = 'admin2@gmail.com',
+    String? email = 'testes2@gmail.com',
     String? password = '102030',
     String? name = 'Admin general',
     String? range = 'month',
@@ -376,7 +376,7 @@ class DeleteUserByEmailCall {
     String? authorizationToken =
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdHIiOiJTYXQgQXByIDIwIDIwMjQgMTA6NDc6NTggR01UKzAwMDAuNjUzM2Q1YTM5MWQyNGMwMDJhYWE2N2UwIiwiaWF0IjoxNzEzNjEwMDc4fQ.LrxLAcfaSsjgbX96ZA6a4ef8Q_UfH4ae1ECcfyL-n78',
     String? book = '--',
-    String? email = 'admin2@gmail.com',
+    String? email = 'testes2@gmail.com',
     String? password = '102030',
     String? name = 'Admin general',
     String? range = 'month',
@@ -407,7 +407,7 @@ class GetUserStatsCall {
     String? authorizationToken =
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdHIiOiJTYXQgQXByIDIwIDIwMjQgMTA6NDc6NTggR01UKzAwMDAuNjUzM2Q1YTM5MWQyNGMwMDJhYWE2N2UwIiwiaWF0IjoxNzEzNjEwMDc4fQ.LrxLAcfaSsjgbX96ZA6a4ef8Q_UfH4ae1ECcfyL-n78',
     String? book = '--',
-    String? email = 'admin2@gmail.com',
+    String? email = 'testes2@gmail.com',
     String? password = '102030',
     String? name = 'Admin general',
     String? range = 'month',
@@ -466,7 +466,7 @@ class CreateUserCall {
     String? authorizationToken =
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdHIiOiJTYXQgQXByIDIwIDIwMjQgMTA6NDc6NTggR01UKzAwMDAuNjUzM2Q1YTM5MWQyNGMwMDJhYWE2N2UwIiwiaWF0IjoxNzEzNjEwMDc4fQ.LrxLAcfaSsjgbX96ZA6a4ef8Q_UfH4ae1ECcfyL-n78',
     String? book = '--',
-    String? email = 'admin2@gmail.com',
+    String? email = 'testes2@gmail.com',
     String? password = '102030',
     String? name = 'Admin general',
     String? range = 'month',
@@ -523,7 +523,7 @@ class GetNumberRequisitionsCall {
     String? authorizationToken =
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdHIiOiJTYXQgQXByIDIwIDIwMjQgMTA6NDc6NTggR01UKzAwMDAuNjUzM2Q1YTM5MWQyNGMwMDJhYWE2N2UwIiwiaWF0IjoxNzEzNjEwMDc4fQ.LrxLAcfaSsjgbX96ZA6a4ef8Q_UfH4ae1ECcfyL-n78',
     String? book = '--',
-    String? email = 'admin2@gmail.com',
+    String? email = 'testes2@gmail.com',
     String? password = '102030',
     String? name = 'Admin general',
     String? range = 'month',
@@ -582,7 +582,7 @@ class GetVersionsBibleCall {
     String? authorizationToken =
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdHIiOiJTYXQgQXByIDIwIDIwMjQgMTA6NDc6NTggR01UKzAwMDAuNjUzM2Q1YTM5MWQyNGMwMDJhYWE2N2UwIiwiaWF0IjoxNzEzNjEwMDc4fQ.LrxLAcfaSsjgbX96ZA6a4ef8Q_UfH4ae1ECcfyL-n78',
     String? book = '--',
-    String? email = 'admin2@gmail.com',
+    String? email = 'testes2@gmail.com',
     String? password = '102030',
     String? name = 'Admin general',
     String? range = 'month',
@@ -632,7 +632,7 @@ class GetVersesByWordCall {
     String? authorizationToken =
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdHIiOiJTYXQgQXByIDIwIDIwMjQgMTA6NDc6NTggR01UKzAwMDAuNjUzM2Q1YTM5MWQyNGMwMDJhYWE2N2UwIiwiaWF0IjoxNzEzNjEwMDc4fQ.LrxLAcfaSsjgbX96ZA6a4ef8Q_UfH4ae1ECcfyL-n78',
     String? book = '--',
-    String? email = 'admin2@gmail.com',
+    String? email = 'testes2@gmail.com',
     String? password = '102030',
     String? name = 'Admin general',
     String? range = 'month',
@@ -766,7 +766,7 @@ class GetAllVersesByChapterCall {
     String? authorizationToken =
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdHIiOiJTYXQgQXByIDIwIDIwMjQgMTA6NDc6NTggR01UKzAwMDAuNjUzM2Q1YTM5MWQyNGMwMDJhYWE2N2UwIiwiaWF0IjoxNzEzNjEwMDc4fQ.LrxLAcfaSsjgbX96ZA6a4ef8Q_UfH4ae1ECcfyL-n78',
     String? book = '--',
-    String? email = 'admin2@gmail.com',
+    String? email = 'testes2@gmail.com',
     String? password = '102030',
     String? name = 'Admin general',
     String? range = 'month',

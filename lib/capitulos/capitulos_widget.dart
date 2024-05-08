@@ -1,32 +1,39 @@
 import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_ad_banner.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'package:auto_size_text/auto_size_text.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 import 'capitulos_model.dart';
 export 'capitulos_model.dart';
 
 class CapitulosWidget extends StatefulWidget {
   const CapitulosWidget({
     super.key,
-    int? nCapitulos,
-    required this.nomeLivro,
-    int? selectChapter,
-    String? bookAbbrev,
-  })  : nCapitulos = nCapitulos ?? 0,
-        selectChapter = selectChapter ?? 1,
-        bookAbbrev = bookAbbrev ?? 'gn';
+    int? prmNCapitulos,
+    required this.prmNomeLivro,
+    int? prmSelectChapter,
+    String? prmBookAbbrev,
+    int? prmBookId,
+    required this.prmBooks,
+  })  : prmNCapitulos = prmNCapitulos ?? 0,
+        prmSelectChapter = prmSelectChapter ?? 1,
+        prmBookAbbrev = prmBookAbbrev ?? 'gn',
+        prmBookId = prmBookId ?? 1;
 
-  final int nCapitulos;
-  final String? nomeLivro;
-  final int selectChapter;
-  final String bookAbbrev;
+  final int prmNCapitulos;
+  final String? prmNomeLivro;
+  final int prmSelectChapter;
+  final String prmBookAbbrev;
+  final int prmBookId;
+  final List<BooksStruct>? prmBooks;
 
   @override
   State<CapitulosWidget> createState() => _CapitulosWidgetState();
@@ -48,9 +55,35 @@ class _CapitulosWidgetState extends State<CapitulosWidget>
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       setState(() {
-        _model.listaCapitulos = [];
+        _model.capituloSelecionado = widget.prmSelectChapter;
+        _model.bookAbbrev = widget.prmBookAbbrev;
+        _model.nCapitulos = widget.prmNCapitulos;
+        _model.bookId = widget.prmBookId;
+        _model.booksResult = widget.prmBooks!.toList().cast<BooksStruct>();
+        _model.nomeLivro = widget.prmNomeLivro!;
       });
-      while (_model.listaCapitulos.length < widget.nCapitulos) {
+      _model.resultNextBook =
+          await APIBibliaGroup.getAllVersesByChapterCall.call(
+        bookAbbrev: valueOrDefault<String>(
+          _model.bookAbbrev,
+          'gn',
+        ),
+        chapter: _model.capituloSelecionado,
+        version: FFAppState().versionBible,
+      );
+      setState(() {
+        _model.listaCapitulos = [1];
+      });
+      setState(() {
+        _model.versesByBookAndChapter =
+            VersesByBookAndChapterStruct.maybeFromMap(
+                (_model.resultNextBook?.jsonBody ?? ''));
+      });
+      while (_model.listaCapitulos.length <
+          valueOrDefault<int>(
+            _model.nCapitulos,
+            1,
+          )) {
         setState(() {
           _model.addToListaCapitulos(valueOrDefault<int>(
                 _model.listaCapitulos.length,
@@ -59,9 +92,6 @@ class _CapitulosWidgetState extends State<CapitulosWidget>
               1);
         });
       }
-      setState(() {
-        _model.capituloSelecionado = widget.selectChapter;
-      });
     });
 
     animationsMap.addAll({
@@ -125,6 +155,8 @@ class _CapitulosWidgetState extends State<CapitulosWidget>
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -149,15 +181,33 @@ class _CapitulosWidgetState extends State<CapitulosWidget>
               context.pop();
             },
           ),
-          title: Text(
-            valueOrDefault<String>(
-              widget.nomeLivro,
-              '-',
-            ),
-            style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Outfit',
-                  letterSpacing: 0.0,
+          title: Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text(
+                valueOrDefault<String>(
+                  _model.nomeLivro,
+                  'Gênesis',
                 ),
+                style: FlutterFlowTheme.of(context).headlineMedium.override(
+                      fontFamily: 'Outfit',
+                      fontSize: 30.0,
+                      letterSpacing: 0.0,
+                    ),
+              ),
+              Text(
+                valueOrDefault<String>(
+                  _model.capituloSelecionado?.toString(),
+                  '1',
+                ),
+                style: FlutterFlowTheme.of(context).headlineMedium.override(
+                      fontFamily: 'Outfit',
+                      fontSize: 30.0,
+                      letterSpacing: 0.0,
+                    ),
+              ),
+            ],
           ),
           actions: const [],
           centerTitle: true,
@@ -180,7 +230,7 @@ class _CapitulosWidgetState extends State<CapitulosWidget>
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                   ),
                   child: Visibility(
-                    visible: widget.nCapitulos > 1,
+                    visible: widget.prmNCapitulos > 1,
                     child: Builder(
                       builder: (context) {
                         final itensLv = _model.listaCapitulos.toList();
@@ -195,9 +245,26 @@ class _CapitulosWidgetState extends State<CapitulosWidget>
                               width: 60.0,
                               height: 60.0,
                               decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                borderRadius: BorderRadius.circular(8.0),
+                                color: _model.capituloSelecionado == itensLvItem
+                                    ? FlutterFlowTheme.of(context).accent4
+                                    : FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                boxShadow: const [
+                                  BoxShadow(
+                                    blurRadius: 4.0,
+                                    color: Color(0x33000000),
+                                    offset: Offset(
+                                      0.0,
+                                      2.0,
+                                    ),
+                                  )
+                                ],
+                                borderRadius: const BorderRadius.only(
+                                  bottomLeft: Radius.circular(0.0),
+                                  bottomRight: Radius.circular(16.0),
+                                  topLeft: Radius.circular(16.0),
+                                  topRight: Radius.circular(0.0),
+                                ),
                                 border: Border.all(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryText,
@@ -211,13 +278,36 @@ class _CapitulosWidgetState extends State<CapitulosWidget>
                                 onTap: () async {
                                   setState(() {
                                     _model.capituloSelecionado =
-                                        itensLvIndex + 1;
+                                        valueOrDefault<int>(
+                                      itensLvIndex + 1,
+                                      1,
+                                    );
+                                  });
+                                  _model.resultCallAPIBook =
+                                      await APIBibliaGroup
+                                          .getAllVersesByChapterCall
+                                          .call(
+                                    bookAbbrev: valueOrDefault<String>(
+                                      _model.bookAbbrev,
+                                      'gn',
+                                    ),
+                                    chapter: _model.capituloSelecionado,
+                                  );
+                                  setState(() {
+                                    _model.versesByBookAndChapter =
+                                        VersesByBookAndChapterStruct
+                                            .maybeFromMap((_model
+                                                    .resultCallAPIBook
+                                                    ?.jsonBody ??
+                                                ''));
                                   });
                                   await _model.listViewController?.animateTo(
                                     0,
                                     duration: const Duration(milliseconds: 100),
                                     curve: Curves.ease,
                                   );
+
+                                  setState(() {});
                                 },
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -247,66 +337,76 @@ class _CapitulosWidgetState extends State<CapitulosWidget>
                     ),
                   ),
                 ),
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Text(
-                      'Capítulo ${valueOrDefault<String>(
-                        _model.capituloSelecionado?.toString(),
-                        '1',
-                      )}',
-                      style: FlutterFlowTheme.of(context).bodyLarge.override(
-                            fontFamily: 'Manrope',
-                            fontSize: 18.0,
-                            letterSpacing: 0.0,
-                          ),
-                    ),
-                    FlutterFlowIconButton(
-                      borderColor: FlutterFlowTheme.of(context).secondaryText,
-                      borderRadius: 20.0,
-                      borderWidth: 1.0,
-                      buttonSize: 45.0,
-                      fillColor: FlutterFlowTheme.of(context).accent1,
-                      icon: FaIcon(
-                        FontAwesomeIcons.edit,
-                        color: FlutterFlowTheme.of(context).primaryText,
-                        size: 30.0,
-                      ),
-                      onPressed: () async {
-                        context.pushNamed(
-                          'DevotionalsDetalhe',
-                          queryParameters: {
-                            'prmIsUpdate': serializeParam(
-                              false,
-                              ParamType.bool,
-                            ),
-                            'prmBookBible': serializeParam(
-                              widget.nomeLivro,
-                              ParamType.String,
-                            ),
-                            'prmChapter': serializeParam(
-                              valueOrDefault<int>(
-                                _model.capituloSelecionado,
-                                1,
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      FFButtonWidget(
+                        onPressed: () async {
+                          context.pushNamed(
+                            'DevotionalsDetalhe',
+                            queryParameters: {
+                              'prmIsUpdate': serializeParam(
+                                false,
+                                ParamType.bool,
                               ),
-                              ParamType.int,
-                            ),
-                            'prmBookAbbrev': serializeParam(
-                              widget.bookAbbrev,
-                              ParamType.String,
-                            ),
-                          }.withoutNulls,
-                          extra: <String, dynamic>{
-                            kTransitionInfoKey: const TransitionInfo(
-                              hasTransition: true,
-                              transitionType: PageTransitionType.rightToLeft,
-                            ),
-                          },
-                        );
-                      },
-                    ),
-                  ],
+                              'prmBookBible': serializeParam(
+                                widget.prmNomeLivro,
+                                ParamType.String,
+                              ),
+                              'prmChapter': serializeParam(
+                                valueOrDefault<int>(
+                                  _model.capituloSelecionado,
+                                  1,
+                                ),
+                                ParamType.int,
+                              ),
+                              'prmBookAbbrev': serializeParam(
+                                widget.prmBookAbbrev,
+                                ParamType.String,
+                              ),
+                              'prmBookId': serializeParam(
+                                widget.prmBookId,
+                                ParamType.int,
+                              ),
+                            }.withoutNulls,
+                            extra: <String, dynamic>{
+                              kTransitionInfoKey: const TransitionInfo(
+                                hasTransition: true,
+                                transitionType: PageTransitionType.rightToLeft,
+                              ),
+                            },
+                          );
+                        },
+                        text: FFLocalizations.of(context).getText(
+                          '2u8prexn' /* Criar Devocional */,
+                        ),
+                        options: FFButtonOptions(
+                          height: 40.0,
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              24.0, 0.0, 24.0, 0.0),
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: FlutterFlowTheme.of(context).primary,
+                          textStyle:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Manrope',
+                                    color: Colors.white,
+                                    fontSize: 16.0,
+                                    letterSpacing: 0.0,
+                                  ),
+                          elevation: 3.0,
+                          borderSide: const BorderSide(
+                            color: Colors.transparent,
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 Expanded(
                   child: Container(
@@ -322,7 +422,7 @@ class _CapitulosWidgetState extends State<CapitulosWidget>
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          if (widget.nCapitulos > 1)
+                          if (_model.nCapitulos! > 1)
                             InkWell(
                               splashColor: Colors.transparent,
                               focusColor: Colors.transparent,
@@ -333,11 +433,74 @@ class _CapitulosWidgetState extends State<CapitulosWidget>
                                   _model.capituloSelecionado =
                                       _model.capituloSelecionado! + (-1);
                                 });
+                                if (_model.capituloSelecionado! <
+                                    _model.nCapitulos!) {
+                                  setState(() {
+                                    _model.listaCapitulos = [1];
+                                    _model.bookId = _model.bookId! + (-1);
+                                    _model.bookAbbrev = valueOrDefault<String>(
+                                      _model.booksResult[_model.bookId!].abbrev,
+                                      'gn',
+                                    );
+                                    _model.nCapitulos = valueOrDefault<int>(
+                                      _model.booksResult[_model.bookId!]
+                                          .capitulos,
+                                      1,
+                                    );
+                                    _model.nomeLivro = valueOrDefault<String>(
+                                      _model.booksResult[_model.bookId!].nome,
+                                      'Gênesis',
+                                    );
+                                  });
+                                  while (_model.listaCapitulos.length <
+                                      _model.nCapitulos!) {
+                                    setState(() {
+                                      _model.addToListaCapitulos(
+                                          valueOrDefault<int>(
+                                                _model.listaCapitulos.length,
+                                                0,
+                                              ) +
+                                              1);
+                                    });
+                                  }
+                                  setState(() {
+                                    _model.capituloSelecionado =
+                                        _model.nCapitulos;
+                                  });
+                                }
+                                _model.resultPreviusBookChapter =
+                                    await APIBibliaGroup
+                                        .getAllVersesByChapterCall
+                                        .call(
+                                  bookAbbrev: valueOrDefault<String>(
+                                    _model.bookAbbrev,
+                                    'gn',
+                                  ),
+                                  chapter: _model.capituloSelecionado,
+                                );
+                                setState(() {
+                                  _model.versesByBookAndChapter =
+                                      VersesByBookAndChapterStruct.maybeFromMap(
+                                          (_model.resultNextBookChapter
+                                                  ?.jsonBody ??
+                                              ''));
+                                });
                                 await _model.listViewController?.animateTo(
                                   0,
                                   duration: const Duration(milliseconds: 100),
                                   curve: Curves.ease,
                                 );
+                                if (_model.capituloSelecionado ==
+                                    _model.nCapitulos) {
+                                  await _model.lvChaptersScrool?.animateTo(
+                                    _model.lvChaptersScrool!.position
+                                        .maxScrollExtent,
+                                    duration: const Duration(milliseconds: 100),
+                                    curve: Curves.ease,
+                                  );
+                                }
+
+                                setState(() {});
                               },
                               child: Container(
                                 height: double.infinity,
@@ -355,145 +518,168 @@ class _CapitulosWidgetState extends State<CapitulosWidget>
                             ).animateOnPageLoad(animationsMap[
                                 'containerOnPageLoadAnimation1']!),
                           Expanded(
-                            child: FutureBuilder<ApiCallResponse>(
-                              future:
-                                  APIBibliaGroup.getAllVersesByChapterCall.call(
-                                bookAbbrev: valueOrDefault<String>(
-                                  widget.bookAbbrev,
-                                  'gn',
-                                ),
-                                chapter: valueOrDefault<int>(
-                                  _model.capituloSelecionado,
-                                  1,
-                                ),
-                              ),
-                              builder: (context, snapshot) {
-                                // Customize what your widget looks like when it's loading.
-                                if (!snapshot.hasData) {
-                                  return Center(
-                                    child: SizedBox(
-                                      width: 40.0,
-                                      height: 40.0,
-                                      child: CircularProgressIndicator(
-                                        valueColor:
-                                            AlwaysStoppedAnimation<Color>(
-                                          FlutterFlowTheme.of(context).primary,
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                }
-                                final listViewGetAllVersesByChapterResponse =
-                                    snapshot.data!;
-                                return Builder(
-                                  builder: (context) {
-                                    final lVItensVerses =
-                                        APIBibliaGroup.getAllVersesByChapterCall
-                                                .versesByChapter(
-                                                  listViewGetAllVersesByChapterResponse
-                                                      .jsonBody,
-                                                )
-                                                ?.toList() ??
-                                            [];
-                                    return ListView.builder(
-                                      padding: EdgeInsets.zero,
-                                      shrinkWrap: true,
-                                      scrollDirection: Axis.vertical,
-                                      itemCount: lVItensVerses.length,
-                                      itemBuilder:
-                                          (context, lVItensVersesIndex) {
-                                        final lVItensVersesItem =
-                                            lVItensVerses[lVItensVersesIndex];
-                                        return Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 6.0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              SelectionArea(
-                                                  child: Text(
-                                                getJsonField(
-                                                  lVItensVersesItem,
-                                                  r'''$.number''',
-                                                ).toString(),
-                                                textAlign: TextAlign.end,
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  8.0, 0.0, 8.0, 0.0),
+                              child: Builder(
+                                builder: (context) {
+                                  final lVItensVerses = _model
+                                          .versesByBookAndChapter?.verses
+                                          .toList() ??
+                                      [];
+                                  return ListView.builder(
+                                    padding: EdgeInsets.zero,
+                                    shrinkWrap: true,
+                                    scrollDirection: Axis.vertical,
+                                    itemCount: lVItensVerses.length,
+                                    itemBuilder: (context, lVItensVersesIndex) {
+                                      final lVItensVersesItem =
+                                          lVItensVerses[lVItensVersesIndex];
+                                      return Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 6.0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              lVItensVersesItem.number
+                                                  .toString(),
+                                              textAlign: TextAlign.end,
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Manrope',
+                                                        fontSize: 8.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w300,
+                                                      ),
+                                            ),
+                                            Expanded(
+                                              child: Text(
+                                                valueOrDefault<String>(
+                                                  lVItensVersesItem.text,
+                                                  '-',
+                                                ),
+                                                textAlign: TextAlign.justify,
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily: 'Manrope',
-                                                          fontSize: 8.0,
+                                                          fontSize: 16.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.w300,
                                                         ),
-                                              )),
-                                              Expanded(
-                                                child: SelectionArea(
-                                                    child: AutoSizeText(
-                                                  getJsonField(
-                                                    lVItensVersesItem,
-                                                    r'''$.text''',
-                                                  ).toString(),
-                                                  textAlign: TextAlign.justify,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily: 'Manrope',
-                                                        fontSize: 16.0,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.w300,
-                                                      ),
-                                                )),
                                               ),
-                                            ].divide(const SizedBox(width: 12.0)),
-                                          ),
-                                        );
-                                      },
-                                      controller: _model.listViewController,
-                                    );
-                                  },
-                                );
-                              },
+                                            ),
+                                          ].divide(const SizedBox(width: 12.0)),
+                                        ),
+                                      );
+                                    },
+                                    controller: _model.listViewController,
+                                  );
+                                },
+                              ),
                             ),
                           ),
-                          if (widget.nCapitulos > 1)
-                            InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
+                          InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              setState(() {
+                                _model.capituloSelecionado =
+                                    _model.capituloSelecionado! + 1;
+                              });
+                              if (_model.capituloSelecionado! >
+                                  _model.nCapitulos!) {
                                 setState(() {
-                                  _model.capituloSelecionado =
-                                      _model.capituloSelecionado! + 1;
+                                  _model.listaCapitulos = [1];
+                                  _model.bookId = _model.bookId! + 1;
+                                  _model.bookAbbrev = valueOrDefault<String>(
+                                    _model.booksResult[_model.bookId!].abbrev,
+                                    'gn',
+                                  );
+                                  _model.nCapitulos = valueOrDefault<int>(
+                                    _model
+                                        .booksResult[_model.bookId!].capitulos,
+                                    1,
+                                  );
+                                  _model.nomeLivro = valueOrDefault<String>(
+                                    _model.booksResult[_model.bookId!].nome,
+                                    'Gênesis',
+                                  );
                                 });
-                                await _model.listViewController?.animateTo(
+                                while (_model.listaCapitulos.length <
+                                    _model.nCapitulos!) {
+                                  setState(() {
+                                    _model.addToListaCapitulos(
+                                        valueOrDefault<int>(
+                                      valueOrDefault<int>(
+                                            _model.listaCapitulos.length,
+                                            0,
+                                          ) +
+                                          1,
+                                      1,
+                                    ));
+                                  });
+                                }
+                                setState(() {
+                                  _model.capituloSelecionado = 1;
+                                });
+                              }
+                              _model.resultNextBookChapter =
+                                  await APIBibliaGroup.getAllVersesByChapterCall
+                                      .call(
+                                bookAbbrev: valueOrDefault<String>(
+                                  _model.bookAbbrev,
+                                  'gn',
+                                ),
+                                chapter: _model.capituloSelecionado,
+                              );
+                              setState(() {
+                                _model.versesByBookAndChapter =
+                                    VersesByBookAndChapterStruct.maybeFromMap(
+                                        (_model.resultNextBookChapter
+                                                ?.jsonBody ??
+                                            ''));
+                              });
+                              await _model.listViewController?.animateTo(
+                                0,
+                                duration: const Duration(milliseconds: 100),
+                                curve: Curves.ease,
+                              );
+                              if (_model.capituloSelecionado == 1) {
+                                await _model.lvChaptersScrool?.animateTo(
                                   0,
                                   duration: const Duration(milliseconds: 100),
                                   curve: Curves.ease,
                                 );
-                              },
-                              child: Container(
-                                height: double.infinity,
-                                decoration: const BoxDecoration(),
-                                child: Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
-                                  child: const FaIcon(
-                                    FontAwesomeIcons.chevronRight,
-                                    color: Color(0x73919BAB),
-                                    size: 32.0,
-                                  ).animateOnPageLoad(animationsMap[
-                                      'iconOnPageLoadAnimation2']!),
-                                ),
+                              }
+
+                              setState(() {});
+                            },
+                            child: Container(
+                              height: double.infinity,
+                              decoration: const BoxDecoration(),
+                              child: Align(
+                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                child: const FaIcon(
+                                  FontAwesomeIcons.chevronRight,
+                                  color: Color(0x73919BAB),
+                                  size: 32.0,
+                                ).animateOnPageLoad(
+                                    animationsMap['iconOnPageLoadAnimation2']!),
                               ),
-                            ).animateOnPageLoad(animationsMap[
-                                'containerOnPageLoadAnimation2']!),
+                            ),
+                          ).animateOnPageLoad(
+                              animationsMap['containerOnPageLoadAnimation2']!),
                         ].divide(const SizedBox(width: 4.0)),
                       ),
                     ),

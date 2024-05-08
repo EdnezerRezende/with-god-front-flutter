@@ -48,7 +48,12 @@ class _BibleAllBooksWidgetState extends State<BibleAllBooksWidget>
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.updatePage(() {});
+      _model.updatePage(() {
+        _model.varGroupId = valueOrDefault<String>(
+          widget.prmGroupId,
+          '9',
+        );
+      });
     });
 
     animationsMap.addAll({
@@ -92,9 +97,7 @@ class _BibleAllBooksWidgetState extends State<BibleAllBooksWidget>
                   constraints: const BoxConstraints(
                     maxWidth: 500.0,
                   ),
-                  decoration: const BoxDecoration(
-                    color: Color(0x74212B36),
-                  ),
+                  decoration: const BoxDecoration(),
                   child: FutureBuilder<List<BibleGroupRow>>(
                     future: BibleGroupTable().queryRows(
                       queryFn: (q) => q.order('order', ascending: true),
@@ -146,7 +149,8 @@ class _BibleAllBooksWidgetState extends State<BibleAllBooksWidget>
                               width: 80.0,
                               height: 60.0,
                               decoration: BoxDecoration(
-                                color: const Color(0x73212B36),
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
                                 boxShadow: [
                                   BoxShadow(
                                     blurRadius: 4.0,
@@ -165,7 +169,12 @@ class _BibleAllBooksWidgetState extends State<BibleAllBooksWidget>
                                     ),
                                   )
                                 ],
-                                borderRadius: BorderRadius.circular(8.0),
+                                borderRadius: const BorderRadius.only(
+                                  bottomLeft: Radius.circular(0.0),
+                                  bottomRight: Radius.circular(16.0),
+                                  topLeft: Radius.circular(16.0),
+                                  topRight: Radius.circular(0.0),
+                                ),
                                 border: Border.all(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryText,
@@ -211,125 +220,147 @@ class _BibleAllBooksWidgetState extends State<BibleAllBooksWidget>
           ],
         ),
         Expanded(
-          child: Container(
-            decoration: const BoxDecoration(),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Builder(
-                builder: (context) {
-                  final lvItensBooksGroup = functions
-                          .filterListBooks(widget.prmBooksDataType?.toList(),
-                              _model.varGroupId)
-                          ?.toList() ??
-                      [];
-                  return GridView.builder(
-                    padding: EdgeInsets.zero,
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
-                      crossAxisSpacing: 10.0,
-                      mainAxisSpacing: 10.0,
-                      childAspectRatio: 1.0,
-                    ),
-                    scrollDirection: Axis.vertical,
-                    itemCount: lvItensBooksGroup.length,
-                    itemBuilder: (context, lvItensBooksGroupIndex) {
-                      final lvItensBooksGroupItem =
-                          lvItensBooksGroup[lvItensBooksGroupIndex];
-                      return InkWell(
-                        splashColor: Colors.transparent,
-                        focusColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onTap: () async {
-                          context.pushNamed(
-                            'Capitulos',
-                            queryParameters: {
-                              'nCapitulos': serializeParam(
-                                valueOrDefault<int>(
-                                  lvItensBooksGroupItem.capitulos,
+          child: Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+            child: Container(
+              decoration: const BoxDecoration(),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Builder(
+                  builder: (context) {
+                    final lvItensBooksGroup = functions
+                            .filterListBooks(widget.prmBooksDataType?.toList(),
+                                _model.varGroupId)
+                            ?.toList() ??
+                        [];
+                    return GridView.builder(
+                      padding: EdgeInsets.zero,
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                        crossAxisSpacing: 10.0,
+                        mainAxisSpacing: 10.0,
+                        childAspectRatio: 1.0,
+                      ),
+                      scrollDirection: Axis.vertical,
+                      itemCount: lvItensBooksGroup.length,
+                      itemBuilder: (context, lvItensBooksGroupIndex) {
+                        final lvItensBooksGroupItem =
+                            lvItensBooksGroup[lvItensBooksGroupIndex];
+                        return InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            context.pushNamed(
+                              'Capitulos',
+                              queryParameters: {
+                                'prmNCapitulos': serializeParam(
+                                  valueOrDefault<int>(
+                                    lvItensBooksGroupItem.capitulos,
+                                    1,
+                                  ),
+                                  ParamType.int,
+                                ),
+                                'prmNomeLivro': serializeParam(
+                                  valueOrDefault<String>(
+                                    lvItensBooksGroupItem.nome,
+                                    'gn',
+                                  ),
+                                  ParamType.String,
+                                ),
+                                'prmSelectChapter': serializeParam(
                                   1,
+                                  ParamType.int,
                                 ),
-                                ParamType.int,
-                              ),
-                              'nomeLivro': serializeParam(
-                                valueOrDefault<String>(
-                                  lvItensBooksGroupItem.nome,
-                                  '-',
+                                'prmBookAbbrev': serializeParam(
+                                  valueOrDefault<String>(
+                                    lvItensBooksGroupItem.abbrev,
+                                    'gn',
+                                  ),
+                                  ParamType.String,
                                 ),
-                                ParamType.String,
-                              ),
-                              'selectChapter': serializeParam(
-                                1,
-                                ParamType.int,
-                              ),
-                              'bookAbbrev': serializeParam(
-                                valueOrDefault<String>(
-                                  lvItensBooksGroupItem.abbrev,
-                                  'gn',
+                                'prmBookId': serializeParam(
+                                  valueOrDefault<int>(
+                                    lvItensBooksGroupItem.idLivro,
+                                    1,
+                                  ),
+                                  ParamType.int,
                                 ),
-                                ParamType.String,
+                                'prmBooks': serializeParam(
+                                  widget.listBibles,
+                                  ParamType.DataStruct,
+                                  true,
+                                ),
+                              }.withoutNulls,
+                            );
+                          },
+                          child: Container(
+                            width: 100.0,
+                            height: 100.0,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                              borderRadius: const BorderRadius.only(
+                                bottomLeft: Radius.circular(0.0),
+                                bottomRight: Radius.circular(16.0),
+                                topLeft: Radius.circular(16.0),
+                                topRight: Radius.circular(0.0),
                               ),
-                            }.withoutNulls,
-                          );
-                        },
-                        child: Container(
-                          width: 100.0,
-                          height: 100.0,
-                          decoration: BoxDecoration(
-                            color: const Color(0x73212B36),
-                            borderRadius: BorderRadius.circular(8.0),
-                            border: Border.all(
-                              color: FlutterFlowTheme.of(context).secondaryText,
+                              border: Border.all(
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                              ),
+                            ),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  valueOrDefault<String>(
+                                    lvItensBooksGroupItem.nome,
+                                    '-',
+                                  ),
+                                  textAlign: TextAlign.center,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Manrope',
+                                        fontSize: 14.0,
+                                        letterSpacing: 0.0,
+                                      ),
+                                ),
+                                Text(
+                                  valueOrDefault<String>(
+                                    functions.convertToUppercase(
+                                        valueOrDefault<String>(
+                                      lvItensBooksGroupItem.abbrev,
+                                      '-',
+                                    )),
+                                    '--',
+                                  ),
+                                  textAlign: TextAlign.center,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Manrope',
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        fontSize: 12.0,
+                                        letterSpacing: 1.0,
+                                        fontWeight: FontWeight.w300,
+                                      ),
+                                ),
+                              ].divide(const SizedBox(height: 8.0)),
                             ),
                           ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                valueOrDefault<String>(
-                                  lvItensBooksGroupItem.nome,
-                                  '-',
-                                ),
-                                textAlign: TextAlign.center,
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Manrope',
-                                      fontSize: 14.0,
-                                      letterSpacing: 0.0,
-                                    ),
-                              ),
-                              Text(
-                                valueOrDefault<String>(
-                                  functions.convertToUppercase(
-                                      valueOrDefault<String>(
-                                    lvItensBooksGroupItem.abbrev,
-                                    '-',
-                                  )),
-                                  '--',
-                                ),
-                                textAlign: TextAlign.center,
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Manrope',
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                      fontSize: 12.0,
-                                      letterSpacing: 1.0,
-                                      fontWeight: FontWeight.w300,
-                                    ),
-                              ),
-                            ].divide(const SizedBox(height: 8.0)),
-                          ),
-                        ),
-                      ).animateOnPageLoad(
-                          animationsMap['containerOnPageLoadAnimation']!);
-                    },
-                    controller: _model.gridContainerBible,
-                  );
-                },
+                        ).animateOnPageLoad(
+                            animationsMap['containerOnPageLoadAnimation']!);
+                      },
+                      controller: _model.gridContainerBible,
+                    );
+                  },
+                ),
               ),
             ),
           ),

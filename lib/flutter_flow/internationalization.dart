@@ -142,10 +142,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // Notifications
   {
-    'z5s8e8dh': {
-      'pt': 'Notificações Push',
-      'en': 'Push Notifications',
-    },
     'p8s3pabs': {
       'pt': 'Usuários',
       'en': 'Users',
@@ -192,6 +188,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // Capitulos
   {
+    '2u8prexn': {
+      'pt': 'Criar Devocional',
+      'en': '',
+    },
     'r82y0wrs': {
       'pt': 'Home',
       'en': 'Home',
@@ -203,10 +203,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'pt': 'With God Devotionals',
       'en': '',
     },
-    'ty0pl9vg': {
-      'pt': '8',
-      'en': '',
-    },
     'yv3m9q1m': {
       'pt': 'Home',
       'en': 'Bible',
@@ -215,20 +211,20 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'pt': 'Account Options',
       'en': '',
     },
-    'rafogdfm': {
-      'pt': 'randy.p@domainname.com',
-      'en': '',
-    },
     '3vl3qbyg': {
       'pt': 'Pontuação: 100',
       'en': '',
     },
-    '3svqb4tp': {
-      'pt': 'My Account',
+    'ujadworu': {
+      'pt': 'Linguagem da Bíblia',
       'en': '',
     },
     'pd3rsbpb': {
       'pt': 'Settings',
+      'en': '',
+    },
+    '2cehfu5a': {
+      'pt': 'Change Password',
       'en': '',
     },
     'adiabzz4': {
@@ -272,35 +268,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'pt': 'Search listings...',
       'en': '',
     },
-    'j51lhmaz': {
-      'pt': 'Maidstone, San Antonio, Tx.',
+    'bygnmbu0': {
+      'pt': 'Publicações',
       'en': '',
     },
-    '8w3yt6qo': {
-      'pt': '32 miles away',
-      'en': '',
-    },
-    'f4oavw8d': {
-      'pt': '4.25',
-      'en': '',
-    },
-    'w1utyd7f': {
-      'pt': 'Maidstone, San Antonio, Tx.',
-      'en': '',
-    },
-    'cr8zyrmp': {
-      'pt': '\$210/night',
-      'en': '',
-    },
-    'vbgxismy': {
-      'pt': '32 miles away',
-      'en': '',
-    },
-    'tl00jwqm': {
-      'pt': '4.25',
-      'en': '',
-    },
-    'l13fp7a5': {
+    '7g50mavo': {
       'pt': 'Inserir',
       'en': '',
     },
@@ -370,6 +342,17 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
     },
     'ozoiqrtq': {
+      'pt': 'Home',
+      'en': '',
+    },
+  },
+  // Notificacao
+  {
+    'f46qbl03': {
+      'pt': 'Notificação',
+      'en': '',
+    },
+    'q6jcl044': {
       'pt': 'Home',
       'en': '',
     },
@@ -447,6 +430,153 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'qrj72ycw': {
       'pt': '| Versículo:',
+      'en': '',
+    },
+  },
+  // compAnuncioEdit
+  {
+    'wahtedh3': {
+      'pt': 'Salão',
+      'en': '',
+    },
+    'cv67fomm': {
+      'pt': 'Igreja',
+      'en': '',
+    },
+    'ntt80rs3': {
+      'pt': 'Ferramentas',
+      'en': '',
+    },
+    'cecl4116': {
+      'pt': 'Outros',
+      'en': '',
+    },
+    '03qis1y5': {
+      'pt': 'Selecione tipo Serviço',
+      'en': '',
+    },
+    'q34m56hk': {
+      'pt': 'Search for an item...',
+      'en': '',
+    },
+    'tnxm1sj6': {
+      'pt': 'Brasil',
+      'en': '',
+    },
+    'sumah71p': {
+      'pt': 'EUA',
+      'en': '',
+    },
+    'ztipeg9v': {
+      'pt': 'México',
+      'en': '',
+    },
+    'uihy1t66': {
+      'pt': 'País',
+      'en': '',
+    },
+    'qd8dpglr': {
+      'pt': 'Search for an item...',
+      'en': '',
+    },
+    'pwnm09x0': {
+      'pt': 'Empresa',
+      'en': '',
+    },
+    'wdtdh0m4': {
+      'pt': 'Endereço',
+      'en': '',
+    },
+    '6iblev6g': {
+      'pt': 'Descrição',
+      'en': '',
+    },
+    'laluaco8': {
+      'pt': 'Telefone',
+      'en': '',
+    },
+    'h9l96fr5': {
+      'pt': 'Instagran',
+      'en': '',
+    },
+    'u5ma6p1x': {
+      'pt': 'Site',
+      'en': '',
+    },
+    '3rnv553j': {
+      'pt': 'Email',
+      'en': '',
+    },
+    'i18ciwov': {
+      'pt': 'Inserir Imagens',
+      'en': '',
+    },
+    '7tc5wskx': {
+      'pt': 'Salvar',
+      'en': '',
+    },
+    '0zo73dji': {
+      'pt': 'Field is required',
+      'en': '',
+    },
+    'ausupp2f': {
+      'pt': 'Please choose an option from the dropdown',
+      'en': '',
+    },
+    'igi8pnum': {
+      'pt': 'Field is required',
+      'en': '',
+    },
+    'awo4rzcb': {
+      'pt': 'Please choose an option from the dropdown',
+      'en': '',
+    },
+    'm9eu25on': {
+      'pt': 'Field is required',
+      'en': '',
+    },
+    'v7ct3kgj': {
+      'pt': 'O Limite mínimo é de 3 caracteres',
+      'en': '',
+    },
+    'xsf3d87v': {
+      'pt': 'O Limite de campos é de 300 caracteres',
+      'en': '',
+    },
+    '0zgmw9yt': {
+      'pt': 'Please choose an option from the dropdown',
+      'en': '',
+    },
+    'gf44tl5b': {
+      'pt': 'Field is required',
+      'en': '',
+    },
+    'qeqz2esx': {
+      'pt': 'Please choose an option from the dropdown',
+      'en': '',
+    },
+    '0iey3f84': {
+      'pt': 'Field is required',
+      'en': '',
+    },
+    'kf34dyfm': {
+      'pt': 'Please choose an option from the dropdown',
+      'en': '',
+    },
+    '0wmn9f1y': {
+      'pt': 'Field is required',
+      'en': '',
+    },
+    'tg2v32lz': {
+      'pt': 'Please choose an option from the dropdown',
+      'en': '',
+    },
+    '528jt7wp': {
+      'pt': 'Field is required',
+      'en': '',
+    },
+    'kd0tjdyz': {
+      'pt': 'Please choose an option from the dropdown',
       'en': '',
     },
   },

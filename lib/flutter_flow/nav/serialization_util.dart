@@ -225,6 +225,8 @@ dynamic deserializeParam<T>(
             return BibleGroupRow(data);
           case NotNotificacaoRow:
             return NotNotificacaoRow(data);
+          case AdvertsRow:
+            return AdvertsRow(data);
           case ViewDevotionalsListRow:
             return ViewDevotionalsListRow(data);
           case UsuariosRow:

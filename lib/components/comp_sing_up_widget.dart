@@ -1,10 +1,10 @@
 import '/auth/supabase_auth/auth_util.dart';
+import '/backend/api_requests/api_calls.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'comp_sing_up_model.dart';
@@ -331,27 +331,37 @@ class _CompSingUpWidgetState extends State<CompSingUpWidget>
                       return;
                     }
 
-                    context.goNamedAuth('Biblia', context.mounted);
-
-                    unawaited(
-                      () async {
-                        await UsuariosTable().insert({
-                          'nome': valueOrDefault<String>(
-                            currentUserEmail,
-                            '--',
-                          ),
-                          'email': valueOrDefault<String>(
-                            currentUserEmail,
-                            '--',
-                          ),
-                          'fcmtoken': valueOrDefault<String>(
-                            currentJwtToken,
-                            '--',
-                          ),
-                          'uuid': currentUserUid,
-                        });
-                      }(),
+                    _model.retornoApiBibleCreateUser =
+                        await APIBibliaGroup.createUserCall.call(
+                      email: _model.emailAddressCreateTextController.text,
+                      name: _model.emailAddressCreateTextController.text,
                     );
+
+                    context.goNamedAuth('Home', context.mounted);
+
+                    await UsuariosTable().insert({
+                      'nome': valueOrDefault<String>(
+                        currentUserEmail,
+                        '--',
+                      ),
+                      'email': valueOrDefault<String>(
+                        currentUserEmail,
+                        '--',
+                      ),
+                      'fcmtoken': valueOrDefault<String>(
+                        currentJwtToken,
+                        '--',
+                      ),
+                      'uuid': currentUserUid,
+                      'tokenBible': valueOrDefault<String>(
+                        APIBibliaGroup.createUserCall.tokenBible(
+                          (_model.retornoApiBibleCreateUser?.jsonBody ?? ''),
+                        ),
+                        '-',
+                      ),
+                    });
+
+                    setState(() {});
                   },
                   text: FFLocalizations.of(context).getText(
                     'gi8dderw' /* Criar Conta */,

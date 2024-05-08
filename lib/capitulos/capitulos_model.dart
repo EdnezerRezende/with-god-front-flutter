@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'capitulos_widget.dart' show CapitulosWidget;
@@ -6,7 +7,7 @@ import 'package:flutter/material.dart';
 class CapitulosModel extends FlutterFlowModel<CapitulosWidget> {
   ///  Local state fields for this page.
 
-  List<int> listaCapitulos = [];
+  List<int> listaCapitulos = [1];
   void addToListaCapitulos(int item) => listaCapitulos.add(item);
   void removeFromListaCapitulos(int item) => listaCapitulos.remove(item);
   void removeAtIndexFromListaCapitulos(int index) =>
@@ -27,13 +28,34 @@ class CapitulosModel extends FlutterFlowModel<CapitulosWidget> {
   void updateBooksResultAtIndex(int index, Function(BooksStruct) updateFn) =>
       booksResult[index] = updateFn(booksResult[index]);
 
+  VersesByBookAndChapterStruct? versesByBookAndChapter;
+  void updateVersesByBookAndChapterStruct(
+          Function(VersesByBookAndChapterStruct) updateFn) =>
+      updateFn(versesByBookAndChapter ??= VersesByBookAndChapterStruct());
+
+  String bookAbbrev = 'gn';
+
+  int? nCapitulos = 1;
+
+  int? bookId = 1;
+
+  String nomeLivro = 'Gênesis';
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Stores action output result for [Backend Call - API (getAllVersesByChapter)] action in Capitulos widget.
+  ApiCallResponse? resultNextBook;
   // State field(s) for LvChaptersScrool widget.
   ScrollController? lvChaptersScrool;
+  // Stores action output result for [Backend Call - API (getAllVersesByChapter)] action in Column widget.
+  ApiCallResponse? resultCallAPIBook;
+  // Stores action output result for [Backend Call - API (getAllVersesByChapter)] action in Container widget.
+  ApiCallResponse? resultPreviusBookChapter;
   // State field(s) for ListView widget.
   ScrollController? listViewController;
+  // Stores action output result for [Backend Call - API (getAllVersesByChapter)] action in Container widget.
+  ApiCallResponse? resultNextBookChapter;
 
   @override
   void initState(BuildContext context) {

@@ -37,4 +37,7 @@ class UsuariosRow extends SupabaseDataRow {
 
   bool? get isBiometrics => getField<bool>('isBiometrics');
   set isBiometrics(bool? value) => setField<bool>('isBiometrics', value);
+
+  String? get tokenBible => getField<String>('tokenBible');
+  set tokenBible(String? value) => setField<String>('tokenBible', value);
 }

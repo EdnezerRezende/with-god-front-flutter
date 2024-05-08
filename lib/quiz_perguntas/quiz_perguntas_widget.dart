@@ -248,8 +248,13 @@ class _QuizPerguntasWidgetState extends State<QuizPerguntasWidget> {
                             child: Material(
                               color: Colors.transparent,
                               elevation: 1.0,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12.0),
+                              shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(0.0),
+                                  bottomRight: Radius.circular(16.0),
+                                  topLeft: Radius.circular(16.0),
+                                  topRight: Radius.circular(0.0),
+                                ),
                               ),
                               child: Container(
                                 height: 65.0,
@@ -278,7 +283,12 @@ class _QuizPerguntasWidgetState extends State<QuizPerguntasWidget> {
                                       ),
                                     )
                                   ],
-                                  borderRadius: BorderRadius.circular(12.0),
+                                  borderRadius: const BorderRadius.only(
+                                    bottomLeft: Radius.circular(0.0),
+                                    bottomRight: Radius.circular(16.0),
+                                    topLeft: Radius.circular(16.0),
+                                    topRight: Radius.circular(0.0),
+                                  ),
                                 ),
                                 child: Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(

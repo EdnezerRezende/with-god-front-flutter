@@ -49,7 +49,7 @@ class _CompChangePasswordWidgetState extends State<CompChangePasswordWidget> {
       alignment: const AlignmentDirectional(0.0, -1.0),
       child: Container(
         width: double.infinity,
-        height: double.infinity,
+        height: 300.0,
         constraints: const BoxConstraints(
           maxWidth: 500.0,
         ),
@@ -233,6 +233,7 @@ class _CompChangePasswordWidgetState extends State<CompChangePasswordWidget> {
                               FlutterFlowTheme.of(context).secondary,
                         ),
                       );
+                      Navigator.pop(context);
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(

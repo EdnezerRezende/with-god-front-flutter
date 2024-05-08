@@ -24,6 +24,9 @@ class ViewDevotionalsListRow extends SupabaseDataRow {
   int? get chapter => getField<int>('chapter');
   set chapter(int? value) => setField<int>('chapter', value);
 
+  int? get bookId => getField<int>('book_id');
+  set bookId(int? value) => setField<int>('book_id', value);
+
   String? get bookNome => getField<String>('book_nome');
   set bookNome(String? value) => setField<String>('book_nome', value);
 

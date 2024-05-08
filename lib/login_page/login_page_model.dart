@@ -1,3 +1,5 @@
+import '/backend/api_requests/api_calls.dart';
+import '/backend/supabase/supabase.dart';
 import '/components/comp_sing_up_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'login_page_widget.dart' show LoginPageWidget;
@@ -22,6 +24,10 @@ class LoginPageModel extends FlutterFlowModel<LoginPageWidget> {
   TextEditingController? passwordTextController;
   late bool passwordVisibility;
   String? Function(BuildContext, String?)? passwordTextControllerValidator;
+  // Stores action output result for [Backend Call - Query Rows] action in Button widget.
+  List<UsuariosRow>? retornoUsuario;
+  // Stores action output result for [Backend Call - API (loginAndUpdateTokenByEmail)] action in Button widget.
+  ApiCallResponse? retornoBibliaLogin;
   // Model for compSingUp component.
   late CompSingUpModel compSingUpModel;
 

@@ -128,7 +128,12 @@ class _QuizFinishWidgetState extends State<QuizFinishWidget> {
                     height: 500.0,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
-                      borderRadius: BorderRadius.circular(18.0),
+                      borderRadius: const BorderRadius.only(
+                        bottomLeft: Radius.circular(0.0),
+                        bottomRight: Radius.circular(18.0),
+                        topLeft: Radius.circular(18.0),
+                        topRight: Radius.circular(0.0),
+                      ),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(18.0),

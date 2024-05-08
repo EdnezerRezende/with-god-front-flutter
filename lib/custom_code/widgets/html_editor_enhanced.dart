@@ -63,13 +63,14 @@ class HtmlEditorEnhancedState extends State<HtmlEditorEnhanced> {
         htmlEditorOptions: HtmlEditorOptions(
           hint: "",
           shouldEnsureVisible: true,
-          autoAdjustHeight: true,
+          // autoAdjustHeight: true,
           adjustHeightForKeyboard: false,
           spellCheck: true,
         ),
+
         htmlToolbarOptions: HtmlToolbarOptions(
           toolbarPosition: ToolbarPosition.aboveEditor,
-          toolbarType: ToolbarType.nativeGrid,
+          toolbarType: ToolbarType.nativeExpandable,
           defaultToolbarButtons: [
             // new FontSettingButtons(fontSizeUnit: false),
             FontButtons(
@@ -84,8 +85,9 @@ class HtmlEditorEnhancedState extends State<HtmlEditorEnhanced> {
                 textDirection: false),
           ],
           renderSeparatorWidget: true,
-          gridViewVerticalSpacing: 2,
-          gridViewHorizontalSpacing: 2,
+          gridViewVerticalSpacing: 1,
+          gridViewHorizontalSpacing: 1,
+
           // Customize the toolbar further from here
         ),
       ),

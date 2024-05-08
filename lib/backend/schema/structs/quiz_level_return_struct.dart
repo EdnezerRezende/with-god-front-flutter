@@ -29,7 +29,7 @@ class QuizLevelReturnStruct extends BaseStruct {
 
   // "message" field.
   String? _message;
-  String get message => _message ?? '';
+  String get message => _message ?? '-';
   set message(String? val) => _message = val;
   bool hasMessage() => _message != null;
 

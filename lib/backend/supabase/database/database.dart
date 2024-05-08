@@ -11,6 +11,7 @@ export 'tables/level_quiz.dart';
 export 'tables/tarefas.dart';
 export 'tables/bible_group.dart';
 export 'tables/not_notificacao.dart';
+export 'tables/adverts.dart';
 export 'tables/view_devotionals_list.dart';
 export 'tables/usuarios.dart';
 export 'tables/biblia_versiculos.dart';

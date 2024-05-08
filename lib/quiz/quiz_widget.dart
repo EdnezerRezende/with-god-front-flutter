@@ -167,7 +167,7 @@ class _QuizWidgetState extends State<QuizWidget> {
                       ),
                       borderRadius: const BorderRadius.only(
                         bottomLeft: Radius.circular(0.0),
-                        bottomRight: Radius.circular(0.0),
+                        bottomRight: Radius.circular(36.0),
                         topLeft: Radius.circular(36.0),
                         topRight: Radius.circular(0.0),
                       ),
@@ -260,8 +260,12 @@ class _QuizWidgetState extends State<QuizWidget> {
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryText,
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
+                                          borderRadius: const BorderRadius.only(
+                                            bottomLeft: Radius.circular(0.0),
+                                            bottomRight: Radius.circular(16.0),
+                                            topLeft: Radius.circular(16.0),
+                                            topRight: Radius.circular(0.0),
+                                          ),
                                         ),
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),

@@ -20,7 +20,7 @@ class BibliaWidget extends StatefulWidget {
   const BibliaWidget({
     super.key,
     String? groupId,
-  }) : groupId = groupId ?? '1,2,3,4,5,6,7,8';
+  }) : groupId = groupId ?? '9';
 
   final String groupId;
 
@@ -57,6 +57,14 @@ class _BibliaWidgetState extends State<BibliaWidget>
                 .toList()
                 .cast<dynamic>();
         _model.varBooksPageBibleDataType = _model.varBooksPageBibleJson
+            .map((e) => BooksStruct.maybeFromMap(e))
+            .withoutNulls
+            .toList()
+            .toList()
+            .cast<BooksStruct>();
+      });
+      setState(() {
+        FFAppState().books = _model.varBooksPageBibleJson
             .map((e) => BooksStruct.maybeFromMap(e))
             .withoutNulls
             .toList()
@@ -145,8 +153,8 @@ class _BibliaWidgetState extends State<BibliaWidget>
                 child: Container(
                   width: double.infinity,
                   height: 100.0,
-                  decoration: const BoxDecoration(
-                    color: Color(0x72212B36),
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).primaryBackground,
                   ),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
@@ -170,7 +178,7 @@ class _BibliaWidgetState extends State<BibliaWidget>
                                     ),
                                 unselectedLabelStyle: const TextStyle(),
                                 indicatorColor:
-                                    FlutterFlowTheme.of(context).primary,
+                                    FlutterFlowTheme.of(context).alternate,
                                 tabs: [
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -237,7 +245,9 @@ class _BibliaWidgetState extends State<BibliaWidget>
                                     builder: (context) => wrapWithModel(
                                       model: _model.compSearchBibleModel,
                                       updateCallback: () => setState(() {}),
-                                      child: const CompSearchBibleWidget(),
+                                      child: CompSearchBibleWidget(
+                                        prmBooks: FFAppState().books,
+                                      ),
                                     ),
                                   ),
                                 ],

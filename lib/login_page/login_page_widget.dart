@@ -1,8 +1,8 @@
 import '/auth/supabase_auth/auth_util.dart';
+import '/backend/api_requests/api_calls.dart';
 import '/backend/supabase/supabase.dart';
 import '/components/comp_forgott_password_widget.dart';
 import '/components/comp_sing_up_widget.dart';
-import '/flutter_flow/flutter_flow_ad_banner.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:local_auth/local_auth.dart';
+import 'package:provider/provider.dart';
 import 'login_page_model.dart';
 export 'login_page_model.dart';
 
@@ -36,50 +37,52 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      final localAuth = LocalAuthentication();
-      bool isBiometricSupported = await localAuth.isDeviceSupported();
+      if (FFAppState().permissionBiometria == true) {
+        final localAuth = LocalAuthentication();
+        bool isBiometricSupported = await localAuth.isDeviceSupported();
 
-      if (isBiometricSupported) {
-        _model.resultado = await localAuth.authenticate(
-            localizedReason: FFLocalizations.of(context).getText(
-          '5p1h8txp' /* Escolha a biometria desejada */,
-        ));
-        setState(() {});
-      }
+        if (isBiometricSupported) {
+          _model.resultado = await localAuth.authenticate(
+              localizedReason: FFLocalizations.of(context).getText(
+            '5p1h8txp' /* Escolha a biometria desejada */,
+          ));
+          setState(() {});
+        }
 
-      if (_model.resultado) {
-        context.goNamed(
-          'Home',
-          extra: <String, dynamic>{
-            kTransitionInfoKey: const TransitionInfo(
-              hasTransition: true,
-              transitionType: PageTransitionType.rightToLeft,
-            ),
-          },
-        );
-
-        await UsuariosTable().update(
-          data: {
-            'isBiometrics': true,
-          },
-          matchingRows: (rows) => rows.eq(
-            'uuid',
-            currentUserUid,
-          ),
-        );
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              'Verificação sem sucesso, tente novamente!',
-              style: TextStyle(
-                color: FlutterFlowTheme.of(context).primaryText,
+        if (_model.resultado) {
+          context.goNamed(
+            'Home',
+            extra: <String, dynamic>{
+              kTransitionInfoKey: const TransitionInfo(
+                hasTransition: true,
+                transitionType: PageTransitionType.rightToLeft,
               ),
+            },
+          );
+
+          await UsuariosTable().update(
+            data: {
+              'isBiometrics': true,
+            },
+            matchingRows: (rows) => rows.eq(
+              'uuid',
+              currentUserUid,
             ),
-            duration: const Duration(milliseconds: 4000),
-            backgroundColor: FlutterFlowTheme.of(context).secondary,
-          ),
-        );
+          );
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                'Verificação sem sucesso, tente novamente!',
+                style: TextStyle(
+                  color: FlutterFlowTheme.of(context).primaryText,
+                ),
+              ),
+              duration: const Duration(milliseconds: 4000),
+              backgroundColor: FlutterFlowTheme.of(context).secondary,
+            ),
+          );
+        }
       }
     });
 
@@ -133,6 +136,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -189,7 +194,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                             ),
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
+                                  .primaryBackground,
                             ),
                             child: Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
@@ -562,6 +567,128 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                             return;
                                                           }
 
+                                                          _model.retornoUsuario =
+                                                              await UsuariosTable()
+                                                                  .queryRows(
+                                                            queryFn: (q) =>
+                                                                q.eq(
+                                                              'uuid',
+                                                              currentUserUid,
+                                                            ),
+                                                          );
+                                                          if (_model
+                                                                      .retornoUsuario
+                                                                      ?.first
+                                                                      .tokenBible !=
+                                                                  null &&
+                                                              _model
+                                                                      .retornoUsuario
+                                                                      ?.first
+                                                                      .tokenBible !=
+                                                                  '') {
+                                                            // Atualiza Variavel Token Bible APP
+                                                            setState(() {
+                                                              FFAppState()
+                                                                      .TokenBibleAPI =
+                                                                  _model
+                                                                      .retornoUsuario!
+                                                                      .first
+                                                                      .tokenBible!;
+                                                            });
+                                                          } else {
+                                                            _model.retornoBibliaLogin =
+                                                                await APIBibliaGroup
+                                                                    .loginAndUpdateTokenByEmailCall
+                                                                    .call(
+                                                              email: _model
+                                                                  .emailAddressTextController
+                                                                  .text,
+                                                            );
+                                                            // Atualiza Variavel Token Bible APP
+                                                            setState(() {
+                                                              FFAppState()
+                                                                      .TokenBibleAPI =
+                                                                  APIBibliaGroup
+                                                                      .loginAndUpdateTokenByEmailCall
+                                                                      .tokenLoginBiblia(
+                                                                (_model.retornoBibliaLogin
+                                                                        ?.jsonBody ??
+                                                                    ''),
+                                                              )!;
+                                                            });
+                                                          }
+
+                                                          if (FFAppState()
+                                                                  .permissionBiometria ==
+                                                              false) {
+                                                            var confirmDialogResponse =
+                                                                await showDialog<
+                                                                        bool>(
+                                                                      context:
+                                                                          context,
+                                                                      builder:
+                                                                          (alertDialogContext) {
+                                                                        return AlertDialog(
+                                                                          title:
+                                                                              const Text('Biometria'),
+                                                                          content:
+                                                                              const Text('Deseja Ativar a Biometria para o próximo login'),
+                                                                          actions: [
+                                                                            TextButton(
+                                                                              onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                              child: const Text('Cancela'),
+                                                                            ),
+                                                                            TextButton(
+                                                                              onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                              child: const Text('Confirma'),
+                                                                            ),
+                                                                          ],
+                                                                        );
+                                                                      },
+                                                                    ) ??
+                                                                    false;
+                                                            if (confirmDialogResponse) {
+                                                              setState(() {
+                                                                FFAppState()
+                                                                        .permissionBiometria =
+                                                                    true;
+                                                              });
+                                                            } else {
+                                                              setState(() {
+                                                                FFAppState()
+                                                                        .permissionBiometria =
+                                                                    false;
+                                                              });
+                                                            }
+                                                          }
+                                                          await UsuariosTable()
+                                                              .update(
+                                                            data: {
+                                                              'fcmtoken':
+                                                                  valueOrDefault<
+                                                                      String>(
+                                                                currentJwtToken,
+                                                                '--',
+                                                              ),
+                                                              'tokenBible':
+                                                                  valueOrDefault<
+                                                                      String>(
+                                                                FFAppState()
+                                                                    .TokenBibleAPI,
+                                                                '-',
+                                                              ),
+                                                              'isBiometrics':
+                                                                  FFAppState()
+                                                                      .permissionBiometria,
+                                                            },
+                                                            matchingRows:
+                                                                (rows) =>
+                                                                    rows.eq(
+                                                              'uuid',
+                                                              currentUserUid,
+                                                            ),
+                                                          );
+
                                                           context.goNamedAuth(
                                                             'Home',
                                                             context.mounted,
@@ -580,6 +707,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                               ),
                                                             },
                                                           );
+
+                                                          setState(() {});
                                                         },
                                                         text:
                                                             FFLocalizations.of(
@@ -750,19 +879,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                 ],
                               ),
                             ),
-                          ),
-                          const Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              FlutterFlowAdBanner(
-                                height: 100.0,
-                                showsTestAd: true,
-                                iOSAdUnitID:
-                                    'ca-app-pub-8203324650722374/8939292144',
-                                androidAdUnitID:
-                                    'ca-app-pub-8203324650722374/1997324010',
-                              ),
-                            ],
                           ),
                         ],
                       ),

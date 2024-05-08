@@ -63,8 +63,6 @@ List<BooksStruct>? filterListBooks(
   List<BooksStruct>? listBooks,
   String? groupIdFilter,
 ) {
-  print(listBooks);
-  print(groupIdFilter);
   if (listBooks == null || listBooks.isEmpty) {
     return listBooks;
   }
@@ -73,10 +71,6 @@ List<BooksStruct>? filterListBooks(
     return listBooks;
   }
 
-  listBooks.forEach((element) {
-    print(element);
-    print(element.groupId == groupIdFilter);
-  });
   List<BooksStruct> listReturn = listBooks
       .where((book) => book.groupId == int.parse(groupIdFilter))
       .toList();

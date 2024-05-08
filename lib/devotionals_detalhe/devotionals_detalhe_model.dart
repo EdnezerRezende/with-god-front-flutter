@@ -13,9 +13,7 @@ class DevotionalsDetalheModel
 
   final unfocusNode = FocusNode();
   // Stores action output result for [Backend Call - Query Rows] action in DevotionalsDetalhe widget.
-  List<ViewDevotionalsDetailsRow>? resultadoDetailsDevotional;
-  // Stores action output result for [Custom Action - getTextHtmlEditorEnhanced] action in Button widget.
-  String? getDevotionalEdit;
+  List<ViewDevotionalsDetailsRow>? resultadoDetailsDevotionalUpdate;
 
   @override
   void initState(BuildContext context) {}

@@ -113,21 +113,31 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'Capitulos',
           path: '/capitulos',
           builder: (context, params) => CapitulosWidget(
-            nCapitulos: params.getParam(
-              'nCapitulos',
+            prmNCapitulos: params.getParam(
+              'prmNCapitulos',
               ParamType.int,
             ),
-            nomeLivro: params.getParam(
-              'nomeLivro',
+            prmNomeLivro: params.getParam(
+              'prmNomeLivro',
               ParamType.String,
             ),
-            selectChapter: params.getParam(
-              'selectChapter',
+            prmSelectChapter: params.getParam(
+              'prmSelectChapter',
               ParamType.int,
             ),
-            bookAbbrev: params.getParam(
-              'bookAbbrev',
+            prmBookAbbrev: params.getParam(
+              'prmBookAbbrev',
               ParamType.String,
+            ),
+            prmBookId: params.getParam(
+              'prmBookId',
+              ParamType.int,
+            ),
+            prmBooks: params.getParam<BooksStruct>(
+              'prmBooks',
+              ParamType.DataStruct,
+              isList: true,
+              structBuilder: BooksStruct.fromSerializableMap,
             ),
           ),
         ),
@@ -140,9 +150,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'DevotionalsDetalhe',
           path: '/devotionalsDetalhe',
           builder: (context, params) => DevotionalsDetalheWidget(
-            prmVersesJson: params.getParam(
-              'prmVersesJson',
+            prmVerses: params.getParam<int>(
+              'prmVerses',
               ParamType.int,
+              isList: true,
             ),
             prmDevotionalId: params.getParam(
               'prmDevotionalId',
@@ -163,6 +174,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             prmBookAbbrev: params.getParam(
               'prmBookAbbrev',
               ParamType.String,
+            ),
+            prmBookId: params.getParam(
+              'prmBookId',
+              ParamType.int,
             ),
           ),
         ),
@@ -205,6 +220,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               isList: true,
             ),
           ),
+        ),
+        FFRoute(
+          name: 'Notificacao',
+          path: '/notificacao',
+          builder: (context, params) => const NotificacaoWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

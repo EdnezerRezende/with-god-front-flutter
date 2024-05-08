@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'comp_sing_up_widget.dart' show CompSingUpWidget;
 import 'package:flutter/material.dart';
@@ -22,6 +23,8 @@ class CompSingUpModel extends FlutterFlowModel<CompSingUpWidget> {
   late bool passwordConfirmVisibility;
   String? Function(BuildContext, String?)?
       passwordConfirmTextControllerValidator;
+  // Stores action output result for [Backend Call - API (createUser)] action in Button widget.
+  ApiCallResponse? retornoApiBibleCreateUser;
 
   @override
   void initState(BuildContext context) {
