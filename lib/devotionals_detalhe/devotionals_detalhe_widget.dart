@@ -1,9 +1,11 @@
+import '/auth/supabase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
@@ -62,6 +64,10 @@ class _DevotionalsDetalheWidgetState extends State<DevotionalsDetalheWidget> {
           ),
         );
         await Future.delayed(const Duration(milliseconds: 1000));
+        await actions.setTextHtmlEditorEnhanced(
+          _model.resultadoDetailsDevotionalUpdate?.first.texto,
+          _model.editorPage,
+        );
         await Future.delayed(const Duration(milliseconds: 3000));
       }
     });
@@ -118,189 +124,281 @@ class _DevotionalsDetalheWidgetState extends State<DevotionalsDetalheWidget> {
         ),
         body: SafeArea(
           top: true,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    decoration: const BoxDecoration(),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: Container(
-                            width: double.infinity,
-                            height: 500.0,
-                            decoration: const BoxDecoration(),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  8.0, 0.0, 8.0, 0.0),
-                              child: SizedBox(
-                                width: double.infinity,
-                                height: 200.0,
-                                child: custom_widgets.HtmlEditorEnhanced(
+          child: Container(
+            decoration: BoxDecoration(
+              color: FlutterFlowTheme.of(context).secondaryBackground,
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                      ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Container(
+                              width: double.infinity,
+                              height: 500.0,
+                              decoration: const BoxDecoration(),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    8.0, 0.0, 8.0, 0.0),
+                                child: SizedBox(
                                   width: double.infinity,
                                   height: 200.0,
-                                  editorKeyValue: 'editorB',
+                                  child: custom_widgets.HtmlEditorEnhanced(
+                                    width: double.infinity,
+                                    height: 200.0,
+                                    editorKeyValue: 'editorB',
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 8.0, 0.0, 8.0),
-                          child: Container(
-                            width: double.infinity,
-                            height: 220.0,
-                            decoration: const BoxDecoration(),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  8.0, 0.0, 8.0, 0.0),
-                              child: FutureBuilder<ApiCallResponse>(
-                                future: APIBibliaGroup.getAllVersesByChapterCall
-                                    .call(
-                                  bookAbbrev: widget.prmBookAbbrev,
-                                  chapter: widget.prmChapter,
-                                  version: FFAppState().versionBible,
-                                ),
-                                builder: (context, snapshot) {
-                                  // Customize what your widget looks like when it's loading.
-                                  if (!snapshot.hasData) {
-                                    return Center(
-                                      child: SizedBox(
-                                        width: 40.0,
-                                        height: 40.0,
-                                        child: CircularProgressIndicator(
-                                          valueColor:
-                                              AlwaysStoppedAnimation<Color>(
-                                            FlutterFlowTheme.of(context)
-                                                .primary,
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 8.0, 0.0, 8.0),
+                            child: Container(
+                              width: double.infinity,
+                              height: 220.0,
+                              decoration: const BoxDecoration(),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    8.0, 0.0, 8.0, 0.0),
+                                child: FutureBuilder<ApiCallResponse>(
+                                  future: APIBibliaGroup
+                                      .getAllVersesByChapterCall
+                                      .call(
+                                    bookAbbrev: widget.prmBookAbbrev,
+                                    chapter: widget.prmChapter,
+                                    version: FFAppState().versionBible,
+                                  ),
+                                  builder: (context, snapshot) {
+                                    // Customize what your widget looks like when it's loading.
+                                    if (!snapshot.hasData) {
+                                      return Center(
+                                        child: SizedBox(
+                                          width: 40.0,
+                                          height: 40.0,
+                                          child: CircularProgressIndicator(
+                                            valueColor:
+                                                AlwaysStoppedAnimation<Color>(
+                                              FlutterFlowTheme.of(context)
+                                                  .primary,
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    );
-                                  }
-                                  final listViewGetAllVersesByChapterResponse =
-                                      snapshot.data!;
-                                  return Builder(
-                                    builder: (context) {
-                                      final lVItensVerses = APIBibliaGroup
-                                              .getAllVersesByChapterCall
-                                              .versesByChapter(
-                                                listViewGetAllVersesByChapterResponse
-                                                    .jsonBody,
-                                              )
-                                              ?.toList() ??
-                                          [];
-                                      return ListView.builder(
-                                        padding: EdgeInsets.zero,
-                                        shrinkWrap: true,
-                                        scrollDirection: Axis.vertical,
-                                        itemCount: lVItensVerses.length,
-                                        itemBuilder:
-                                            (context, lVItensVersesIndex) {
-                                          final lVItensVersesItem =
-                                              lVItensVerses[lVItensVersesIndex];
-                                          return Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 6.0),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  getJsonField(
-                                                    lVItensVersesItem,
-                                                    r'''$.number''',
-                                                  ).toString(),
-                                                  textAlign: TextAlign.start,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily: 'Manrope',
-                                                        fontSize: 8.0,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.w300,
-                                                      ),
-                                                ),
-                                                Expanded(
-                                                  child: AutoSizeText(
+                                      );
+                                    }
+                                    final listViewGetAllVersesByChapterResponse =
+                                        snapshot.data!;
+                                    return Builder(
+                                      builder: (context) {
+                                        final lVItensVerses = APIBibliaGroup
+                                                .getAllVersesByChapterCall
+                                                .versesByChapter(
+                                                  listViewGetAllVersesByChapterResponse
+                                                      .jsonBody,
+                                                )
+                                                ?.toList() ??
+                                            [];
+                                        return ListView.builder(
+                                          padding: EdgeInsets.zero,
+                                          shrinkWrap: true,
+                                          scrollDirection: Axis.vertical,
+                                          itemCount: lVItensVerses.length,
+                                          itemBuilder:
+                                              (context, lVItensVersesIndex) {
+                                            final lVItensVersesItem =
+                                                lVItensVerses[
+                                                    lVItensVersesIndex];
+                                            return Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 0.0, 6.0),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
                                                     getJsonField(
                                                       lVItensVersesItem,
-                                                      r'''$.text''',
+                                                      r'''$.number''',
                                                     ).toString(),
-                                                    textAlign:
-                                                        TextAlign.justify,
+                                                    textAlign: TextAlign.start,
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily: 'Manrope',
-                                                          fontSize: 16.0,
+                                                          fontSize: 8.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.w300,
                                                         ),
                                                   ),
-                                                ),
-                                              ].divide(const SizedBox(width: 12.0)),
-                                            ),
-                                          );
-                                        },
-                                      );
+                                                  Expanded(
+                                                    child: AutoSizeText(
+                                                      getJsonField(
+                                                        lVItensVersesItem,
+                                                        r'''$.text''',
+                                                      ).toString(),
+                                                      textAlign:
+                                                          TextAlign.justify,
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Manrope',
+                                                            fontSize: 16.0,
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w300,
+                                                          ),
+                                                    ),
+                                                  ),
+                                                ].divide(const SizedBox(width: 12.0)),
+                                              ),
+                                            );
+                                          },
+                                        );
+                                      },
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                8.0, 8.0, 8.0, 8.0),
+                            child: FFButtonWidget(
+                              onPressed: () async {
+                                _model.getDevotionalText =
+                                    await actions.getTextHtmlEditorEnhanced(
+                                  _model.editorPage,
+                                );
+                                if (widget.prmIsUpdate == true) {
+                                  await DevotionalsTable().update(
+                                    data: {
+                                      'texto': valueOrDefault<String>(
+                                        _model.getDevotionalText,
+                                        '-',
+                                      ),
+                                      'dt_alteracao': supaSerialize<DateTime>(
+                                          getCurrentTimestamp),
                                     },
+                                    matchingRows: (rows) => rows
+                                        .eq(
+                                          'id',
+                                          widget.prmDevotionalId,
+                                        )
+                                        .eq(
+                                          'user_id',
+                                          currentUserUid,
+                                        ),
                                   );
-                                },
+                                } else {
+                                  _model.retornoInsertNewDevotional =
+                                      await DevotionalsTable().insert({
+                                    'texto': _model.getDevotionalText,
+                                    'book_id': widget.prmBookId,
+                                    'version': FFAppState().versionBible,
+                                    'chapter': widget.prmChapter,
+                                    'user_id': currentUserUid,
+                                    'verses': widget.prmVerses,
+                                  });
+                                }
+
+                                if (((_model.resultadoEditDevotional != null &&
+                                            (_model.resultadoEditDevotional)!
+                                                .isNotEmpty) !=
+                                        null) ||
+                                    (_model.retornoInsertNewDevotional !=
+                                        null)) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        widget.prmIsUpdate
+                                            ? 'Atualizado com sucesso'
+                                            : 'Inserido com sucesso',
+                                        style: TextStyle(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                        ),
+                                      ),
+                                      duration: const Duration(milliseconds: 4000),
+                                      backgroundColor:
+                                          FlutterFlowTheme.of(context).success,
+                                    ),
+                                  );
+                                } else {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        widget.prmIsUpdate
+                                            ? 'Ocorreu um erro ao atualizar'
+                                            : 'Ocorreu um erro ao inserir',
+                                        style: TextStyle(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                        ),
+                                      ),
+                                      duration: const Duration(milliseconds: 4000),
+                                      backgroundColor:
+                                          FlutterFlowTheme.of(context).error,
+                                    ),
+                                  );
+                                }
+
+                                context.safePop();
+
+                                setState(() {});
+                              },
+                              text: FFLocalizations.of(context).getText(
+                                'tfof1o28' /* Salvar Devocional */,
+                              ),
+                              options: FFButtonOptions(
+                                width: double.infinity,
+                                height: 40.0,
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    24.0, 0.0, 24.0, 0.0),
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .bodyLarge
+                                    .override(
+                                      fontFamily: 'Manrope',
+                                      letterSpacing: 0.0,
+                                    ),
+                                elevation: 3.0,
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
                               ),
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              8.0, 8.0, 8.0, 8.0),
-                          child: FFButtonWidget(
-                            onPressed: () async {},
-                            text: FFLocalizations.of(context).getText(
-                              'tfof1o28' /* Salvar Devocional */,
-                            ),
-                            options: FFButtonOptions(
-                              width: double.infinity,
-                              height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).primary,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .bodyLarge
-                                  .override(
-                                    fontFamily: 'Manrope',
-                                    letterSpacing: 0.0,
-                                  ),
-                              elevation: 3.0,
-                              borderSide: const BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                          ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

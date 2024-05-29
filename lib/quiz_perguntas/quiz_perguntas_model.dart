@@ -40,6 +40,7 @@ class QuizPerguntasModel extends FlutterFlowModel<QuizPerguntasWidget> {
   // Stores action output result for [Backend Call - API (getQuiz)] action in QuizPerguntas widget.
   ApiCallResponse? apiResultohe;
   // State field(s) for Timer widget.
+  final timerInitialTimeMs = 30000;
   int timerMilliseconds = 30000;
   String timerValue = StopWatchTimer.getDisplayTime(
     30000,

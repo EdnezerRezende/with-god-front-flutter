@@ -147,7 +147,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
         body: Container(
           decoration: BoxDecoration(
-            color: FlutterFlowTheme.of(context).primaryBackground,
+            color: FlutterFlowTheme.of(context).secondaryBackground,
             boxShadow: const [
               BoxShadow(
                 blurRadius: 4.0,
@@ -170,7 +170,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                   child: Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).primaryBackground,
+                      color: FlutterFlowTheme.of(context).secondaryBackground,
                       border: Border.all(
                         color: FlutterFlowTheme.of(context).secondary,
                       ),
@@ -194,7 +194,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                             ),
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)
-                                  .primaryBackground,
+                                  .secondaryBackground,
                             ),
                             child: Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
@@ -226,7 +226,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                 fontWeight: FontWeight.normal,
                                               ),
                                       indicatorColor:
-                                          FlutterFlowTheme.of(context).primary,
+                                          FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
                                       indicatorWeight: 4.0,
                                       padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 12.0, 0.0, 0.0),
@@ -309,13 +310,13 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                 BorderSide(
                                                               color: FlutterFlowTheme
                                                                       .of(context)
-                                                                  .alternate,
+                                                                  .secondaryText,
                                                               width: 2.0,
                                                             ),
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                        40.0),
+                                                                        10.0),
                                                           ),
                                                           focusedBorder:
                                                               OutlineInputBorder(
@@ -329,7 +330,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                        40.0),
+                                                                        10.0),
                                                           ),
                                                           errorBorder:
                                                               OutlineInputBorder(
@@ -343,7 +344,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                        40.0),
+                                                                        10.0),
                                                           ),
                                                           focusedErrorBorder:
                                                               OutlineInputBorder(
@@ -357,7 +358,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                        40.0),
+                                                                        10.0),
                                                           ),
                                                           filled: true,
                                                           fillColor: FlutterFlowTheme
@@ -433,13 +434,13 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                 BorderSide(
                                                               color: FlutterFlowTheme
                                                                       .of(context)
-                                                                  .alternate,
+                                                                  .secondaryText,
                                                               width: 2.0,
                                                             ),
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                        40.0),
+                                                                        10.0),
                                                           ),
                                                           focusedBorder:
                                                               OutlineInputBorder(
@@ -453,7 +454,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                        40.0),
+                                                                        10.0),
                                                           ),
                                                           errorBorder:
                                                               OutlineInputBorder(
@@ -467,7 +468,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                        40.0),
+                                                                        10.0),
                                                           ),
                                                           focusedErrorBorder:
                                                               OutlineInputBorder(
@@ -481,7 +482,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                        40.0),
+                                                                        10.0),
                                                           ),
                                                           filled: true,
                                                           fillColor: FlutterFlowTheme
@@ -736,7 +737,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                       0.0),
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .primary,
+                                                              .secondaryBackground,
                                                           textStyle:
                                                               FlutterFlowTheme.of(
                                                                       context)
@@ -751,15 +752,16 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                   ),
                                                           elevation: 3.0,
                                                           borderSide:
-                                                              const BorderSide(
-                                                            color: Colors
-                                                                .transparent,
+                                                              BorderSide(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryText,
                                                             width: 1.0,
                                                           ),
                                                           borderRadius:
                                                               BorderRadius
                                                                   .circular(
-                                                                      40.0),
+                                                                      10.0),
                                                         ),
                                                       ),
                                                     ),
@@ -848,12 +850,15 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                       0.0,
                                                                 ),
                                                         elevation: 0.0,
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryText,
                                                           width: 1.0,
                                                         ),
                                                         borderRadius:
                                                             BorderRadius
-                                                                .circular(40.0),
+                                                                .circular(10.0),
                                                       ),
                                                     ),
                                                   ),

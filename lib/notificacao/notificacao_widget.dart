@@ -1,4 +1,3 @@
-import '/auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -6,6 +5,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 import 'notificacao_model.dart';
 export 'notificacao_model.dart';
 
@@ -36,15 +36,17 @@ class _NotificacaoWidgetState extends State<NotificacaoWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
             borderColor: Colors.transparent,
@@ -79,7 +81,9 @@ class _NotificacaoWidgetState extends State<NotificacaoWidget> {
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Container(
-              decoration: const BoxDecoration(),
+              decoration: BoxDecoration(
+                color: FlutterFlowTheme.of(context).secondaryBackground,
+              ),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -88,7 +92,10 @@ class _NotificacaoWidgetState extends State<NotificacaoWidget> {
                       future: NotNotificacaoTable().queryRows(
                         queryFn: (q) => q.eq(
                           'fcmtoken',
-                          currentJwtToken,
+                          valueOrDefault<String>(
+                            FFAppState().token,
+                            '-',
+                          ),
                         ),
                       ),
                       builder: (context, snapshot) {
@@ -117,56 +124,70 @@ class _NotificacaoWidgetState extends State<NotificacaoWidget> {
                             final listViewNotNotificacaoRow =
                                 listViewNotNotificacaoRowList[listViewIndex];
                             return Container(
-                              height: 50.0,
-                              decoration: const BoxDecoration(),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Expanded(
-                                    child: Row(
+                              height: 60.0,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                borderRadius: BorderRadius.circular(10.0),
+                                border: Border.all(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                ),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(4.0),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Expanded(
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Expanded(
+                                            child: Text(
+                                              valueOrDefault<String>(
+                                                listViewNotNotificacaoRow
+                                                    .titulo,
+                                                '-',
+                                              ),
+                                              textAlign: TextAlign.justify,
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleLarge
+                                                      .override(
+                                                        fontFamily: 'Outfit',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Row(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Expanded(
                                           child: Text(
                                             valueOrDefault<String>(
-                                              listViewNotNotificacaoRow.titulo,
+                                              listViewNotNotificacaoRow
+                                                  .mensagem,
                                               '-',
                                             ),
                                             textAlign: TextAlign.justify,
                                             style: FlutterFlowTheme.of(context)
-                                                .titleLarge
+                                                .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Outfit',
+                                                  fontFamily: 'Manrope',
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
                                         ),
                                       ],
                                     ),
-                                  ),
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Expanded(
-                                        child: Text(
-                                          valueOrDefault<String>(
-                                            listViewNotNotificacaoRow.mensagem,
-                                            '-',
-                                          ),
-                                          textAlign: TextAlign.justify,
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Manrope',
-                                                letterSpacing: 0.0,
-                                              ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             );
                           },

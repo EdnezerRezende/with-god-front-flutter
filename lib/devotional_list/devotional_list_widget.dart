@@ -81,7 +81,9 @@ class _DevotionalListWidgetState extends State<DevotionalListWidget> {
           child: Padding(
             padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
             child: Container(
-              decoration: const BoxDecoration(),
+              decoration: BoxDecoration(
+                color: FlutterFlowTheme.of(context).secondaryBackground,
+              ),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -133,6 +135,10 @@ class _DevotionalListWidgetState extends State<DevotionalListWidget> {
                                   bottomRight: Radius.circular(16.0),
                                   topLeft: Radius.circular(16.0),
                                   topRight: Radius.circular(0.0),
+                                ),
+                                border: Border.all(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
                                 ),
                               ),
                               child: Padding(

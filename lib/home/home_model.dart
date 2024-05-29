@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'dart:async';
@@ -10,6 +11,8 @@ class HomeModel extends FlutterFlowModel<HomeWidget> {
   final unfocusNode = FocusNode();
   // Stores action output result for [Backend Call - Query Rows] action in Home widget.
   List<UsuariosRow>? retornoUsuarioLogado;
+  // Stores action output result for [Backend Call - API (getVersionsBible)] action in Home widget.
+  ApiCallResponse? resultadoVersionsBible;
   // Stores action output result for [Backend Call - Query Rows] action in Home widget.
   List<NotNotificacaoRow>? resultadoNotificacoesHome;
   Completer<List<OptionsCardMenuRow>>? requestCompleter;

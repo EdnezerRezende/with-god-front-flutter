@@ -27,25 +27,25 @@ class BookStruct extends BaseStruct {
 
   // "name" field.
   String? _name;
-  String get name => _name ?? '';
+  String get name => _name ?? '-';
   set name(String? val) => _name = val;
   bool hasName() => _name != null;
 
   // "author" field.
   String? _author;
-  String get author => _author ?? '';
+  String get author => _author ?? '-';
   set author(String? val) => _author = val;
   bool hasAuthor() => _author != null;
 
   // "group" field.
   String? _group;
-  String get group => _group ?? '';
+  String get group => _group ?? '-';
   set group(String? val) => _group = val;
   bool hasGroup() => _group != null;
 
   // "version" field.
   String? _version;
-  String get version => _version ?? '';
+  String get version => _version ?? '-';
   set version(String? val) => _version = val;
   bool hasVersion() => _version != null;
 

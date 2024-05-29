@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
+
 import '/flutter_flow/flutter_flow_util.dart';
 import 'api_manager.dart';
 
@@ -10,7 +12,14 @@ const _kPrivateApiFunctionName = 'ffPrivateApiCall';
 /// Start Supabase APIs Group Code
 
 class SupabaseAPIsGroup {
-  static String baseUrl = 'https://alkmufrxuvlyujpofkir.supabase.co';
+  static String getBaseUrl({
+    String? email = 'teste@gmail.com',
+    String? accessUserToken =
+        'eyJhbGciOiJIUzI1NiIsImtpZCI6Iks2VFpSVmJDV1o5RHdtM0EiLCJ0eXAiOiJKV1QifQ.eyJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNzEzNTYzNzIxLCJpYXQiOjE3MTM1NjAxMjEsImlzcyI6Imh0dHBzOi8vYWxrbXVmcnh1dmx5dWpwb2ZraXIuc3VwYWJhc2UuY28vYXV0aC92MSIsInN1YiI6Ijk3MDhhNmZmLWZhNzUtNDgzNi05NzBlLTQ4YWVkZDcwOTI0MiIsImVtYWlsIjoidGVzdGVzMkBnbWFpbC5jb20iLCJwaG9uZSI6IiIsImFwcF9tZXRhZGF0YSI6eyJwcm92aWRlciI6ImVtYWlsIiwicHJvdmlkZXJzIjpbImVtYWlsIl19LCJ1c2VyX21ldGFkYXRhIjp7ImVtYWlsIjoidGVzdGVzMkBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsInBob25lX3ZlcmlmaWVkIjpmYWxzZSwic3ViIjoiOTcwOGE2ZmYtZmE3NS00ODM2LTk3MGUtNDhhZWRkNzA5MjQyIn0sInJvbGUiOiJhdXRoZW50aWNhdGVkIiwiYWFsIjoiYWFsMSIsImFtciI6W3sibWV0aG9kIjoicGFzc3dvcmQiLCJ0aW1lc3RhbXAiOjE3MTM1NjAxMjF9XSwic2Vzc2lvbl9pZCI6IjllZTM0ODNmLTY5MjMtNGRjZS04ZGFlLWQzMmJhYTRhNTRmNCIsImlzX2Fub255bW91cyI6ZmFsc2V9.CT4OI2IYp06mmku3xck1ZwvMRBZnynmpoHcKldJojA0',
+    String? password = '--',
+    String? groupId = '',
+  }) =>
+      'https://alkmufrxuvlyujpofkir.supabase.co';
   static Map<String, String> headers = {
     'apikey':
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFsa211ZnJ4dXZseXVqcG9ma2lyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTI0NTMxNDcsImV4cCI6MjAyODAyOTE0N30.eEFqtf8G1sv82UOz2lJfwjE6iZKfzhF2JkDAqMNyM2U',
@@ -22,6 +31,7 @@ class SupabaseAPIsGroup {
   static SelectBooksByGroupsCall selectBooksByGroupsCall =
       SelectBooksByGroupsCall();
   static SelectBooksCall selectBooksCall = SelectBooksCall();
+  static SelectAdvertsCall selectAdvertsCall = SelectAdvertsCall();
 }
 
 class ForgottenPasswordCall {
@@ -32,13 +42,20 @@ class ForgottenPasswordCall {
     String? password = '--',
     String? groupId = '',
   }) async {
+    final baseUrl = SupabaseAPIsGroup.getBaseUrl(
+      email: email,
+      accessUserToken: accessUserToken,
+      password: password,
+      groupId: groupId,
+    );
+
     final ffApiRequestBody = '''
 {
   "email": "$email"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'ForgottenPassword',
-      apiUrl: '${SupabaseAPIsGroup.baseUrl}/auth/v1/recover',
+      apiUrl: '$baseUrl/auth/v1/recover',
       callType: ApiCallType.POST,
       headers: {
         'apikey':
@@ -66,6 +83,13 @@ class RecuperarSenhaCall {
     String? password = '--',
     String? groupId = '',
   }) async {
+    final baseUrl = SupabaseAPIsGroup.getBaseUrl(
+      email: email,
+      accessUserToken: accessUserToken,
+      password: password,
+      groupId: groupId,
+    );
+
     final ffApiRequestBody = '''
 {
   "email": "$email",
@@ -73,7 +97,7 @@ class RecuperarSenhaCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'RecuperarSenha',
-      apiUrl: '${SupabaseAPIsGroup.baseUrl}/auth/v1/user',
+      apiUrl: '$baseUrl/auth/v1/user',
       callType: ApiCallType.PUT,
       headers: {
         'apikey':
@@ -101,10 +125,17 @@ class SelectBooksByGroupsCall {
     String? password = '--',
     String? groupId = '',
   }) async {
+    final baseUrl = SupabaseAPIsGroup.getBaseUrl(
+      email: email,
+      accessUserToken: accessUserToken,
+      password: password,
+      groupId: groupId,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'SelectBooksByGroups',
       apiUrl:
-          '${SupabaseAPIsGroup.baseUrl}/rest/v1/bibliaLivros?group_id=in.($groupId)&order=id_livro.asc',
+          '$baseUrl/rest/v1/bibliaLivros?group_id=in.($groupId)&order=id_livro.asc',
       callType: ApiCallType.GET,
       headers: {
         'apikey':
@@ -212,10 +243,17 @@ class SelectBooksCall {
     String? password = '--',
     String? groupId = '',
   }) async {
+    final baseUrl = SupabaseAPIsGroup.getBaseUrl(
+      email: email,
+      accessUserToken: accessUserToken,
+      password: password,
+      groupId: groupId,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'SelectBooks',
       apiUrl:
-          '${SupabaseAPIsGroup.baseUrl}/rest/v1/bibliaLivros?select=%2A&order=id.asc.nullslast',
+          '$baseUrl/rest/v1/bibliaLivros?select=%2A&order=id.asc.nullslast',
       callType: ApiCallType.GET,
       headers: {
         'apikey':
@@ -233,12 +271,120 @@ class SelectBooksCall {
   }
 }
 
+class SelectAdvertsCall {
+  Future<ApiCallResponse> call({
+    String? searchString = '',
+    String? email = 'teste@gmail.com',
+    String? accessUserToken =
+        'eyJhbGciOiJIUzI1NiIsImtpZCI6Iks2VFpSVmJDV1o5RHdtM0EiLCJ0eXAiOiJKV1QifQ.eyJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNzEzNTYzNzIxLCJpYXQiOjE3MTM1NjAxMjEsImlzcyI6Imh0dHBzOi8vYWxrbXVmcnh1dmx5dWpwb2ZraXIuc3VwYWJhc2UuY28vYXV0aC92MSIsInN1YiI6Ijk3MDhhNmZmLWZhNzUtNDgzNi05NzBlLTQ4YWVkZDcwOTI0MiIsImVtYWlsIjoidGVzdGVzMkBnbWFpbC5jb20iLCJwaG9uZSI6IiIsImFwcF9tZXRhZGF0YSI6eyJwcm92aWRlciI6ImVtYWlsIiwicHJvdmlkZXJzIjpbImVtYWlsIl19LCJ1c2VyX21ldGFkYXRhIjp7ImVtYWlsIjoidGVzdGVzMkBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsInBob25lX3ZlcmlmaWVkIjpmYWxzZSwic3ViIjoiOTcwOGE2ZmYtZmE3NS00ODM2LTk3MGUtNDhhZWRkNzA5MjQyIn0sInJvbGUiOiJhdXRoZW50aWNhdGVkIiwiYWFsIjoiYWFsMSIsImFtciI6W3sibWV0aG9kIjoicGFzc3dvcmQiLCJ0aW1lc3RhbXAiOjE3MTM1NjAxMjF9XSwic2Vzc2lvbl9pZCI6IjllZTM0ODNmLTY5MjMtNGRjZS04ZGFlLWQzMmJhYTRhNTRmNCIsImlzX2Fub255bW91cyI6ZmFsc2V9.CT4OI2IYp06mmku3xck1ZwvMRBZnynmpoHcKldJojA0',
+    String? password = '--',
+    String? groupId = '',
+  }) async {
+    final baseUrl = SupabaseAPIsGroup.getBaseUrl(
+      email: email,
+      accessUserToken: accessUserToken,
+      password: password,
+      groupId: groupId,
+    );
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'SelectAdverts',
+      apiUrl:
+          '$baseUrl/rest/v1/adverts?nomeEmpresa=ilike.*$searchString*&descricao=ilike.*$searchString*&segmento=ilike.*$searchString*&select=*',
+      callType: ApiCallType.GET,
+      headers: {
+        'apikey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFsa211ZnJ4dXZseXVqcG9ma2lyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTI0NTMxNDcsImV4cCI6MjAyODAyOTE0N30.eEFqtf8G1sv82UOz2lJfwjE6iZKfzhF2JkDAqMNyM2U',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessUserToken',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  String? id(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$[:].id''',
+      ));
+  String? dataCreate(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$[:].created_at''',
+      ));
+  String? pais(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$[:].pais''',
+      ));
+  String? descricao(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$[:].descricao''',
+      ));
+  String? linkInstagran(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$[:].intagranLink''',
+      ));
+  String? nomeEmpresa(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$[:].nomeEmpresa''',
+      ));
+  String? linkWeb(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$[:].paginaWebLink''',
+      ));
+  String? telefone(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$[:].telefone''',
+      ));
+  String? email(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$[:].email''',
+      ));
+  String? endereco(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$[:].endereco''',
+      ));
+  String? segmento(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$[:].segmento''',
+      ));
+  String? userId(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$[:].user_id''',
+      ));
+  List<String>? urlFotos(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].fotos''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+}
+
 /// End Supabase APIs Group Code
 
 /// Start API Biblia Group Code
 
 class APIBibliaGroup {
-  static String baseUrl = 'https://www.abibliadigital.com.br/api';
+  static String getBaseUrl({
+    String? authorizationToken =
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdHIiOiJTYXQgQXByIDIwIDIwMjQgMTA6NDc6NTggR01UKzAwMDAuNjUzM2Q1YTM5MWQyNGMwMDJhYWE2N2UwIiwiaWF0IjoxNzEzNjEwMDc4fQ.LrxLAcfaSsjgbX96ZA6a4ef8Q_UfH4ae1ECcfyL-n78',
+    String? book = '--',
+    String? email = 'testes2@gmail.com',
+    String? password = '102030',
+    String? name = 'Admin general',
+    String? range = 'month',
+    String? version = 'nvi',
+    String? word = 'Deus',
+    String? bookAbbrev = 'gn',
+    int? chapter = 1,
+  }) =>
+      'https://www.abibliadigital.com.br/api';
   static Map<String, String> headers = {
     'Authorization': 'Bearer [AUTHORIZATION_TOKEN]',
   };
@@ -272,9 +418,22 @@ class GetAllBooksBibleCall {
     String? bookAbbrev = 'gn',
     int? chapter = 1,
   }) async {
+    final baseUrl = APIBibliaGroup.getBaseUrl(
+      authorizationToken: authorizationToken,
+      book: book,
+      email: email,
+      password: password,
+      name: name,
+      range: range,
+      version: version,
+      word: word,
+      bookAbbrev: bookAbbrev,
+      chapter: chapter,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'getAllBooksBible',
-      apiUrl: '${APIBibliaGroup.baseUrl}/books',
+      apiUrl: '$baseUrl/books',
       callType: ApiCallType.GET,
       headers: {
         'Authorization': 'Bearer $authorizationToken',
@@ -303,9 +462,22 @@ class GetBookBibleWithCommentCall {
     String? bookAbbrev = 'gn',
     int? chapter = 1,
   }) async {
+    final baseUrl = APIBibliaGroup.getBaseUrl(
+      authorizationToken: authorizationToken,
+      book: book,
+      email: email,
+      password: password,
+      name: name,
+      range: range,
+      version: version,
+      word: word,
+      bookAbbrev: bookAbbrev,
+      chapter: chapter,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'getBookBibleWithComment',
-      apiUrl: '${APIBibliaGroup.baseUrl}/books/$book',
+      apiUrl: '$baseUrl/books/$book',
       callType: ApiCallType.GET,
       headers: {
         'Authorization': 'Bearer $authorizationToken',
@@ -334,6 +506,19 @@ class LoginAndUpdateTokenByEmailCall {
     String? bookAbbrev = 'gn',
     int? chapter = 1,
   }) async {
+    final baseUrl = APIBibliaGroup.getBaseUrl(
+      authorizationToken: authorizationToken,
+      book: book,
+      email: email,
+      password: password,
+      name: name,
+      range: range,
+      version: version,
+      word: word,
+      bookAbbrev: bookAbbrev,
+      chapter: chapter,
+    );
+
     final ffApiRequestBody = '''
 {
   "email": "$email",
@@ -341,7 +526,7 @@ class LoginAndUpdateTokenByEmailCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'loginAndUpdateTokenByEmail',
-      apiUrl: '${APIBibliaGroup.baseUrl}/users/token',
+      apiUrl: '$baseUrl/users/token',
       callType: ApiCallType.PUT,
       headers: {
         'Authorization': 'Bearer $authorizationToken',
@@ -385,9 +570,22 @@ class DeleteUserByEmailCall {
     String? bookAbbrev = 'gn',
     int? chapter = 1,
   }) async {
+    final baseUrl = APIBibliaGroup.getBaseUrl(
+      authorizationToken: authorizationToken,
+      book: book,
+      email: email,
+      password: password,
+      name: name,
+      range: range,
+      version: version,
+      word: word,
+      bookAbbrev: bookAbbrev,
+      chapter: chapter,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'deleteUserByEmail',
-      apiUrl: '${APIBibliaGroup.baseUrl}/users',
+      apiUrl: '$baseUrl/users',
       callType: ApiCallType.DELETE,
       headers: {
         'Authorization': 'Bearer $authorizationToken',
@@ -416,9 +614,22 @@ class GetUserStatsCall {
     String? bookAbbrev = 'gn',
     int? chapter = 1,
   }) async {
+    final baseUrl = APIBibliaGroup.getBaseUrl(
+      authorizationToken: authorizationToken,
+      book: book,
+      email: email,
+      password: password,
+      name: name,
+      range: range,
+      version: version,
+      word: word,
+      bookAbbrev: bookAbbrev,
+      chapter: chapter,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'getUserStats',
-      apiUrl: '${APIBibliaGroup.baseUrl}/users/stats',
+      apiUrl: '$baseUrl/users/stats',
       callType: ApiCallType.GET,
       headers: {
         'Authorization': 'Bearer $authorizationToken',
@@ -475,6 +686,19 @@ class CreateUserCall {
     String? bookAbbrev = 'gn',
     int? chapter = 1,
   }) async {
+    final baseUrl = APIBibliaGroup.getBaseUrl(
+      authorizationToken: authorizationToken,
+      book: book,
+      email: email,
+      password: password,
+      name: name,
+      range: range,
+      version: version,
+      word: word,
+      bookAbbrev: bookAbbrev,
+      chapter: chapter,
+    );
+
     final ffApiRequestBody = '''
 {
   "name": "$name",
@@ -484,7 +708,7 @@ class CreateUserCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'createUser',
-      apiUrl: '${APIBibliaGroup.baseUrl}/users',
+      apiUrl: '$baseUrl/users',
       callType: ApiCallType.POST,
       headers: {
         'Authorization': 'Bearer $authorizationToken',
@@ -532,9 +756,22 @@ class GetNumberRequisitionsCall {
     String? bookAbbrev = 'gn',
     int? chapter = 1,
   }) async {
+    final baseUrl = APIBibliaGroup.getBaseUrl(
+      authorizationToken: authorizationToken,
+      book: book,
+      email: email,
+      password: password,
+      name: name,
+      range: range,
+      version: version,
+      word: word,
+      bookAbbrev: bookAbbrev,
+      chapter: chapter,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'getNumberRequisitions',
-      apiUrl: '${APIBibliaGroup.baseUrl}/requests/amount/$range',
+      apiUrl: '$baseUrl/requests/amount/$range',
       callType: ApiCallType.GET,
       headers: {
         'Authorization': 'Bearer $authorizationToken',
@@ -591,9 +828,22 @@ class GetVersionsBibleCall {
     String? bookAbbrev = 'gn',
     int? chapter = 1,
   }) async {
+    final baseUrl = APIBibliaGroup.getBaseUrl(
+      authorizationToken: authorizationToken,
+      book: book,
+      email: email,
+      password: password,
+      name: name,
+      range: range,
+      version: version,
+      word: word,
+      bookAbbrev: bookAbbrev,
+      chapter: chapter,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'getVersionsBible',
-      apiUrl: '${APIBibliaGroup.baseUrl}/versions',
+      apiUrl: '$baseUrl/versions',
       callType: ApiCallType.GET,
       headers: {
         'Authorization': 'Bearer $authorizationToken',
@@ -641,6 +891,19 @@ class GetVersesByWordCall {
     String? bookAbbrev = 'gn',
     int? chapter = 1,
   }) async {
+    final baseUrl = APIBibliaGroup.getBaseUrl(
+      authorizationToken: authorizationToken,
+      book: book,
+      email: email,
+      password: password,
+      name: name,
+      range: range,
+      version: version,
+      word: word,
+      bookAbbrev: bookAbbrev,
+      chapter: chapter,
+    );
+
     final ffApiRequestBody = '''
 {
   "version": "$version",
@@ -648,7 +911,7 @@ class GetVersesByWordCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'getVersesByWord',
-      apiUrl: '${APIBibliaGroup.baseUrl}/verses/search',
+      apiUrl: '$baseUrl/verses/search',
       callType: ApiCallType.POST,
       headers: {
         'Authorization': 'Bearer $authorizationToken',
@@ -775,10 +1038,22 @@ class GetAllVersesByChapterCall {
     String? bookAbbrev = 'gn',
     int? chapter = 1,
   }) async {
+    final baseUrl = APIBibliaGroup.getBaseUrl(
+      authorizationToken: authorizationToken,
+      book: book,
+      email: email,
+      password: password,
+      name: name,
+      range: range,
+      version: version,
+      word: word,
+      bookAbbrev: bookAbbrev,
+      chapter: chapter,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'getAllVersesByChapter',
-      apiUrl:
-          '${APIBibliaGroup.baseUrl}/verses/$version/$bookAbbrev/$chapter',
+      apiUrl: '$baseUrl/verses/$version/$bookAbbrev/$chapter',
       callType: ApiCallType.GET,
       headers: {
         'Authorization': 'Bearer $authorizationToken',
@@ -817,7 +1092,10 @@ class GetAllVersesByChapterCall {
 /// Start ShowDoCristao Group Code
 
 class ShowDoCristaoGroup {
-  static String baseUrl = 'https://www.showdocristao.com.br:5000/api';
+  static String getBaseUrl({
+    int? level = 6,
+  }) =>
+      'https://www.showdocristao.com.br:5000/api';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',
@@ -830,9 +1108,13 @@ class GetQuizCall {
   Future<ApiCallResponse> call({
     int? level = 6,
   }) async {
+    final baseUrl = ShowDoCristaoGroup.getBaseUrl(
+      level: level,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'getQuiz',
-      apiUrl: '${ShowDoCristaoGroup.baseUrl}/perguntas/modo/classico',
+      apiUrl: '$baseUrl/perguntas/modo/classico',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -852,9 +1134,13 @@ class GetQuizByLevelCall {
   Future<ApiCallResponse> call({
     int? level = 6,
   }) async {
+    final baseUrl = ShowDoCristaoGroup.getBaseUrl(
+      level: level,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'getQuizByLevel',
-      apiUrl: '${ShowDoCristaoGroup.baseUrl}/perguntas/modo/classico/nivel',
+      apiUrl: '$baseUrl/perguntas/modo/classico/nivel',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -895,6 +1181,9 @@ String _serializeList(List? list) {
   try {
     return json.encode(list);
   } catch (_) {
+    if (kDebugMode) {
+      print("List serialization failed. Returning empty list.");
+    }
     return '[]';
   }
 }
@@ -904,6 +1193,9 @@ String _serializeJson(dynamic jsonVar, [bool isList = false]) {
   try {
     return json.encode(jsonVar);
   } catch (_) {
+    if (kDebugMode) {
+      print("Json serialization failed. Returning empty json.");
+    }
     return isList ? '[]' : '{}';
   }
 }

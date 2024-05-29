@@ -153,7 +153,9 @@ class _CompAnuncioEditWidgetState extends State<CompAnuncioEditWidget> {
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Container(
-          decoration: const BoxDecoration(),
+          decoration: BoxDecoration(
+            color: FlutterFlowTheme.of(context).secondaryBackground,
+          ),
           child: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.max,
@@ -197,7 +199,7 @@ class _CompAnuncioEditWidgetState extends State<CompAnuncioEditWidget> {
                     size: 24.0,
                   ),
                   elevation: 2.0,
-                  borderColor: FlutterFlowTheme.of(context).alternate,
+                  borderColor: FlutterFlowTheme.of(context).secondaryText,
                   borderWidth: 2.0,
                   borderRadius: 8.0,
                   margin: const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
@@ -239,7 +241,7 @@ class _CompAnuncioEditWidgetState extends State<CompAnuncioEditWidget> {
                     size: 24.0,
                   ),
                   elevation: 2.0,
-                  borderColor: FlutterFlowTheme.of(context).alternate,
+                  borderColor: FlutterFlowTheme.of(context).secondaryText,
                   borderWidth: 2.0,
                   borderRadius: 8.0,
                   margin: const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
@@ -254,6 +256,7 @@ class _CompAnuncioEditWidgetState extends State<CompAnuncioEditWidget> {
                   autofocus: true,
                   obscureText: false,
                   decoration: InputDecoration(
+                    isDense: false,
                     labelStyle:
                         FlutterFlowTheme.of(context).labelMedium.override(
                               fontFamily: 'Manrope',
@@ -269,32 +272,33 @@ class _CompAnuncioEditWidgetState extends State<CompAnuncioEditWidget> {
                             ),
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(
-                        color: FlutterFlowTheme.of(context).alternate,
+                        color: FlutterFlowTheme.of(context).secondaryText,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                     focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: FlutterFlowTheme.of(context).primary,
+                      borderSide: const BorderSide(
+                        color: Color(0x00000000),
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                     errorBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: FlutterFlowTheme.of(context).error,
+                      borderSide: const BorderSide(
+                        color: Color(0x00000000),
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                     focusedErrorBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: FlutterFlowTheme.of(context).error,
+                      borderSide: const BorderSide(
+                        color: Color(0x00000000),
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(8.0),
                     ),
+                    contentPadding: const EdgeInsets.all(8.0),
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Manrope',
@@ -324,7 +328,7 @@ class _CompAnuncioEditWidgetState extends State<CompAnuncioEditWidget> {
                             ),
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(
-                        color: FlutterFlowTheme.of(context).alternate,
+                        color: FlutterFlowTheme.of(context).secondaryText,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(8.0),
@@ -350,6 +354,7 @@ class _CompAnuncioEditWidgetState extends State<CompAnuncioEditWidget> {
                       ),
                       borderRadius: BorderRadius.circular(8.0),
                     ),
+                    contentPadding: const EdgeInsets.all(8.0),
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Manrope',
@@ -379,7 +384,7 @@ class _CompAnuncioEditWidgetState extends State<CompAnuncioEditWidget> {
                             ),
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(
-                        color: FlutterFlowTheme.of(context).alternate,
+                        color: FlutterFlowTheme.of(context).secondaryText,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(8.0),
@@ -405,6 +410,7 @@ class _CompAnuncioEditWidgetState extends State<CompAnuncioEditWidget> {
                       ),
                       borderRadius: BorderRadius.circular(8.0),
                     ),
+                    contentPadding: const EdgeInsets.all(8.0),
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Manrope',
@@ -436,7 +442,7 @@ class _CompAnuncioEditWidgetState extends State<CompAnuncioEditWidget> {
                             ),
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(
-                        color: FlutterFlowTheme.of(context).alternate,
+                        color: FlutterFlowTheme.of(context).secondaryText,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(8.0),
@@ -462,6 +468,7 @@ class _CompAnuncioEditWidgetState extends State<CompAnuncioEditWidget> {
                       ),
                       borderRadius: BorderRadius.circular(8.0),
                     ),
+                    contentPadding: const EdgeInsets.all(8.0),
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Manrope',
@@ -495,7 +502,7 @@ class _CompAnuncioEditWidgetState extends State<CompAnuncioEditWidget> {
                             ),
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(
-                        color: FlutterFlowTheme.of(context).alternate,
+                        color: FlutterFlowTheme.of(context).secondaryText,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(8.0),
@@ -521,6 +528,7 @@ class _CompAnuncioEditWidgetState extends State<CompAnuncioEditWidget> {
                       ),
                       borderRadius: BorderRadius.circular(8.0),
                     ),
+                    contentPadding: const EdgeInsets.all(8.0),
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Manrope',
@@ -550,7 +558,7 @@ class _CompAnuncioEditWidgetState extends State<CompAnuncioEditWidget> {
                             ),
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(
-                        color: FlutterFlowTheme.of(context).alternate,
+                        color: FlutterFlowTheme.of(context).secondaryText,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(8.0),
@@ -576,6 +584,7 @@ class _CompAnuncioEditWidgetState extends State<CompAnuncioEditWidget> {
                       ),
                       borderRadius: BorderRadius.circular(8.0),
                     ),
+                    contentPadding: const EdgeInsets.all(8.0),
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Manrope',
@@ -606,7 +615,7 @@ class _CompAnuncioEditWidgetState extends State<CompAnuncioEditWidget> {
                             ),
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(
-                        color: FlutterFlowTheme.of(context).alternate,
+                        color: FlutterFlowTheme.of(context).secondaryText,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(8.0),
@@ -632,6 +641,7 @@ class _CompAnuncioEditWidgetState extends State<CompAnuncioEditWidget> {
                       ),
                       borderRadius: BorderRadius.circular(8.0),
                     ),
+                    contentPadding: const EdgeInsets.all(8.0),
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Manrope',
@@ -649,6 +659,7 @@ class _CompAnuncioEditWidgetState extends State<CompAnuncioEditWidget> {
                         final lVImagens = _model.imagensAnuncio.toList();
                         return ListView.builder(
                           padding: EdgeInsets.zero,
+                          primary: false,
                           shrinkWrap: true,
                           scrollDirection: Axis.vertical,
                           itemCount: lVImagens.length,
@@ -775,8 +786,8 @@ class _CompAnuncioEditWidgetState extends State<CompAnuncioEditWidget> {
                                 24.0, 0.0, 24.0, 0.0),
                             iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            color:
-                                FlutterFlowTheme.of(context).primaryBackground,
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
@@ -786,8 +797,8 @@ class _CompAnuncioEditWidgetState extends State<CompAnuncioEditWidget> {
                                   letterSpacing: 0.0,
                                 ),
                             elevation: 3.0,
-                            borderSide: const BorderSide(
-                              color: Colors.transparent,
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).secondaryText,
                               width: 1.0,
                             ),
                             borderRadius: BorderRadius.circular(8.0),
@@ -803,122 +814,127 @@ class _CompAnuncioEditWidgetState extends State<CompAnuncioEditWidget> {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Expanded(
-                        child: FFButtonWidget(
-                          onPressed: () async {
-                            if (_model.formKey.currentState == null ||
-                                !_model.formKey.currentState!.validate()) {
-                              return;
-                            }
-                            if (_model.dpdServicoValue == null) {
-                              return;
-                            }
-                            if (_model.dpdPaisValue == null) {
-                              return;
-                            }
-                            if ((_model.uploadedLocalFile.bytes ?? [])
-                                    .isEmpty) {
-                              return;
-                            }
-                            _model.retornoInsertAnuncio =
-                                await AdvertsTable().insert({
-                              'pais': _model.dpdPaisValue,
-                              'descricao':
-                                  _model.txtDescricaoTextController.text,
-                              'intagranLink':
-                                  _model.txtInstagranTextController.text,
-                              'nomeEmpresa':
-                                  _model.txtNomeEmpresaTextController.text,
-                              'paginaWebLink':
-                                  _model.txtSiteTextController.text,
-                              'telefone': _model.txtTelefoneTextController.text,
-                              'email': _model.txtEmailTextController.text,
-                              'endereco': _model.txtEnderecoTextController.text,
-                              'segmento': valueOrDefault<String>(
-                                _model.dpdServicoValue,
-                                '4',
-                              ),
-                              'user_id': valueOrDefault<String>(
-                                currentUserUid,
-                                '-',
-                              ),
-                              'fotos': _model.imagensAnuncio,
-                            });
-                            if (_model.retornoInsertAnuncio?.id != null &&
-                                _model.retornoInsertAnuncio?.id != '') {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    'Anúncio inserido com sucesso',
-                                    style: TextStyle(
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                    ),
-                                  ),
-                                  duration: const Duration(milliseconds: 4000),
-                                  backgroundColor:
-                                      FlutterFlowTheme.of(context).secondary,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              if (_model.formKey.currentState == null ||
+                                  !_model.formKey.currentState!.validate()) {
+                                return;
+                              }
+                              if (_model.dpdServicoValue == null) {
+                                return;
+                              }
+                              if (_model.dpdPaisValue == null) {
+                                return;
+                              }
+                              if ((_model.uploadedLocalFile.bytes ?? [])
+                                      .isEmpty) {
+                                return;
+                              }
+                              _model.retornoInsertAnuncio =
+                                  await AdvertsTable().insert({
+                                'pais': _model.dpdPaisValue,
+                                'descricao':
+                                    _model.txtDescricaoTextController.text,
+                                'intagranLink':
+                                    _model.txtInstagranTextController.text,
+                                'nomeEmpresa':
+                                    _model.txtNomeEmpresaTextController.text,
+                                'paginaWebLink':
+                                    _model.txtSiteTextController.text,
+                                'telefone':
+                                    _model.txtTelefoneTextController.text,
+                                'email': _model.txtEmailTextController.text,
+                                'endereco':
+                                    _model.txtEnderecoTextController.text,
+                                'segmento': valueOrDefault<String>(
+                                  _model.dpdServicoValue,
+                                  '4',
                                 ),
-                              );
-                              setState(() {
-                                _model.dpdServicoValueController?.reset();
-                                _model.dpdPaisValueController?.reset();
-                              });
-                              setState(() {
-                                _model.txtNomeEmpresaTextController?.clear();
-                                _model.txtEnderecoTextController?.clear();
-                                _model.txtDescricaoTextController?.clear();
-                                _model.txtTelefoneTextController?.clear();
-                                _model.txtInstagranTextController?.clear();
-                                _model.txtSiteTextController?.clear();
-                                _model.txtEmailTextController?.clear();
-                              });
-                              setState(() {
-                                _model.imagensAnuncio = [];
-                              });
-                            } else {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    'Erro ao inserir o anúncio, tente novamente mais tarde!',
-                                    style: TextStyle(
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                    ),
-                                  ),
-                                  duration: const Duration(milliseconds: 4000),
-                                  backgroundColor:
-                                      FlutterFlowTheme.of(context).secondary,
+                                'user_id': valueOrDefault<String>(
+                                  currentUserUid,
+                                  '-',
                                 ),
-                              );
-                            }
+                                'fotos': _model.imagensAnuncio,
+                              });
+                              if (_model.retornoInsertAnuncio?.id != null &&
+                                  _model.retornoInsertAnuncio?.id != '') {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      'Anúncio inserido com sucesso',
+                                      style: TextStyle(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                      ),
+                                    ),
+                                    duration: const Duration(milliseconds: 4000),
+                                    backgroundColor:
+                                        FlutterFlowTheme.of(context).secondary,
+                                  ),
+                                );
+                                setState(() {
+                                  _model.dpdServicoValueController?.reset();
+                                  _model.dpdPaisValueController?.reset();
+                                });
+                                setState(() {
+                                  _model.txtNomeEmpresaTextController?.clear();
+                                  _model.txtEnderecoTextController?.clear();
+                                  _model.txtDescricaoTextController?.clear();
+                                  _model.txtTelefoneTextController?.clear();
+                                  _model.txtInstagranTextController?.clear();
+                                  _model.txtSiteTextController?.clear();
+                                  _model.txtEmailTextController?.clear();
+                                });
+                                setState(() {
+                                  _model.imagensAnuncio = [];
+                                });
+                              } else {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      'Erro ao inserir o anúncio, tente novamente mais tarde!',
+                                      style: TextStyle(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                      ),
+                                    ),
+                                    duration: const Duration(milliseconds: 4000),
+                                    backgroundColor:
+                                        FlutterFlowTheme.of(context).secondary,
+                                  ),
+                                );
+                              }
 
-                            setState(() {});
-                          },
-                          text: FFLocalizations.of(context).getText(
-                            '7tc5wskx' /* Salvar */,
-                          ),
-                          options: FFButtonOptions(
-                            height: 50.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context).success,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  fontFamily: 'Manrope',
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  fontSize: 16.0,
-                                  letterSpacing: 0.0,
-                                ),
-                            elevation: 3.0,
-                            borderSide: const BorderSide(
-                              color: Colors.transparent,
-                              width: 1.0,
+                              setState(() {});
+                            },
+                            text: FFLocalizations.of(context).getText(
+                              '7tc5wskx' /* Salvar */,
                             ),
-                            borderRadius: BorderRadius.circular(8.0),
+                            options: FFButtonOptions(
+                              height: 50.0,
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  24.0, 0.0, 24.0, 0.0),
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: FlutterFlowTheme.of(context).success,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: 'Manrope',
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    fontSize: 16.0,
+                                    letterSpacing: 0.0,
+                                  ),
+                              elevation: 3.0,
+                              borderSide: const BorderSide(
+                                color: Colors.transparent,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
                           ),
                         ),
                       ),

@@ -89,7 +89,7 @@ class _CompChangePasswordWidgetState extends State<CompChangePasswordWidget> {
                       ),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: FlutterFlowTheme.of(context).primary,
+                      color: FlutterFlowTheme.of(context).secondaryText,
                       width: 2.0,
                     ),
                     borderRadius: BorderRadius.circular(10.0),
@@ -158,7 +158,7 @@ class _CompChangePasswordWidgetState extends State<CompChangePasswordWidget> {
                       ),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: FlutterFlowTheme.of(context).primary,
+                      color: FlutterFlowTheme.of(context).secondaryText,
                       width: 2.0,
                     ),
                     borderRadius: BorderRadius.circular(10.0),
@@ -275,13 +275,16 @@ class _CompChangePasswordWidgetState extends State<CompChangePasswordWidget> {
                   padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                   iconPadding:
                       const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                  color: FlutterFlowTheme.of(context).primary,
+                  color: FlutterFlowTheme.of(context).secondaryBackground,
                   textStyle: FlutterFlowTheme.of(context).titleMedium.override(
                         fontFamily: 'Manrope',
                         color: Colors.white,
                         letterSpacing: 0.0,
                       ),
                   elevation: 2.0,
+                  borderSide: BorderSide(
+                    color: FlutterFlowTheme.of(context).secondaryText,
+                  ),
                   borderRadius: BorderRadius.circular(10.0),
                 ),
               ),

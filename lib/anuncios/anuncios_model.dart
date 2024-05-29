@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/backend/supabase/supabase.dart';
 import '/components/comp_anuncio_edit_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -23,10 +24,10 @@ class AnunciosModel extends FlutterFlowModel<AnunciosWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode;
-  TextEditingController? textController;
-  String? Function(BuildContext, String?)? textControllerValidator;
+  // State field(s) for TxtSearch widget.
+  FocusNode? txtSearchFocusNode;
+  TextEditingController? txtSearchTextController;
+  String? Function(BuildContext, String?)? txtSearchTextControllerValidator;
   // State field(s) for TabBar widget.
   TabController? tabBarController;
   int get tabBarCurrentIndex =>
@@ -34,7 +35,7 @@ class AnunciosModel extends FlutterFlowModel<AnunciosWidget> {
 
   // Stores action output result for [Backend Call - Delete Row(s)] action in Icon widget.
   List<AdvertsRow>? retornoExclusao;
-  Completer<List<AdvertsRow>>? requestCompleter;
+  Completer<ApiCallResponse>? apiRequestCompleter;
   // Model for compAnuncioEdit component.
   late CompAnuncioEditModel compAnuncioEditModel;
 
@@ -46,15 +47,15 @@ class AnunciosModel extends FlutterFlowModel<AnunciosWidget> {
   @override
   void dispose() {
     unfocusNode.dispose();
-    textFieldFocusNode?.dispose();
-    textController?.dispose();
+    txtSearchFocusNode?.dispose();
+    txtSearchTextController?.dispose();
 
     tabBarController?.dispose();
     compAnuncioEditModel.dispose();
   }
 
   /// Additional helper methods.
-  Future waitForRequestCompleted({
+  Future waitForApiRequestCompleted({
     double minWait = 0,
     double maxWait = double.infinity,
   }) async {
@@ -62,7 +63,7 @@ class AnunciosModel extends FlutterFlowModel<AnunciosWidget> {
     while (true) {
       await Future.delayed(const Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
-      final requestComplete = requestCompleter?.isCompleted ?? false;
+      final requestComplete = apiRequestCompleter?.isCompleted ?? false;
       if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
         break;
       }

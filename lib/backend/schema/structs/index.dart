@@ -1,5 +1,6 @@
 export '/backend/schema/util/schema_util.dart';
 
+export 'adverts_struct.dart';
 export 'books_by_grupo_struct.dart';
 export 'quiz_level_return_struct.dart';
 export 'verses_by_book_and_chapter_struct.dart';

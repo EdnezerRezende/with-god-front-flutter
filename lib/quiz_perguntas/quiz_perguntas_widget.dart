@@ -122,7 +122,7 @@ class _QuizPerguntasWidgetState extends State<QuizPerguntasWidget> {
             width: double.infinity,
             height: double.infinity,
             decoration: BoxDecoration(
-              color: FlutterFlowTheme.of(context).primaryBackground,
+              color: FlutterFlowTheme.of(context).secondaryBackground,
             ),
             child: Padding(
               padding: const EdgeInsets.all(18.0),
@@ -160,7 +160,7 @@ class _QuizPerguntasWidgetState extends State<QuizPerguntasWidget> {
                             size: 36.0,
                           ),
                           FlutterFlowTimer(
-                            initialTime: _model.timerMilliseconds,
+                            initialTime: _model.timerInitialTimeMs,
                             getDisplayTime: (value) =>
                                 StopWatchTimer.getDisplayTime(
                               value,
@@ -289,6 +289,10 @@ class _QuizPerguntasWidgetState extends State<QuizPerguntasWidget> {
                                     topLeft: Radius.circular(16.0),
                                     topRight: Radius.circular(0.0),
                                   ),
+                                  border: Border.all(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                  ),
                                 ),
                                 child: Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
@@ -399,7 +403,12 @@ class _QuizPerguntasWidgetState extends State<QuizPerguntasWidget> {
                         width: double.infinity,
                         height: 40.0,
                         decoration: BoxDecoration(
-                          color: FlutterFlowTheme.of(context).primaryBackground,
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                          borderRadius: BorderRadius.circular(10.0),
+                          border: Border.all(
+                            color: FlutterFlowTheme.of(context).secondaryText,
+                          ),
                         ),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -467,8 +476,8 @@ class _QuizPerguntasWidgetState extends State<QuizPerguntasWidget> {
                                   letterSpacing: 0.0,
                                 ),
                             elevation: 3.0,
-                            borderSide: const BorderSide(
-                              color: Colors.transparent,
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).secondaryText,
                               width: 1.0,
                             ),
                             borderRadius: BorderRadius.circular(8.0),
@@ -576,8 +585,8 @@ class _QuizPerguntasWidgetState extends State<QuizPerguntasWidget> {
                                   letterSpacing: 0.0,
                                 ),
                             elevation: 3.0,
-                            borderSide: const BorderSide(
-                              color: Colors.transparent,
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).secondaryText,
                               width: 1.0,
                             ),
                             borderRadius: BorderRadius.circular(8.0),

@@ -62,6 +62,7 @@ class _CapitulosWidgetState extends State<CapitulosWidget>
         _model.booksResult = widget.prmBooks!.toList().cast<BooksStruct>();
         _model.nomeLivro = widget.prmNomeLivro!;
       });
+      await Future.delayed(const Duration(milliseconds: 1000));
       _model.resultNextBook =
           await APIBibliaGroup.getAllVersesByChapterCall.call(
         bookAbbrev: valueOrDefault<String>(
@@ -544,8 +545,11 @@ class _CapitulosWidgetState extends State<CapitulosWidget>
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              lVItensVersesItem.number
-                                                  .toString(),
+                                              valueOrDefault<String>(
+                                                lVItensVersesItem.number
+                                                    .toString(),
+                                                '1',
+                                              ),
                                               textAlign: TextAlign.end,
                                               style:
                                                   FlutterFlowTheme.of(context)

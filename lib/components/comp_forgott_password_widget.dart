@@ -56,6 +56,9 @@ class _CompForgottPasswordWidgetState extends State<CompForgottPasswordWidget> {
           topRight: Radius.circular(25.0),
         ),
         shape: BoxShape.rectangle,
+        border: Border.all(
+          color: FlutterFlowTheme.of(context).secondaryText,
+        ),
       ),
       child: Padding(
         padding: const EdgeInsets.all(25.0),
@@ -159,13 +162,16 @@ class _CompForgottPasswordWidgetState extends State<CompForgottPasswordWidget> {
                   padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                   iconPadding:
                       const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                  color: FlutterFlowTheme.of(context).primary,
+                  color: FlutterFlowTheme.of(context).secondaryBackground,
                   textStyle: FlutterFlowTheme.of(context).titleMedium.override(
                         fontFamily: 'Manrope',
                         color: Colors.white,
                         letterSpacing: 0.0,
                       ),
                   elevation: 2.0,
+                  borderSide: BorderSide(
+                    color: FlutterFlowTheme.of(context).secondaryText,
+                  ),
                   borderRadius: BorderRadius.circular(10.0),
                 ),
               ),

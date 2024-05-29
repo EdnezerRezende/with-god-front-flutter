@@ -109,6 +109,12 @@ class FFAppState extends ChangeNotifier {
   set permissionBiometria(bool value) {
     _permissionBiometria = value;
   }
+
+  String _fotoUserLogado = '';
+  String get fotoUserLogado => _fotoUserLogado;
+  set fotoUserLogado(String value) {
+    _fotoUserLogado = value;
+  }
 }
 
 void _safeInit(Function() initializeField) {

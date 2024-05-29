@@ -25,7 +25,7 @@ void main() async {
   await SupaFlow.initialize();
 
   await FlutterFlowTheme.initialize();
-  requestConsent();
+  adMobRequestConsent();
 
   await FFLocalizations.initialize();
 

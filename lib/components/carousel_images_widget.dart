@@ -66,7 +66,7 @@ class _CarouselImagesWidgetState extends State<CarouselImagesWidget> {
             carouselController: _model.carouselController ??=
                 CarouselController(),
             options: CarouselOptions(
-              initialPage: min(1, lvImagesPath.length - 1),
+              initialPage: max(0, min(1, lvImagesPath.length - 1)),
               viewportFraction: 0.5,
               disableCenter: false,
               enlargeCenterPage: true,

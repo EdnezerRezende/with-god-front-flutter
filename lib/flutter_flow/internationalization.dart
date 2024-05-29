@@ -265,7 +265,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // Anuncios
   {
     '89s7ymrf': {
-      'pt': 'Search listings...',
+      'pt': '',
+      'en': '',
+    },
+    '9nqj20zj': {
+      'pt': 'Pesquisar',
       'en': '',
     },
     'bygnmbu0': {

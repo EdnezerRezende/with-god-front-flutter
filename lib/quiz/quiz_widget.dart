@@ -90,7 +90,7 @@ class _QuizWidgetState extends State<QuizWidget> {
             width: double.infinity,
             height: double.infinity,
             decoration: BoxDecoration(
-              color: FlutterFlowTheme.of(context).primaryBackground,
+              color: FlutterFlowTheme.of(context).secondaryBackground,
             ),
             child: Column(
               mainAxisSize: MainAxisSize.max,
@@ -100,7 +100,7 @@ class _QuizWidgetState extends State<QuizWidget> {
                   width: double.infinity,
                   height: 150.0,
                   decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).primaryBackground,
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
                   ),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
@@ -170,6 +170,9 @@ class _QuizWidgetState extends State<QuizWidget> {
                         bottomRight: Radius.circular(36.0),
                         topLeft: Radius.circular(36.0),
                         topRight: Radius.circular(0.0),
+                      ),
+                      border: Border.all(
+                        color: FlutterFlowTheme.of(context).secondaryText,
                       ),
                     ),
                     child: Padding(
@@ -259,12 +262,16 @@ class _QuizWidgetState extends State<QuizWidget> {
                                         height: 100.0,
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
+                                              .secondaryBackground,
                                           borderRadius: const BorderRadius.only(
                                             bottomLeft: Radius.circular(0.0),
                                             bottomRight: Radius.circular(16.0),
                                             topLeft: Radius.circular(16.0),
                                             topRight: Radius.circular(0.0),
+                                          ),
+                                          border: Border.all(
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
                                           ),
                                         ),
                                         child: Padding(

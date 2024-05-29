@@ -111,7 +111,7 @@ class _BibliaWidgetState extends State<BibliaWidget>
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
           automaticallyImplyLeading: false,
@@ -154,7 +154,7 @@ class _BibliaWidgetState extends State<BibliaWidget>
                   width: double.infinity,
                   height: 100.0,
                   decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).primaryBackground,
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
                   ),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,

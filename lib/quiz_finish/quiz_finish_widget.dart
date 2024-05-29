@@ -114,7 +114,7 @@ class _QuizFinishWidgetState extends State<QuizFinishWidget> {
             width: double.infinity,
             height: double.infinity,
             decoration: BoxDecoration(
-              color: FlutterFlowTheme.of(context).selecionado,
+              color: FlutterFlowTheme.of(context).secondaryBackground,
             ),
             child: Column(
               mainAxisSize: MainAxisSize.max,
@@ -133,6 +133,9 @@ class _QuizFinishWidgetState extends State<QuizFinishWidget> {
                         bottomRight: Radius.circular(18.0),
                         topLeft: Radius.circular(18.0),
                         topRight: Radius.circular(0.0),
+                      ),
+                      border: Border.all(
+                        color: FlutterFlowTheme.of(context).secondaryText,
                       ),
                     ),
                     child: Padding(
@@ -236,10 +239,11 @@ class _QuizFinishWidgetState extends State<QuizFinishWidget> {
                                           letterSpacing: 0.0,
                                         ),
                                     elevation: 3.0,
-                                    borderSide: const BorderSide(
-                                      color: Colors.transparent,
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
                                     ),
-                                    borderRadius: BorderRadius.circular(8.0),
+                                    borderRadius: BorderRadius.circular(10.0),
                                   ),
                                 ),
                               ),
@@ -281,10 +285,11 @@ class _QuizFinishWidgetState extends State<QuizFinishWidget> {
                                           letterSpacing: 0.0,
                                         ),
                                     elevation: 3.0,
-                                    borderSide: const BorderSide(
-                                      color: Colors.transparent,
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
                                     ),
-                                    borderRadius: BorderRadius.circular(8.0),
+                                    borderRadius: BorderRadius.circular(10.0),
                                   ),
                                 ),
                               ),
@@ -327,10 +332,11 @@ class _QuizFinishWidgetState extends State<QuizFinishWidget> {
                                           letterSpacing: 0.0,
                                         ),
                                     elevation: 3.0,
-                                    borderSide: const BorderSide(
-                                      color: Colors.transparent,
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
                                     ),
-                                    borderRadius: BorderRadius.circular(8.0),
+                                    borderRadius: BorderRadius.circular(10.0),
                                   ),
                                 ),
                               ),
