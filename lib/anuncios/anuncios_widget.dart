@@ -457,16 +457,15 @@ class _AnunciosWidgetState extends State<AnunciosWidget>
                                                                           .transparent,
                                                                   onTap:
                                                                       () async {
+                                                                    _model.idAdverts =
+                                                                        valueOrDefault<
+                                                                            String>(
+                                                                      lVAllAdvertsSearchItem
+                                                                          .id,
+                                                                      '-',
+                                                                    );
                                                                     setState(
-                                                                        () {
-                                                                      _model.idAdverts =
-                                                                          valueOrDefault<
-                                                                              String>(
-                                                                        lVAllAdvertsSearchItem
-                                                                            .id,
-                                                                        '-',
-                                                                      );
-                                                                    });
+                                                                        () {});
                                                                     setState(
                                                                         () {
                                                                       _model
@@ -487,14 +486,13 @@ class _AnunciosWidgetState extends State<AnunciosWidget>
                                                                     await Future.delayed(const Duration(
                                                                         milliseconds:
                                                                             2000));
+                                                                    _model.imagesPathPage = lVAllAdvertsSearchItem
+                                                                        .fotos
+                                                                        .toList()
+                                                                        .cast<
+                                                                            String>();
                                                                     setState(
-                                                                        () {
-                                                                      _model.imagesPathPage = lVAllAdvertsSearchItem
-                                                                          .fotos
-                                                                          .toList()
-                                                                          .cast<
-                                                                              String>();
-                                                                    });
+                                                                        () {});
                                                                   },
                                                                   child: FaIcon(
                                                                     FontAwesomeIcons
@@ -1000,7 +998,7 @@ class _AnunciosWidgetState extends State<AnunciosWidget>
                   children: [
                     FlutterFlowAdBanner(
                       height: 100.0,
-                      showsTestAd: true,
+                      showsTestAd: false,
                       iOSAdUnitID: 'ca-app-pub-8203324650722374/8939292144',
                       androidAdUnitID: 'ca-app-pub-8203324650722374/1997324010',
                     ),

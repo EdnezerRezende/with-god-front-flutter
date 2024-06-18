@@ -79,10 +79,9 @@ class _CompSearchBibleWidgetState extends State<CompSearchBibleWidget> {
                         '_model.txtSearchBibleTextController',
                         const Duration(milliseconds: 2000),
                         () async {
-                          setState(() {
-                            _model.resultListSearch = [];
-                            _model.valueOccurrences = 0;
-                          });
+                          _model.resultListSearch = [];
+                          _model.valueOccurrences = 0;
+                          setState(() {});
                         },
                       ),
                       autofocus: true,
@@ -141,10 +140,9 @@ class _CompSearchBibleWidgetState extends State<CompSearchBibleWidget> {
                             ? InkWell(
                                 onTap: () async {
                                   _model.txtSearchBibleTextController?.clear();
-                                  setState(() {
-                                    _model.resultListSearch = [];
-                                    _model.valueOccurrences = 0;
-                                  });
+                                  _model.resultListSearch = [];
+                                  _model.valueOccurrences = 0;
+                                  setState(() {});
                                   setState(() {});
                                 },
                                 child: const Icon(
@@ -179,19 +177,19 @@ class _CompSearchBibleWidgetState extends State<CompSearchBibleWidget> {
                       word: _model.txtSearchBibleTextController.text,
                       version: FFAppState().versionBible,
                     );
-                    setState(() {
-                      _model.resultListSearch = getJsonField(
-                        (_model.searchResult?.jsonBody ?? ''),
-                        r'''$.verses''',
-                        true,
-                      )!
-                          .toList()
-                          .cast<dynamic>();
-                      _model.valueOccurrences = getJsonField(
-                        (_model.searchResult?.jsonBody ?? ''),
-                        r'''$.occurrence''',
-                      );
-                    });
+
+                    _model.resultListSearch = getJsonField(
+                      (_model.searchResult?.jsonBody ?? ''),
+                      r'''$.verses''',
+                      true,
+                    )!
+                        .toList()
+                        .cast<dynamic>();
+                    _model.valueOccurrences = getJsonField(
+                      (_model.searchResult?.jsonBody ?? ''),
+                      r'''$.occurrence''',
+                    );
+                    setState(() {});
 
                     setState(() {});
                   },
@@ -311,7 +309,7 @@ class _CompSearchBibleWidgetState extends State<CompSearchBibleWidget> {
                                         'prmBooks': serializeParam(
                                           widget.prmBooks,
                                           ParamType.DataStruct,
-                                          true,
+                                          isList: true,
                                         ),
                                       }.withoutNulls,
                                       extra: <String, dynamic>{

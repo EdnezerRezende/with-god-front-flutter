@@ -33,14 +33,12 @@ class _QuizFinishWidgetState extends State<QuizFinishWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       // Resetar Variaveis
-      setState(() {
-        _model.contador = 0;
-        _model.totalAcertos = 0;
-      });
+      _model.contador = 0;
+      _model.totalAcertos = 0;
+      setState(() {});
       // Finalizar Quiz variavel Global
-      setState(() {
-        FFAppState().quizConcluido = true;
-      });
+      FFAppState().quizConcluido = true;
+      setState(() {});
       await showDialog(
         context: context,
         builder: (alertDialogContext) {
@@ -62,13 +60,11 @@ class _QuizFinishWidgetState extends State<QuizFinishWidget> {
             0,
           )) {
         if (widget.prmRespostas![_model.contador!]) {
-          setState(() {
-            _model.totalAcertos = _model.totalAcertos! + 1;
-          });
+          _model.totalAcertos = _model.totalAcertos! + 1;
+          setState(() {});
         }
-        setState(() {
-          _model.contador = _model.contador! + 1;
-        });
+        _model.contador = _model.contador! + 1;
+        setState(() {});
       }
     });
   }
@@ -250,9 +246,8 @@ class _QuizFinishWidgetState extends State<QuizFinishWidget> {
                               Expanded(
                                 child: FFButtonWidget(
                                   onPressed: () async {
-                                    setState(() {
-                                      FFAppState().quizConcluido = false;
-                                    });
+                                    FFAppState().quizConcluido = false;
+                                    setState(() {});
 
                                     context.pushNamed(
                                       'Quiz',
@@ -354,7 +349,7 @@ class _QuizFinishWidgetState extends State<QuizFinishWidget> {
                     children: [
                       FlutterFlowAdBanner(
                         height: 100.0,
-                        showsTestAd: true,
+                        showsTestAd: false,
                         iOSAdUnitID: 'ca-app-pub-8203324650722374/8939292144',
                         androidAdUnitID:
                             'ca-app-pub-8203324650722374/1997324010',

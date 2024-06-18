@@ -588,14 +588,13 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                       .tokenBible !=
                                                                   '') {
                                                             // Atualiza Variavel Token Bible APP
-                                                            setState(() {
-                                                              FFAppState()
-                                                                      .TokenBibleAPI =
-                                                                  _model
-                                                                      .retornoUsuario!
-                                                                      .first
-                                                                      .tokenBible!;
-                                                            });
+                                                            FFAppState()
+                                                                    .TokenBibleAPI =
+                                                                _model
+                                                                    .retornoUsuario!
+                                                                    .first
+                                                                    .tokenBible!;
+                                                            setState(() {});
                                                           } else {
                                                             _model.retornoBibliaLogin =
                                                                 await APIBibliaGroup
@@ -605,18 +604,18 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                   .emailAddressTextController
                                                                   .text,
                                                             );
+
                                                             // Atualiza Variavel Token Bible APP
-                                                            setState(() {
-                                                              FFAppState()
-                                                                      .TokenBibleAPI =
-                                                                  APIBibliaGroup
-                                                                      .loginAndUpdateTokenByEmailCall
-                                                                      .tokenLoginBiblia(
-                                                                (_model.retornoBibliaLogin
-                                                                        ?.jsonBody ??
-                                                                    ''),
-                                                              )!;
-                                                            });
+                                                            FFAppState()
+                                                                    .TokenBibleAPI =
+                                                                APIBibliaGroup
+                                                                    .loginAndUpdateTokenByEmailCall
+                                                                    .tokenLoginBiblia(
+                                                              (_model.retornoBibliaLogin
+                                                                      ?.jsonBody ??
+                                                                  ''),
+                                                            )!;
+                                                            setState(() {});
                                                           }
 
                                                           if (FFAppState()
@@ -649,17 +648,15 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                     ) ??
                                                                     false;
                                                             if (confirmDialogResponse) {
-                                                              setState(() {
-                                                                FFAppState()
-                                                                        .permissionBiometria =
-                                                                    true;
-                                                              });
+                                                              FFAppState()
+                                                                      .permissionBiometria =
+                                                                  true;
+                                                              setState(() {});
                                                             } else {
-                                                              setState(() {
-                                                                FFAppState()
-                                                                        .permissionBiometria =
-                                                                    false;
-                                                              });
+                                                              FFAppState()
+                                                                      .permissionBiometria =
+                                                                  false;
+                                                              setState(() {});
                                                             }
                                                           }
                                                           await UsuariosTable()

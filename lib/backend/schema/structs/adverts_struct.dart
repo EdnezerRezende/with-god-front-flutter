@@ -38,79 +38,95 @@ class AdvertsStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '-';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "created_at" field.
   String? _createdAt;
   String get createdAt => _createdAt ?? '-';
   set createdAt(String? val) => _createdAt = val;
+
   bool hasCreatedAt() => _createdAt != null;
 
   // "pais" field.
   String? _pais;
   String get pais => _pais ?? '-';
   set pais(String? val) => _pais = val;
+
   bool hasPais() => _pais != null;
 
   // "descricao" field.
   String? _descricao;
   String get descricao => _descricao ?? '-';
   set descricao(String? val) => _descricao = val;
+
   bool hasDescricao() => _descricao != null;
 
   // "intagranLink" field.
   String? _intagranLink;
   String get intagranLink => _intagranLink ?? '-';
   set intagranLink(String? val) => _intagranLink = val;
+
   bool hasIntagranLink() => _intagranLink != null;
 
   // "nomeEmpresa" field.
   String? _nomeEmpresa;
   String get nomeEmpresa => _nomeEmpresa ?? '-';
   set nomeEmpresa(String? val) => _nomeEmpresa = val;
+
   bool hasNomeEmpresa() => _nomeEmpresa != null;
 
   // "paginaWebLink" field.
   String? _paginaWebLink;
   String get paginaWebLink => _paginaWebLink ?? '-';
   set paginaWebLink(String? val) => _paginaWebLink = val;
+
   bool hasPaginaWebLink() => _paginaWebLink != null;
 
   // "telefone" field.
   String? _telefone;
   String get telefone => _telefone ?? '-';
   set telefone(String? val) => _telefone = val;
+
   bool hasTelefone() => _telefone != null;
 
   // "email" field.
   String? _email;
   String get email => _email ?? '-';
   set email(String? val) => _email = val;
+
   bool hasEmail() => _email != null;
 
   // "endereco" field.
   String? _endereco;
   String get endereco => _endereco ?? '-';
   set endereco(String? val) => _endereco = val;
+
   bool hasEndereco() => _endereco != null;
 
   // "segmento" field.
   String? _segmento;
   String get segmento => _segmento ?? '-';
   set segmento(String? val) => _segmento = val;
+
   bool hasSegmento() => _segmento != null;
 
   // "user_id" field.
   String? _userId;
   String get userId => _userId ?? '-';
   set userId(String? val) => _userId = val;
+
   bool hasUserId() => _userId != null;
 
   // "fotos" field.
   List<String>? _fotos;
   List<String> get fotos => _fotos ?? const [];
   set fotos(List<String>? val) => _fotos = val;
-  void updateFotos(Function(List<String>) updateFn) => updateFn(_fotos ??= []);
+
+  void updateFotos(Function(List<String>) updateFn) {
+    updateFn(fotos ??= []);
+  }
+
   bool hasFotos() => _fotos != null;
 
   static AdvertsStruct fromMap(Map<String, dynamic> data) => AdvertsStruct(
@@ -201,7 +217,7 @@ class AdvertsStruct extends BaseStruct {
         'fotos': serializeParam(
           _fotos,
           ParamType.String,
-          true,
+          isList: true,
         ),
       }.withoutNulls;
 

@@ -30,8 +30,9 @@ class CapitulosModel extends FlutterFlowModel<CapitulosWidget> {
 
   VersesByBookAndChapterStruct? versesByBookAndChapter;
   void updateVersesByBookAndChapterStruct(
-          Function(VersesByBookAndChapterStruct) updateFn) =>
-      updateFn(versesByBookAndChapter ??= VersesByBookAndChapterStruct());
+      Function(VersesByBookAndChapterStruct) updateFn) {
+    updateFn(versesByBookAndChapter ??= VersesByBookAndChapterStruct());
+  }
 
   String bookAbbrev = 'gn';
 

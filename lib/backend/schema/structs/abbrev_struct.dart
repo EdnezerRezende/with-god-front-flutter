@@ -16,12 +16,14 @@ class AbbrevStruct extends BaseStruct {
   String? _pt;
   String get pt => _pt ?? '-';
   set pt(String? val) => _pt = val;
+
   bool hasPt() => _pt != null;
 
   // "en" field.
   String? _en;
   String get en => _en ?? '-';
   set en(String? val) => _en = val;
+
   bool hasEn() => _en != null;
 
   static AbbrevStruct fromMap(Map<String, dynamic> data) => AbbrevStruct(

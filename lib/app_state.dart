@@ -64,26 +64,26 @@ class FFAppState extends ChangeNotifier {
   }
 
   void addToBooks(BooksStruct value) {
-    _books.add(value);
+    books.add(value);
   }
 
   void removeFromBooks(BooksStruct value) {
-    _books.remove(value);
+    books.remove(value);
   }
 
   void removeAtIndexFromBooks(int index) {
-    _books.removeAt(index);
+    books.removeAt(index);
   }
 
   void updateBooksAtIndex(
     int index,
     BooksStruct Function(BooksStruct) updateFn,
   ) {
-    _books[index] = updateFn(_books[index]);
+    books[index] = updateFn(_books[index]);
   }
 
   void insertAtIndexInBooks(int index, BooksStruct value) {
-    _books.insert(index, value);
+    books.insert(index, value);
   }
 
   bool _quizConcluido = false;

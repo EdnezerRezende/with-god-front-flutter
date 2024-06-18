@@ -56,6 +56,9 @@ class _CompAnuncioEditWidgetState extends State<CompAnuncioEditWidget> {
             _model.retornoAdverts?.first.nomeEmpresa,
             '-',
           );
+          _model.txtNomeEmpresaTextController?.selection =
+              TextSelection.collapsed(
+                  offset: _model.txtNomeEmpresaTextController!.text.length);
         });
         // SetEndereco
         setState(() {
@@ -63,6 +66,8 @@ class _CompAnuncioEditWidgetState extends State<CompAnuncioEditWidget> {
             _model.retornoAdverts?.first.endereco,
             '-',
           );
+          _model.txtEnderecoTextController?.selection = TextSelection.collapsed(
+              offset: _model.txtEnderecoTextController!.text.length);
         });
         // SetDescricao
         setState(() {
@@ -70,6 +75,9 @@ class _CompAnuncioEditWidgetState extends State<CompAnuncioEditWidget> {
             _model.retornoAdverts?.first.descricao,
             '-',
           );
+          _model.txtDescricaoTextController?.selection =
+              TextSelection.collapsed(
+                  offset: _model.txtDescricaoTextController!.text.length);
         });
         // SetTelefone
         setState(() {
@@ -77,6 +85,8 @@ class _CompAnuncioEditWidgetState extends State<CompAnuncioEditWidget> {
             _model.retornoAdverts?.first.telefone,
             '-',
           );
+          _model.txtTelefoneTextController?.selection = TextSelection.collapsed(
+              offset: _model.txtTelefoneTextController!.text.length);
         });
         // SetInstagran
         setState(() {
@@ -84,6 +94,9 @@ class _CompAnuncioEditWidgetState extends State<CompAnuncioEditWidget> {
             _model.retornoAdverts?.first.intagranLink,
             '-',
           );
+          _model.txtInstagranTextController?.selection =
+              TextSelection.collapsed(
+                  offset: _model.txtInstagranTextController!.text.length);
         });
         // SetSite
         setState(() {
@@ -91,6 +104,8 @@ class _CompAnuncioEditWidgetState extends State<CompAnuncioEditWidget> {
             _model.retornoAdverts?.first.paginaWebLink,
             '-',
           );
+          _model.txtSiteTextController?.selection = TextSelection.collapsed(
+              offset: _model.txtSiteTextController!.text.length);
         });
         // SetEmail
         setState(() {
@@ -98,6 +113,8 @@ class _CompAnuncioEditWidgetState extends State<CompAnuncioEditWidget> {
             _model.retornoAdverts?.first.email,
             '-',
           );
+          _model.txtEmailTextController?.selection = TextSelection.collapsed(
+              offset: _model.txtEmailTextController!.text.length);
         });
         // SetServico
         setState(() {
@@ -695,13 +712,12 @@ class _CompAnuncioEditWidgetState extends State<CompAnuncioEditWidget> {
                                         lVImagensItem,
                                         '-',
                                       ));
-                                      setState(() {
-                                        _model.removeFromImagensAnuncio(
-                                            valueOrDefault<String>(
-                                          lVImagensItem,
-                                          '-',
-                                        ));
-                                      });
+                                      _model.removeFromImagensAnuncio(
+                                          valueOrDefault<String>(
+                                        lVImagensItem,
+                                        '-',
+                                      ));
+                                      setState(() {});
                                     },
                                     child: FaIcon(
                                       FontAwesomeIcons.trashAlt,
@@ -772,10 +788,8 @@ class _CompAnuncioEditWidgetState extends State<CompAnuncioEditWidget> {
                               }
                             }
 
-                            setState(() {
-                              _model
-                                  .addToImagensAnuncio(_model.uploadedFileUrl);
-                            });
+                            _model.addToImagensAnuncio(_model.uploadedFileUrl);
+                            setState(() {});
                           },
                           text: FFLocalizations.of(context).getText(
                             'i18ciwov' /* Inserir Imagens */,
@@ -887,9 +901,8 @@ class _CompAnuncioEditWidgetState extends State<CompAnuncioEditWidget> {
                                   _model.txtSiteTextController?.clear();
                                   _model.txtEmailTextController?.clear();
                                 });
-                                setState(() {
-                                  _model.imagensAnuncio = [];
-                                });
+                                _model.imagensAnuncio = [];
+                                setState(() {});
                               } else {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(

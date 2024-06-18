@@ -17,24 +17,33 @@ class VersesByBookAndChapterStruct extends BaseStruct {
   BookStruct? _book;
   BookStruct get book => _book ?? BookStruct();
   set book(BookStruct? val) => _book = val;
-  void updateBook(Function(BookStruct) updateFn) =>
-      updateFn(_book ??= BookStruct());
+
+  void updateBook(Function(BookStruct) updateFn) {
+    updateFn(book ??= BookStruct());
+  }
+
   bool hasBook() => _book != null;
 
   // "chapter" field.
   ChapterStruct? _chapter;
   ChapterStruct get chapter => _chapter ?? ChapterStruct();
   set chapter(ChapterStruct? val) => _chapter = val;
-  void updateChapter(Function(ChapterStruct) updateFn) =>
-      updateFn(_chapter ??= ChapterStruct());
+
+  void updateChapter(Function(ChapterStruct) updateFn) {
+    updateFn(chapter ??= ChapterStruct());
+  }
+
   bool hasChapter() => _chapter != null;
 
   // "verses" field.
   List<VersesStruct>? _verses;
   List<VersesStruct> get verses => _verses ?? const [];
   set verses(List<VersesStruct>? val) => _verses = val;
-  void updateVerses(Function(List<VersesStruct>) updateFn) =>
-      updateFn(_verses ??= []);
+
+  void updateVerses(Function(List<VersesStruct>) updateFn) {
+    updateFn(verses ??= []);
+  }
+
   bool hasVerses() => _verses != null;
 
   static VersesByBookAndChapterStruct fromMap(Map<String, dynamic> data) =>
@@ -70,7 +79,7 @@ class VersesByBookAndChapterStruct extends BaseStruct {
         'verses': serializeParam(
           _verses,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
       }.withoutNulls;
 

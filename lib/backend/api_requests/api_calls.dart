@@ -70,6 +70,7 @@ class ForgottenPasswordCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -112,6 +113,7 @@ class RecuperarSenhaCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -148,6 +150,7 @@ class SelectBooksByGroupsCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -266,6 +269,7 @@ class SelectBooksCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -303,6 +307,7 @@ class SelectAdvertsCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -443,6 +448,7 @@ class GetAllBooksBibleCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -487,6 +493,7 @@ class GetBookBibleWithCommentCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -538,6 +545,7 @@ class LoginAndUpdateTokenByEmailCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -595,6 +603,7 @@ class DeleteUserByEmailCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -639,6 +648,7 @@ class GetUserStatsCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -720,6 +730,7 @@ class CreateUserCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -781,6 +792,7 @@ class GetNumberRequisitionsCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -853,6 +865,7 @@ class GetVersionsBibleCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -923,6 +936,7 @@ class GetVersesByWordCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -1063,6 +1077,7 @@ class GetAllVersesByChapterCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -1125,6 +1140,7 @@ class GetQuizCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -1153,12 +1169,61 @@ class GetQuizByLevelCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
 }
 
 /// End ShowDoCristao Group Code
+
+/// Start ShowCristaoNew Group Code
+
+class ShowCristaoNewGroup {
+  static String getBaseUrl({
+    int? level = 6,
+    String? accessSupabaseKey = '',
+  }) =>
+      'https://ndtuqeldxlmeocaqlrqi.supabase.co/rest/v1/perguntas';
+  static Map<String, String> headers = {
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+    'Authorization': 'Bearer [ACCESS_SUPABASE_KEY]',
+  };
+  static NivelCall nivelCall = NivelCall();
+}
+
+class NivelCall {
+  Future<ApiCallResponse> call({
+    int? level = 6,
+    String? accessSupabaseKey = '',
+  }) async {
+    final baseUrl = ShowCristaoNewGroup.getBaseUrl(
+      level: level,
+      accessSupabaseKey: accessSupabaseKey,
+    );
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'Nivel',
+      apiUrl: '$baseUrl?dificuldade=$level',
+      callType: ApiCallType.GET,
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Authorization': 'Bearer $accessSupabaseKey',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+/// End ShowCristaoNew Group Code
 
 class ApiPagingParams {
   int nextPageNumber = 0;
@@ -1176,10 +1241,14 @@ class ApiPagingParams {
       'PagingParams(nextPageNumber: $nextPageNumber, numItems: $numItems, lastResponse: $lastResponse,)';
 }
 
+String _toEncodable(dynamic item) {
+  return item;
+}
+
 String _serializeList(List? list) {
   list ??= <String>[];
   try {
-    return json.encode(list);
+    return json.encode(list, toEncodable: _toEncodable);
   } catch (_) {
     if (kDebugMode) {
       print("List serialization failed. Returning empty list.");
@@ -1191,7 +1260,7 @@ String _serializeList(List? list) {
 String _serializeJson(dynamic jsonVar, [bool isList = false]) {
   jsonVar ??= (isList ? [] : {});
   try {
-    return json.encode(jsonVar);
+    return json.encode(jsonVar, toEncodable: _toEncodable);
   } catch (_) {
     if (kDebugMode) {
       print("Json serialization failed. Returning empty json.");

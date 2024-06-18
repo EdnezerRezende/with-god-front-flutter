@@ -138,6 +138,7 @@ class _CompForgottPasswordWidgetState extends State<CompForgottPasswordWidget> {
                   await SupabaseAPIsGroup.forgottenPasswordCall.call(
                     email: _model.textController.text,
                   );
+
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text(

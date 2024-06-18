@@ -282,11 +282,10 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                                                 highlightColor:
                                                     Colors.transparent,
                                                 onTap: () async {
-                                                  setState(() {
-                                                    _model.tokenfcm =
-                                                        listViewUsuariosRow
-                                                            .fcmtoken!;
-                                                  });
+                                                  _model.tokenfcm =
+                                                      listViewUsuariosRow
+                                                          .fcmtoken!;
+                                                  setState(() {});
                                                 },
                                                 child: Icon(
                                                   Icons.check,
@@ -529,7 +528,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                       children: [
                         FlutterFlowAdBanner(
                           height: 100.0,
-                          showsTestAd: true,
+                          showsTestAd: false,
                           iOSAdUnitID: 'ca-app-pub-8203324650722374/8939292144',
                           androidAdUnitID:
                               'ca-app-pub-8203324650722374/1997324010',

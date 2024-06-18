@@ -349,7 +349,7 @@ class _DevotionalListWidgetState extends State<DevotionalListWidget> {
                     children: [
                       FlutterFlowAdBanner(
                         height: 100.0,
-                        showsTestAd: true,
+                        showsTestAd: false,
                         iOSAdUnitID: 'ca-app-pub-8203324650722374/8939292144',
                         androidAdUnitID:
                             'ca-app-pub-8203324650722374/1997324010',

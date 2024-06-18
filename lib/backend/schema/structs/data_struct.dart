@@ -29,62 +29,77 @@ class DataStruct extends BaseStruct {
   int? _id;
   int get id => _id ?? 0;
   set id(int? val) => _id = val;
-  void incrementId(int amount) => _id = id + amount;
+
+  void incrementId(int amount) => id = id + amount;
+
   bool hasId() => _id != null;
 
   // "pergunta" field.
   String? _pergunta;
   String get pergunta => _pergunta ?? '';
   set pergunta(String? val) => _pergunta = val;
+
   bool hasPergunta() => _pergunta != null;
 
   // "alternativas" field.
   List<AlternativasStruct>? _alternativas;
   List<AlternativasStruct> get alternativas => _alternativas ?? const [];
   set alternativas(List<AlternativasStruct>? val) => _alternativas = val;
-  void updateAlternativas(Function(List<AlternativasStruct>) updateFn) =>
-      updateFn(_alternativas ??= []);
+
+  void updateAlternativas(Function(List<AlternativasStruct>) updateFn) {
+    updateFn(alternativas ??= []);
+  }
+
   bool hasAlternativas() => _alternativas != null;
 
   // "idRespostaCorreta" field.
   int? _idRespostaCorreta;
   int get idRespostaCorreta => _idRespostaCorreta ?? 0;
   set idRespostaCorreta(int? val) => _idRespostaCorreta = val;
+
   void incrementIdRespostaCorreta(int amount) =>
-      _idRespostaCorreta = idRespostaCorreta + amount;
+      idRespostaCorreta = idRespostaCorreta + amount;
+
   bool hasIdRespostaCorreta() => _idRespostaCorreta != null;
 
   // "dificuldade" field.
   int? _dificuldade;
   int get dificuldade => _dificuldade ?? 0;
   set dificuldade(int? val) => _dificuldade = val;
-  void incrementDificuldade(int amount) => _dificuldade = dificuldade + amount;
+
+  void incrementDificuldade(int amount) => dificuldade = dificuldade + amount;
+
   bool hasDificuldade() => _dificuldade != null;
 
   // "enviadoPor" field.
   String? _enviadoPor;
   String get enviadoPor => _enviadoPor ?? '';
   set enviadoPor(String? val) => _enviadoPor = val;
+
   bool hasEnviadoPor() => _enviadoPor != null;
 
   // "referencia" field.
   String? _referencia;
   String get referencia => _referencia ?? '';
   set referencia(String? val) => _referencia = val;
+
   bool hasReferencia() => _referencia != null;
 
   // "idRespostaEscolhida" field.
   int? _idRespostaEscolhida;
   int get idRespostaEscolhida => _idRespostaEscolhida ?? 0;
   set idRespostaEscolhida(int? val) => _idRespostaEscolhida = val;
+
   void incrementIdRespostaEscolhida(int amount) =>
-      _idRespostaEscolhida = idRespostaEscolhida + amount;
+      idRespostaEscolhida = idRespostaEscolhida + amount;
+
   bool hasIdRespostaEscolhida() => _idRespostaEscolhida != null;
 
   // "selecaoCorreta" field.
   bool? _selecaoCorreta;
   bool get selecaoCorreta => _selecaoCorreta ?? false;
   set selecaoCorreta(bool? val) => _selecaoCorreta = val;
+
   bool hasSelecaoCorreta() => _selecaoCorreta != null;
 
   static DataStruct fromMap(Map<String, dynamic> data) => DataStruct(
@@ -130,7 +145,7 @@ class DataStruct extends BaseStruct {
         'alternativas': serializeParam(
           _alternativas,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
         'idRespostaCorreta': serializeParam(
           _idRespostaCorreta,

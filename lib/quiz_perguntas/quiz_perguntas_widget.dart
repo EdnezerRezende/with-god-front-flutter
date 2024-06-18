@@ -45,22 +45,22 @@ class _QuizPerguntasWidgetState extends State<QuizPerguntasWidget> {
       _model.apiResultohe = await ShowDoCristaoGroup.getQuizCall.call(
         level: widget.prmLevelValue,
       );
+
       // AtualizaListaPerguntas
-      setState(() {
-        _model.listaPerguntas = (getJsonField(
-          (_model.apiResultohe?.jsonBody ?? ''),
-          r'''$.data''',
-          true,
-        )!
-                .toList()
-                .map<DataStruct?>(DataStruct.maybeFromMap)
-                .toList() as Iterable<DataStruct?>)
-            .withoutNulls
-            .toList()
-            .cast<DataStruct>();
-        _model.indiceAtual = 0;
-        _model.pergutaAtual = _model.listaPerguntas[_model.indiceAtual!];
-      });
+      _model.listaPerguntas = (getJsonField(
+        (_model.apiResultohe?.jsonBody ?? ''),
+        r'''$.data''',
+        true,
+      )!
+              .toList()
+              .map<DataStruct?>(DataStruct.maybeFromMap)
+              .toList() as Iterable<DataStruct?>)
+          .withoutNulls
+          .toList()
+          .cast<DataStruct>();
+      _model.indiceAtual = 0;
+      _model.pergutaAtual = _model.listaPerguntas[_model.indiceAtual!];
+      setState(() {});
       _model.timerController.onStartTimer();
     });
 
@@ -231,19 +231,18 @@ class _QuizPerguntasWidgetState extends State<QuizPerguntasWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              setState(() {
-                                _model.updateListaPerguntasAtIndex(
-                                  _model.indiceAtual!,
-                                  (e) => e
-                                    ..idRespostaEscolhida = valueOrDefault<int>(
-                                      lVopcoesItem.idResposta,
-                                      1,
-                                    )
-                                    ..selecaoCorreta = _model
-                                            .pergutaAtual?.idRespostaCorreta ==
-                                        lVopcoesItem.idResposta,
-                                );
-                              });
+                              _model.updateListaPerguntasAtIndex(
+                                _model.indiceAtual!,
+                                (e) => e
+                                  ..idRespostaEscolhida = valueOrDefault<int>(
+                                    lVopcoesItem.idResposta,
+                                    1,
+                                  )
+                                  ..selecaoCorreta =
+                                      _model.pergutaAtual?.idRespostaCorreta ==
+                                          lVopcoesItem.idResposta,
+                              );
+                              setState(() {});
                             },
                             child: Material(
                               color: Colors.transparent,
@@ -448,12 +447,10 @@ class _QuizPerguntasWidgetState extends State<QuizPerguntasWidget> {
                               ? null
                               : () async {
                                   // IncrementarProximaPergunta
-                                  setState(() {
-                                    _model.indiceAtual =
-                                        _model.indiceAtual! + -1;
-                                    _model.pergutaAtual = _model
-                                        .listaPerguntas[_model.indiceAtual!];
-                                  });
+                                  _model.indiceAtual = _model.indiceAtual! + -1;
+                                  _model.pergutaAtual = _model
+                                      .listaPerguntas[_model.indiceAtual!];
+                                  setState(() {});
                                 },
                           text: FFLocalizations.of(context).getText(
                             'a1atpu1e' /* Anterior */,
@@ -511,7 +508,7 @@ class _QuizPerguntasWidgetState extends State<QuizPerguntasWidget> {
                                                 .map((e) => e.selecaoCorreta)
                                                 .toList(),
                                             ParamType.bool,
-                                            true,
+                                            isList: true,
                                           ),
                                         }.withoutNulls,
                                         extra: <String, dynamic>{
@@ -523,18 +520,15 @@ class _QuizPerguntasWidgetState extends State<QuizPerguntasWidget> {
                                         },
                                       );
 
-                                      setState(() {
-                                        _model.indiceAtual = 0;
-                                      });
+                                      _model.indiceAtual = 0;
+                                      setState(() {});
                                     } else {
                                       // IncrementarProximaPergunta
-                                      setState(() {
-                                        _model.indiceAtual =
-                                            _model.indiceAtual! + 1;
-                                        _model.pergutaAtual =
-                                            _model.listaPerguntas[
-                                                _model.indiceAtual!];
-                                      });
+                                      _model.indiceAtual =
+                                          _model.indiceAtual! + 1;
+                                      _model.pergutaAtual = _model
+                                          .listaPerguntas[_model.indiceAtual!];
+                                      setState(() {});
                                       _model.timerController.onResetTimer();
 
                                       _model.timerController.onStartTimer();
@@ -600,7 +594,7 @@ class _QuizPerguntasWidgetState extends State<QuizPerguntasWidget> {
                     children: [
                       FlutterFlowAdBanner(
                         height: 100.0,
-                        showsTestAd: true,
+                        showsTestAd: false,
                         iOSAdUnitID: 'ca-app-pub-8203324650722374/8939292144',
                         androidAdUnitID:
                             'ca-app-pub-8203324650722374/1997324010',

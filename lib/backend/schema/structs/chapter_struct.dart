@@ -16,14 +16,18 @@ class ChapterStruct extends BaseStruct {
   int? _number;
   int get number => _number ?? 1;
   set number(int? val) => _number = val;
-  void incrementNumber(int amount) => _number = number + amount;
+
+  void incrementNumber(int amount) => number = number + amount;
+
   bool hasNumber() => _number != null;
 
   // "verses" field.
   int? _verses;
   int get verses => _verses ?? 1;
   set verses(int? val) => _verses = val;
-  void incrementVerses(int amount) => _verses = verses + amount;
+
+  void incrementVerses(int amount) => verses = verses + amount;
+
   bool hasVerses() => _verses != null;
 
   static ChapterStruct fromMap(Map<String, dynamic> data) => ChapterStruct(

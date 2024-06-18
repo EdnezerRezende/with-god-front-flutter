@@ -1,4 +1,4 @@
-package com.withgod.pagelogin
+package com.withgoddevotionals
 
 import io.flutter.embedding.android.FlutterFragmentActivity
 

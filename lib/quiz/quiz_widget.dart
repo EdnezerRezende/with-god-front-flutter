@@ -30,9 +30,8 @@ class _QuizWidgetState extends State<QuizWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      setState(() {
-        FFAppState().quizConcluido = false;
-      });
+      FFAppState().quizConcluido = false;
+      setState(() {});
     });
   }
 
@@ -321,7 +320,7 @@ class _QuizWidgetState extends State<QuizWidget> {
                   children: [
                     FlutterFlowAdBanner(
                       height: 100.0,
-                      showsTestAd: true,
+                      showsTestAd: false,
                       iOSAdUnitID: 'ca-app-pub-8203324650722374/8939292144',
                       androidAdUnitID: 'ca-app-pub-8203324650722374/1997324010',
                     ),

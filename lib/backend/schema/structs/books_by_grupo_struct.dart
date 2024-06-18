@@ -21,33 +21,41 @@ class BooksByGrupoStruct extends BaseStruct {
   int? _id;
   int get id => _id ?? 0;
   set id(int? val) => _id = val;
-  void incrementId(int amount) => _id = id + amount;
+
+  void incrementId(int amount) => id = id + amount;
+
   bool hasId() => _id != null;
 
   // "testamento" field.
   String? _testamento;
   String get testamento => _testamento ?? '';
   set testamento(String? val) => _testamento = val;
+
   bool hasTestamento() => _testamento != null;
 
   // "grupo" field.
   String? _grupo;
   String get grupo => _grupo ?? '';
   set grupo(String? val) => _grupo = val;
+
   bool hasGrupo() => _grupo != null;
 
   // "livros" field.
   List<BooksStruct>? _livros;
   List<BooksStruct> get livros => _livros ?? const [];
   set livros(List<BooksStruct>? val) => _livros = val;
-  void updateLivros(Function(List<BooksStruct>) updateFn) =>
-      updateFn(_livros ??= []);
+
+  void updateLivros(Function(List<BooksStruct>) updateFn) {
+    updateFn(livros ??= []);
+  }
+
   bool hasLivros() => _livros != null;
 
   // "nomeGrupo" field.
   String? _nomeGrupo;
   String get nomeGrupo => _nomeGrupo ?? '';
   set nomeGrupo(String? val) => _nomeGrupo = val;
+
   bool hasNomeGrupo() => _nomeGrupo != null;
 
   static BooksByGrupoStruct fromMap(Map<String, dynamic> data) =>
@@ -91,7 +99,7 @@ class BooksByGrupoStruct extends BaseStruct {
         'livros': serializeParam(
           _livros,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
         'nomeGrupo': serializeParam(
           _nomeGrupo,

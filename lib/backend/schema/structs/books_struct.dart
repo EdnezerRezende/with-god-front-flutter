@@ -30,58 +30,71 @@ class BooksStruct extends BaseStruct {
   int? _id;
   int get id => _id ?? 0;
   set id(int? val) => _id = val;
-  void incrementId(int amount) => _id = id + amount;
+
+  void incrementId(int amount) => id = id + amount;
+
   bool hasId() => _id != null;
 
   // "nome" field.
   String? _nome;
   String get nome => _nome ?? '';
   set nome(String? val) => _nome = val;
+
   bool hasNome() => _nome != null;
 
   // "abbrev" field.
   String? _abbrev;
   String get abbrev => _abbrev ?? '';
   set abbrev(String? val) => _abbrev = val;
+
   bool hasAbbrev() => _abbrev != null;
 
   // "testamento" field.
   String? _testamento;
   String get testamento => _testamento ?? '';
   set testamento(String? val) => _testamento = val;
+
   bool hasTestamento() => _testamento != null;
 
   // "autor" field.
   String? _autor;
   String get autor => _autor ?? '';
   set autor(String? val) => _autor = val;
+
   bool hasAutor() => _autor != null;
 
   // "capitulos" field.
   int? _capitulos;
   int get capitulos => _capitulos ?? 0;
   set capitulos(int? val) => _capitulos = val;
-  void incrementCapitulos(int amount) => _capitulos = capitulos + amount;
+
+  void incrementCapitulos(int amount) => capitulos = capitulos + amount;
+
   bool hasCapitulos() => _capitulos != null;
 
   // "grupo" field.
   String? _grupo;
   String get grupo => _grupo ?? '';
   set grupo(String? val) => _grupo = val;
+
   bool hasGrupo() => _grupo != null;
 
   // "id_livro" field.
   int? _idLivro;
   int get idLivro => _idLivro ?? 0;
   set idLivro(int? val) => _idLivro = val;
-  void incrementIdLivro(int amount) => _idLivro = idLivro + amount;
+
+  void incrementIdLivro(int amount) => idLivro = idLivro + amount;
+
   bool hasIdLivro() => _idLivro != null;
 
   // "group_id" field.
   int? _groupId;
   int get groupId => _groupId ?? 0;
   set groupId(int? val) => _groupId = val;
-  void incrementGroupId(int amount) => _groupId = groupId + amount;
+
+  void incrementGroupId(int amount) => groupId = groupId + amount;
+
   bool hasGroupId() => _groupId != null;
 
   static BooksStruct fromMap(Map<String, dynamic> data) => BooksStruct(

@@ -51,26 +51,25 @@ class _BibliaWidgetState extends State<BibliaWidget>
         ),
         accessUserToken: currentJwtToken,
       );
-      setState(() {
-        _model.varBooksPageBibleJson =
-            (_model.apiResultaldosBibleCopy?.jsonBody ?? '')
-                .toList()
-                .cast<dynamic>();
-        _model.varBooksPageBibleDataType = _model.varBooksPageBibleJson
-            .map((e) => BooksStruct.maybeFromMap(e))
-            .withoutNulls
-            .toList()
-            .toList()
-            .cast<BooksStruct>();
-      });
-      setState(() {
-        FFAppState().books = _model.varBooksPageBibleJson
-            .map((e) => BooksStruct.maybeFromMap(e))
-            .withoutNulls
-            .toList()
-            .toList()
-            .cast<BooksStruct>();
-      });
+
+      _model.varBooksPageBibleJson =
+          (_model.apiResultaldosBibleCopy?.jsonBody ?? '')
+              .toList()
+              .cast<dynamic>();
+      _model.varBooksPageBibleDataType = _model.varBooksPageBibleJson
+          .map((e) => BooksStruct.maybeFromMap(e))
+          .withoutNulls
+          .toList()
+          .toList()
+          .cast<BooksStruct>();
+      setState(() {});
+      FFAppState().books = _model.varBooksPageBibleJson
+          .map((e) => BooksStruct.maybeFromMap(e))
+          .withoutNulls
+          .toList()
+          .toList()
+          .cast<BooksStruct>();
+      setState(() {});
     });
 
     _model.segmentosBibliaController = TabController(
@@ -266,7 +265,7 @@ class _BibliaWidgetState extends State<BibliaWidget>
                 children: [
                   FlutterFlowAdBanner(
                     height: 100.0,
-                    showsTestAd: true,
+                    showsTestAd: false,
                     iOSAdUnitID: 'ca-app-pub-8203324650722374/8939292144',
                     androidAdUnitID: 'ca-app-pub-8203324650722374/1997324010',
                   ),

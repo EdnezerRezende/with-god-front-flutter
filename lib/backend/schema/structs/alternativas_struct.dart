@@ -16,13 +16,16 @@ class AlternativasStruct extends BaseStruct {
   String? _texto;
   String get texto => _texto ?? '';
   set texto(String? val) => _texto = val;
+
   bool hasTexto() => _texto != null;
 
   // "idResposta" field.
   int? _idResposta;
   int get idResposta => _idResposta ?? 0;
   set idResposta(int? val) => _idResposta = val;
-  void incrementIdResposta(int amount) => _idResposta = idResposta + amount;
+
+  void incrementIdResposta(int amount) => idResposta = idResposta + amount;
+
   bool hasIdResposta() => _idResposta != null;
 
   static AlternativasStruct fromMap(Map<String, dynamic> data) =>

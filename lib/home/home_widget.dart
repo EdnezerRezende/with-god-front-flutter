@@ -46,22 +46,22 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
           currentUserUid,
         ),
       );
-      setState(() {
-        FFAppState().permissionBiometria =
-            _model.retornoUsuarioLogado!.first.isBiometrics!;
-        FFAppState().TokenBibleAPI = valueOrDefault<String>(
-          _model.retornoUsuarioLogado?.first.tokenBible,
-          '-',
-        );
-        FFAppState().token = valueOrDefault<String>(
-          _model.retornoUsuarioLogado?.first.fcmtoken,
-          '-',
-        );
-      });
+      FFAppState().permissionBiometria =
+          _model.retornoUsuarioLogado!.first.isBiometrics!;
+      FFAppState().TokenBibleAPI = valueOrDefault<String>(
+        _model.retornoUsuarioLogado?.first.tokenBible,
+        '-',
+      );
+      FFAppState().token = valueOrDefault<String>(
+        _model.retornoUsuarioLogado?.first.fcmtoken,
+        '-',
+      );
+      setState(() {});
       _model.resultadoVersionsBible =
           await APIBibliaGroup.getVersionsBibleCall.call(
         authorizationToken: FFAppState().TokenBibleAPI,
       );
+
       _model.resultadoNotificacoesHome = await NotNotificacaoTable().queryRows(
         queryFn: (q) => q.eq(
           'fcmtoken',
@@ -264,10 +264,9 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                       currentUserUid,
                                     ),
                                   );
-                                  setState(() {
-                                    FFAppState().fotoUserLogado =
-                                        _model.uploadedFileUrl;
-                                  });
+                                  FFAppState().fotoUserLogado =
+                                      _model.uploadedFileUrl;
+                                  setState(() {});
                                   setState(
                                       () => _model.requestCompleter = null);
                                   await _model.waitForRequestCompleted();
@@ -434,13 +433,12 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
-                                              setState(() {
-                                                FFAppState().versionBible =
-                                                    valueOrDefault<String>(
-                                                  lVVersionBibleItem,
-                                                  'nvi',
-                                                );
-                                              });
+                                              FFAppState().versionBible =
+                                                  valueOrDefault<String>(
+                                                lVVersionBibleItem,
+                                                'nvi',
+                                              );
+                                              setState(() {});
                                               await Future.delayed(
                                                   const Duration(
                                                       milliseconds: 1000));
@@ -1347,7 +1345,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                       children: [
                         FlutterFlowAdBanner(
                           height: 90.0,
-                          showsTestAd: true,
+                          showsTestAd: false,
                           iOSAdUnitID: 'ca-app-pub-8203324650722374/8939292144',
                           androidAdUnitID:
                               'ca-app-pub-8203324650722374/1997324010',

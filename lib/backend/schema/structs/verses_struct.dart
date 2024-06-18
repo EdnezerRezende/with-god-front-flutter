@@ -16,13 +16,16 @@ class VersesStruct extends BaseStruct {
   int? _number;
   int get number => _number ?? 1;
   set number(int? val) => _number = val;
-  void incrementNumber(int amount) => _number = number + amount;
+
+  void incrementNumber(int amount) => number = number + amount;
+
   bool hasNumber() => _number != null;
 
   // "text" field.
   String? _text;
   String get text => _text ?? '-';
   set text(String? val) => _text = val;
+
   bool hasText() => _text != null;
 
   static VersesStruct fromMap(Map<String, dynamic> data) => VersesStruct(

@@ -190,7 +190,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     '2u8prexn': {
       'pt': 'Criar Devocional',
-      'en': '',
+      'en': 'Create Devotional',
     },
     'r82y0wrs': {
       'pt': 'Home',
@@ -201,65 +201,65 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     'ra2xp5kg': {
       'pt': 'With God Devotionals',
-      'en': '',
+      'en': 'With God Devotionals',
     },
     'yv3m9q1m': {
       'pt': 'Home',
-      'en': 'Bible',
+      'en': 'Home',
     },
     'lrhurybw': {
       'pt': 'Account Options',
-      'en': '',
+      'en': 'Account Options',
     },
     '3vl3qbyg': {
       'pt': 'Pontuação: 100',
-      'en': '',
+      'en': 'Score: 100',
     },
     'ujadworu': {
       'pt': 'Linguagem da Bíblia',
-      'en': '',
+      'en': 'Bible language',
     },
     'pd3rsbpb': {
       'pt': 'Settings',
-      'en': '',
+      'en': 'Settings',
     },
     '2cehfu5a': {
       'pt': 'Change Password',
-      'en': '',
+      'en': 'Change Password',
     },
     'adiabzz4': {
       'pt': 'Light Mode',
-      'en': '',
+      'en': 'Light Mode',
     },
     'f9wfb7v2': {
       'pt': 'Dark Mode',
-      'en': '',
+      'en': 'Dark Mode',
     },
     '0wbxm6m8': {
       'pt': 'Log out',
-      'en': '',
+      'en': 'Log out',
     },
   },
   // DevotionalsDetalhe
   {
     'tfof1o28': {
       'pt': 'Salvar Devocional',
-      'en': '',
+      'en': 'Save Devotional',
     },
     '0rximx4h': {
       'pt': 'Home',
-      'en': '',
+      'en': 'Home',
     },
   },
   // DevotionalList
   {
     'm0xgwvyf': {
       'pt': 'Devocionais',
-      'en': '',
+      'en': 'Devotionals',
     },
     'cq31cb2j': {
       'pt': 'Home',
-      'en': '',
+      'en': 'Home',
     },
   },
   // Anuncios
@@ -270,95 +270,95 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '9nqj20zj': {
       'pt': 'Pesquisar',
-      'en': '',
+      'en': 'To look for',
     },
     'bygnmbu0': {
       'pt': 'Publicações',
-      'en': '',
+      'en': 'Publications',
     },
     '7g50mavo': {
       'pt': 'Inserir',
-      'en': '',
+      'en': 'Insert',
     },
     '0j0gjpq2': {
       'pt': 'Anúncios',
-      'en': '',
+      'en': 'Adverts',
     },
     'rs7ac24j': {
       'pt': 'Home',
-      'en': '',
+      'en': 'Home',
     },
   },
   // Quiz
   {
     'h3vvfj7v': {
       'pt': 'Pronto para um desafio?',
-      'en': '',
+      'en': 'Ready for a challenge?',
     },
     'x1zcix95': {
       'pt': 'Escolha o nível',
-      'en': '',
+      'en': 'Choose the level',
     },
     'mi8vjdo8': {
       'pt': 'Quiz',
-      'en': '',
+      'en': 'Quiz',
     },
     'nyi7eoi1': {
       'pt': 'Home',
-      'en': '',
+      'en': 'Home',
     },
   },
   // QuizPerguntas
   {
     'a1atpu1e': {
       'pt': 'Anterior',
-      'en': '',
+      'en': 'Previous',
     },
     'oftr8bu5': {
       'pt': 'Home',
-      'en': '',
+      'en': 'Home',
     },
   },
   // QuizFinish
   {
     'k47f1tks': {
       'pt': 'Parabéns',
-      'en': '',
+      'en': 'Congratulations',
     },
     's001cnic': {
       'pt': 'Você venceu!',
-      'en': '',
+      'en': 'You won!',
     },
     'q8ec9k8s': {
       'pt': 'Ver respostas',
-      'en': '',
+      'en': 'See answers',
     },
     'ce2c8gg4': {
       'pt': 'Novo Jogo',
-      'en': '',
+      'en': 'New game',
     },
     'n3u9kwua': {
       'pt': 'Finalizar',
-      'en': '',
+      'en': 'Finish',
     },
     'krdk39ce': {
       'pt': 'Resultado',
-      'en': '',
+      'en': 'Result',
     },
     'ozoiqrtq': {
       'pt': 'Home',
-      'en': '',
+      'en': 'Home',
     },
   },
   // Notificacao
   {
     'f46qbl03': {
       'pt': 'Notificação',
-      'en': '',
+      'en': 'Notification',
     },
     'q6jcl044': {
       'pt': 'Home',
-      'en': '',
+      'en': 'Home',
     },
   },
   // compSingUp
@@ -434,160 +434,168 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'qrj72ycw': {
       'pt': '| Versículo:',
-      'en': '',
+      'en': '| Verse:',
     },
   },
   // compAnuncioEdit
   {
     'wahtedh3': {
       'pt': 'Salão',
-      'en': '',
+      'en': 'Hall',
     },
     'cv67fomm': {
       'pt': 'Igreja',
-      'en': '',
+      'en': 'Church',
     },
     'ntt80rs3': {
       'pt': 'Ferramentas',
-      'en': '',
+      'en': 'Tools',
     },
     'cecl4116': {
       'pt': 'Outros',
-      'en': '',
+      'en': 'Others',
     },
     '03qis1y5': {
       'pt': 'Selecione tipo Serviço',
-      'en': '',
+      'en': 'Select Service type',
     },
     'q34m56hk': {
       'pt': 'Search for an item...',
-      'en': '',
+      'en': 'Search for an item...',
     },
     'tnxm1sj6': {
       'pt': 'Brasil',
-      'en': '',
+      'en': 'Brazil',
     },
     'sumah71p': {
       'pt': 'EUA',
-      'en': '',
+      'en': 'USA',
     },
     'ztipeg9v': {
       'pt': 'México',
-      'en': '',
+      'en': 'Mexico',
     },
     'uihy1t66': {
       'pt': 'País',
-      'en': '',
+      'en': 'Country',
     },
     'qd8dpglr': {
       'pt': 'Search for an item...',
-      'en': '',
+      'en': 'Search for an item...',
     },
     'pwnm09x0': {
       'pt': 'Empresa',
-      'en': '',
+      'en': 'Company',
     },
     'wdtdh0m4': {
       'pt': 'Endereço',
-      'en': '',
+      'en': 'Address',
     },
     '6iblev6g': {
       'pt': 'Descrição',
-      'en': '',
+      'en': 'Description',
     },
     'laluaco8': {
       'pt': 'Telefone',
-      'en': '',
+      'en': 'Telephone',
     },
     'h9l96fr5': {
       'pt': 'Instagran',
-      'en': '',
+      'en': 'Instagram',
     },
     'u5ma6p1x': {
       'pt': 'Site',
-      'en': '',
+      'en': 'site',
     },
     '3rnv553j': {
       'pt': 'Email',
-      'en': '',
+      'en': 'Email',
     },
     'i18ciwov': {
       'pt': 'Inserir Imagens',
-      'en': '',
+      'en': 'Insert Images',
     },
     '7tc5wskx': {
       'pt': 'Salvar',
-      'en': '',
+      'en': 'To save',
     },
     '0zo73dji': {
       'pt': 'Field is required',
-      'en': '',
+      'en': 'Field is required',
     },
     'ausupp2f': {
       'pt': 'Please choose an option from the dropdown',
-      'en': '',
+      'en': 'Please choose an option from the dropdown',
     },
     'igi8pnum': {
       'pt': 'Field is required',
-      'en': '',
+      'en': 'Field is required',
     },
     'awo4rzcb': {
       'pt': 'Please choose an option from the dropdown',
-      'en': '',
+      'en': 'Please choose an option from the dropdown',
     },
     'm9eu25on': {
       'pt': 'Field is required',
-      'en': '',
+      'en': 'Field is required',
     },
     'v7ct3kgj': {
       'pt': 'O Limite mínimo é de 3 caracteres',
-      'en': '',
+      'en': 'The minimum limit is 3 characters',
     },
     'xsf3d87v': {
       'pt': 'O Limite de campos é de 300 caracteres',
-      'en': '',
+      'en': 'The field limit is 300 characters',
     },
     '0zgmw9yt': {
       'pt': 'Please choose an option from the dropdown',
-      'en': '',
+      'en': 'Please choose an option from the dropdown',
     },
     'gf44tl5b': {
       'pt': 'Field is required',
-      'en': '',
+      'en': 'Field is required',
     },
     'qeqz2esx': {
       'pt': 'Please choose an option from the dropdown',
-      'en': '',
+      'en': 'Please choose an option from the dropdown',
     },
     '0iey3f84': {
       'pt': 'Field is required',
-      'en': '',
+      'en': 'Field is required',
     },
     'kf34dyfm': {
       'pt': 'Please choose an option from the dropdown',
-      'en': '',
+      'en': 'Please choose an option from the dropdown',
     },
     '0wmn9f1y': {
       'pt': 'Field is required',
-      'en': '',
+      'en': 'Field is required',
     },
     'tg2v32lz': {
       'pt': 'Please choose an option from the dropdown',
-      'en': '',
+      'en': 'Please choose an option from the dropdown',
     },
     '528jt7wp': {
       'pt': 'Field is required',
-      'en': '',
+      'en': 'Field is required',
     },
     'kd0tjdyz': {
       'pt': 'Please choose an option from the dropdown',
-      'en': '',
+      'en': 'Please choose an option from the dropdown',
     },
   },
   // Miscellaneous
   {
     '25cdy63r': {
       'pt': 'Conceder acesso para biometria',
+      'en': 'Grant access for biometrics',
+    },
+    'hxlusrr8': {
+      'pt': '',
+      'en': '',
+    },
+    '2agrdwtd': {
+      'pt': '',
       'en': '',
     },
     'qrlniftu': {
@@ -596,11 +604,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '5qmf6yzz': {
       'pt': 'Conceder acesso para notificações',
-      'en': '',
+      'en': 'Grant access to notifications',
     },
     'ndrdwakw': {
       'pt': 'Conceder acesso a câmera',
-      'en': '',
+      'en': 'Grant camera access',
     },
     '9j8at88a': {
       'pt': '',

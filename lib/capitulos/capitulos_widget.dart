@@ -54,14 +54,13 @@ class _CapitulosWidgetState extends State<CapitulosWidget>
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      setState(() {
-        _model.capituloSelecionado = widget.prmSelectChapter;
-        _model.bookAbbrev = widget.prmBookAbbrev;
-        _model.nCapitulos = widget.prmNCapitulos;
-        _model.bookId = widget.prmBookId;
-        _model.booksResult = widget.prmBooks!.toList().cast<BooksStruct>();
-        _model.nomeLivro = widget.prmNomeLivro!;
-      });
+      _model.capituloSelecionado = widget.prmSelectChapter;
+      _model.bookAbbrev = widget.prmBookAbbrev;
+      _model.nCapitulos = widget.prmNCapitulos;
+      _model.bookId = widget.prmBookId;
+      _model.booksResult = widget.prmBooks!.toList().cast<BooksStruct>();
+      _model.nomeLivro = widget.prmNomeLivro!;
+      setState(() {});
       await Future.delayed(const Duration(milliseconds: 1000));
       _model.resultNextBook =
           await APIBibliaGroup.getAllVersesByChapterCall.call(
@@ -72,26 +71,23 @@ class _CapitulosWidgetState extends State<CapitulosWidget>
         chapter: _model.capituloSelecionado,
         version: FFAppState().versionBible,
       );
-      setState(() {
-        _model.listaCapitulos = [1];
-      });
-      setState(() {
-        _model.versesByBookAndChapter =
-            VersesByBookAndChapterStruct.maybeFromMap(
-                (_model.resultNextBook?.jsonBody ?? ''));
-      });
+
+      _model.listaCapitulos = [1];
+      setState(() {});
+      _model.versesByBookAndChapter = VersesByBookAndChapterStruct.maybeFromMap(
+          (_model.resultNextBook?.jsonBody ?? ''));
+      setState(() {});
       while (_model.listaCapitulos.length <
           valueOrDefault<int>(
             _model.nCapitulos,
             1,
           )) {
-        setState(() {
-          _model.addToListaCapitulos(valueOrDefault<int>(
-                _model.listaCapitulos.length,
-                0,
-              ) +
-              1);
-        });
+        _model.addToListaCapitulos(valueOrDefault<int>(
+              _model.listaCapitulos.length,
+              0,
+            ) +
+            1);
+        setState(() {});
       }
     });
 
@@ -277,13 +273,12 @@ class _CapitulosWidgetState extends State<CapitulosWidget>
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  setState(() {
-                                    _model.capituloSelecionado =
-                                        valueOrDefault<int>(
-                                      itensLvIndex + 1,
-                                      1,
-                                    );
-                                  });
+                                  _model.capituloSelecionado =
+                                      valueOrDefault<int>(
+                                    itensLvIndex + 1,
+                                    1,
+                                  );
+                                  setState(() {});
                                   _model.resultCallAPIBook =
                                       await APIBibliaGroup
                                           .getAllVersesByChapterCall
@@ -294,14 +289,12 @@ class _CapitulosWidgetState extends State<CapitulosWidget>
                                     ),
                                     chapter: _model.capituloSelecionado,
                                   );
-                                  setState(() {
-                                    _model.versesByBookAndChapter =
-                                        VersesByBookAndChapterStruct
-                                            .maybeFromMap((_model
-                                                    .resultCallAPIBook
-                                                    ?.jsonBody ??
-                                                ''));
-                                  });
+
+                                  _model.versesByBookAndChapter =
+                                      VersesByBookAndChapterStruct.maybeFromMap(
+                                          (_model.resultCallAPIBook?.jsonBody ??
+                                              ''));
+                                  setState(() {});
                                   await _model.listViewController?.animateTo(
                                     0,
                                     duration: const Duration(milliseconds: 100),
@@ -430,44 +423,40 @@ class _CapitulosWidgetState extends State<CapitulosWidget>
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                setState(() {
-                                  _model.capituloSelecionado =
-                                      _model.capituloSelecionado! + (-1);
-                                });
+                                _model.capituloSelecionado =
+                                    _model.capituloSelecionado! + (-1);
+                                setState(() {});
                                 if (_model.capituloSelecionado! <
                                     _model.nCapitulos!) {
-                                  setState(() {
-                                    _model.listaCapitulos = [1];
-                                    _model.bookId = _model.bookId! + (-1);
-                                    _model.bookAbbrev = valueOrDefault<String>(
-                                      _model.booksResult[_model.bookId!].abbrev,
-                                      'gn',
-                                    );
-                                    _model.nCapitulos = valueOrDefault<int>(
-                                      _model.booksResult[_model.bookId!]
-                                          .capitulos,
-                                      1,
-                                    );
-                                    _model.nomeLivro = valueOrDefault<String>(
-                                      _model.booksResult[_model.bookId!].nome,
-                                      'Gênesis',
-                                    );
-                                  });
+                                  _model.listaCapitulos = [1];
+                                  _model.bookId = _model.bookId! + (-1);
+                                  _model.bookAbbrev = valueOrDefault<String>(
+                                    _model.booksResult[_model.bookId!].abbrev,
+                                    'gn',
+                                  );
+                                  _model.nCapitulos = valueOrDefault<int>(
+                                    _model
+                                        .booksResult[_model.bookId!].capitulos,
+                                    1,
+                                  );
+                                  _model.nomeLivro = valueOrDefault<String>(
+                                    _model.booksResult[_model.bookId!].nome,
+                                    'Gênesis',
+                                  );
+                                  setState(() {});
                                   while (_model.listaCapitulos.length <
                                       _model.nCapitulos!) {
-                                    setState(() {
-                                      _model.addToListaCapitulos(
-                                          valueOrDefault<int>(
-                                                _model.listaCapitulos.length,
-                                                0,
-                                              ) +
-                                              1);
-                                    });
+                                    _model.addToListaCapitulos(
+                                        valueOrDefault<int>(
+                                              _model.listaCapitulos.length,
+                                              0,
+                                            ) +
+                                            1);
+                                    setState(() {});
                                   }
-                                  setState(() {
-                                    _model.capituloSelecionado =
-                                        _model.nCapitulos;
-                                  });
+                                  _model.capituloSelecionado =
+                                      _model.nCapitulos;
+                                  setState(() {});
                                 }
                                 _model.resultPreviusBookChapter =
                                     await APIBibliaGroup
@@ -479,13 +468,13 @@ class _CapitulosWidgetState extends State<CapitulosWidget>
                                   ),
                                   chapter: _model.capituloSelecionado,
                                 );
-                                setState(() {
-                                  _model.versesByBookAndChapter =
-                                      VersesByBookAndChapterStruct.maybeFromMap(
-                                          (_model.resultNextBookChapter
-                                                  ?.jsonBody ??
-                                              ''));
-                                });
+
+                                _model.versesByBookAndChapter =
+                                    VersesByBookAndChapterStruct.maybeFromMap(
+                                        (_model.resultNextBookChapter
+                                                ?.jsonBody ??
+                                            ''));
+                                setState(() {});
                                 await _model.listViewController?.animateTo(
                                   0,
                                   duration: const Duration(milliseconds: 100),
@@ -597,46 +586,41 @@ class _CapitulosWidgetState extends State<CapitulosWidget>
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              setState(() {
-                                _model.capituloSelecionado =
-                                    _model.capituloSelecionado! + 1;
-                              });
+                              _model.capituloSelecionado =
+                                  _model.capituloSelecionado! + 1;
+                              setState(() {});
                               if (_model.capituloSelecionado! >
                                   _model.nCapitulos!) {
-                                setState(() {
-                                  _model.listaCapitulos = [1];
-                                  _model.bookId = _model.bookId! + 1;
-                                  _model.bookAbbrev = valueOrDefault<String>(
-                                    _model.booksResult[_model.bookId!].abbrev,
-                                    'gn',
-                                  );
-                                  _model.nCapitulos = valueOrDefault<int>(
-                                    _model
-                                        .booksResult[_model.bookId!].capitulos,
-                                    1,
-                                  );
-                                  _model.nomeLivro = valueOrDefault<String>(
-                                    _model.booksResult[_model.bookId!].nome,
-                                    'Gênesis',
-                                  );
-                                });
+                                _model.listaCapitulos = [1];
+                                _model.bookId = _model.bookId! + 1;
+                                _model.bookAbbrev = valueOrDefault<String>(
+                                  _model.booksResult[_model.bookId!].abbrev,
+                                  'gn',
+                                );
+                                _model.nCapitulos = valueOrDefault<int>(
+                                  _model.booksResult[_model.bookId!].capitulos,
+                                  1,
+                                );
+                                _model.nomeLivro = valueOrDefault<String>(
+                                  _model.booksResult[_model.bookId!].nome,
+                                  'Gênesis',
+                                );
+                                setState(() {});
                                 while (_model.listaCapitulos.length <
                                     _model.nCapitulos!) {
-                                  setState(() {
-                                    _model.addToListaCapitulos(
-                                        valueOrDefault<int>(
-                                      valueOrDefault<int>(
-                                            _model.listaCapitulos.length,
-                                            0,
-                                          ) +
-                                          1,
-                                      1,
-                                    ));
-                                  });
+                                  _model
+                                      .addToListaCapitulos(valueOrDefault<int>(
+                                    valueOrDefault<int>(
+                                          _model.listaCapitulos.length,
+                                          0,
+                                        ) +
+                                        1,
+                                    1,
+                                  ));
+                                  setState(() {});
                                 }
-                                setState(() {
-                                  _model.capituloSelecionado = 1;
-                                });
+                                _model.capituloSelecionado = 1;
+                                setState(() {});
                               }
                               _model.resultNextBookChapter =
                                   await APIBibliaGroup.getAllVersesByChapterCall
@@ -647,13 +631,12 @@ class _CapitulosWidgetState extends State<CapitulosWidget>
                                 ),
                                 chapter: _model.capituloSelecionado,
                               );
-                              setState(() {
-                                _model.versesByBookAndChapter =
-                                    VersesByBookAndChapterStruct.maybeFromMap(
-                                        (_model.resultNextBookChapter
-                                                ?.jsonBody ??
-                                            ''));
-                              });
+
+                              _model.versesByBookAndChapter =
+                                  VersesByBookAndChapterStruct.maybeFromMap(
+                                      (_model.resultNextBookChapter?.jsonBody ??
+                                          ''));
+                              setState(() {});
                               await _model.listViewController?.animateTo(
                                 0,
                                 duration: const Duration(milliseconds: 100),
@@ -694,7 +677,7 @@ class _CapitulosWidgetState extends State<CapitulosWidget>
                   children: [
                     FlutterFlowAdBanner(
                       height: 100.0,
-                      showsTestAd: true,
+                      showsTestAd: false,
                       iOSAdUnitID: 'ca-app-pub-8203324650722374/8939292144',
                       androidAdUnitID: 'ca-app-pub-8203324650722374/1997324010',
                     ),

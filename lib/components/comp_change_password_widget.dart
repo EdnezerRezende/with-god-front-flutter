@@ -219,6 +219,7 @@ class _CompChangePasswordWidgetState extends State<CompChangePasswordWidget> {
                       password: _model.newPasswordTextController.text,
                       accessUserToken: currentJwtToken,
                     );
+
                     if ((_model.apiResult06p?.succeeded ?? true)) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(

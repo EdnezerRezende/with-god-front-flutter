@@ -20,8 +20,9 @@ class QuizPerguntasModel extends FlutterFlowModel<QuizPerguntasWidget> {
       listaPerguntas[index] = updateFn(listaPerguntas[index]);
 
   DataStruct? pergutaAtual;
-  void updatePergutaAtualStruct(Function(DataStruct) updateFn) =>
-      updateFn(pergutaAtual ??= DataStruct());
+  void updatePergutaAtualStruct(Function(DataStruct) updateFn) {
+    updateFn(pergutaAtual ??= DataStruct());
+  }
 
   int? indiceAtual = 0;
 

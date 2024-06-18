@@ -8,7 +8,6 @@ class CarouselImagesModel extends FlutterFlowModel<CarouselImagesWidget> {
 
   // State field(s) for Carousel widget.
   CarouselController? carouselController;
-
   int carouselCurrentIndex = 1;
 
   @override

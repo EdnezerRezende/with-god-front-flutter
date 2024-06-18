@@ -48,12 +48,11 @@ class _BibleAllBooksWidgetState extends State<BibleAllBooksWidget>
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.updatePage(() {
-        _model.varGroupId = valueOrDefault<String>(
-          widget.prmGroupId,
-          '9',
-        );
-      });
+      _model.varGroupId = valueOrDefault<String>(
+        widget.prmGroupId,
+        '9',
+      );
+      _model.updatePage(() {});
     });
 
     animationsMap.addAll({
@@ -135,12 +134,11 @@ class _BibleAllBooksWidgetState extends State<BibleAllBooksWidget>
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                _model.updatePage(() {
-                                  _model.varGroupId = valueOrDefault<String>(
-                                    lVContainerGroupBibleGroupRow.id.toString(),
-                                    '1,2,3,4,5,6,7,8',
-                                  );
-                                });
+                                _model.varGroupId = valueOrDefault<String>(
+                                  lVContainerGroupBibleGroupRow.id.toString(),
+                                  '1,2,3,4,5,6,7,8',
+                                );
+                                _model.updatePage(() {});
                                 await _model.gridContainerBible?.animateTo(
                                   0,
                                   duration: const Duration(milliseconds: 100),
@@ -294,7 +292,7 @@ class _BibleAllBooksWidgetState extends State<BibleAllBooksWidget>
                                   'prmBooks': serializeParam(
                                     widget.listBibles,
                                     ParamType.DataStruct,
-                                    true,
+                                    isList: true,
                                   ),
                                 }.withoutNulls,
                               );

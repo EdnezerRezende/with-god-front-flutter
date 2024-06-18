@@ -17,20 +17,25 @@ class QuizLevelReturnStruct extends BaseStruct {
   DataStruct? _data;
   DataStruct get data => _data ?? DataStruct();
   set data(DataStruct? val) => _data = val;
-  void updateData(Function(DataStruct) updateFn) =>
-      updateFn(_data ??= DataStruct());
+
+  void updateData(Function(DataStruct) updateFn) {
+    updateFn(data ??= DataStruct());
+  }
+
   bool hasData() => _data != null;
 
   // "success" field.
   bool? _success;
   bool get success => _success ?? false;
   set success(bool? val) => _success = val;
+
   bool hasSuccess() => _success != null;
 
   // "message" field.
   String? _message;
   String get message => _message ?? '-';
   set message(String? val) => _message = val;
+
   bool hasMessage() => _message != null;
 
   static QuizLevelReturnStruct fromMap(Map<String, dynamic> data) =>
