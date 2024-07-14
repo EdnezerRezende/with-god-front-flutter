@@ -19,7 +19,7 @@ class VersesByBookAndChapterStruct extends BaseStruct {
   set book(BookStruct? val) => _book = val;
 
   void updateBook(Function(BookStruct) updateFn) {
-    updateFn(book ??= BookStruct());
+    updateFn(_book ??= BookStruct());
   }
 
   bool hasBook() => _book != null;
@@ -30,7 +30,7 @@ class VersesByBookAndChapterStruct extends BaseStruct {
   set chapter(ChapterStruct? val) => _chapter = val;
 
   void updateChapter(Function(ChapterStruct) updateFn) {
-    updateFn(chapter ??= ChapterStruct());
+    updateFn(_chapter ??= ChapterStruct());
   }
 
   bool hasChapter() => _chapter != null;
@@ -41,7 +41,7 @@ class VersesByBookAndChapterStruct extends BaseStruct {
   set verses(List<VersesStruct>? val) => _verses = val;
 
   void updateVerses(Function(List<VersesStruct>) updateFn) {
-    updateFn(verses ??= []);
+    updateFn(_verses ??= []);
   }
 
   bool hasVerses() => _verses != null;

@@ -142,10 +142,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // Notifications
   {
-    'p8s3pabs': {
-      'pt': 'Usuários',
-      'en': 'Users',
-    },
     '43ub1dxr': {
       'pt': 'Título da Mensagem',
       'en': 'Message Title',
@@ -155,7 +151,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Message Body',
     },
     'sz34hu7s': {
-      'pt': 'Enviar Mensagem',
+      'pt': 'Enviar Mensagem Usuário',
       'en': 'Send Message',
     },
     '5cjr2slc': {
@@ -199,10 +195,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // Home
   {
-    'ra2xp5kg': {
-      'pt': 'With God Devotionals',
-      'en': 'With God Devotionals',
-    },
     'yv3m9q1m': {
       'pt': 'Home',
       'en': 'Home',
@@ -222,6 +214,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'pd3rsbpb': {
       'pt': 'Settings',
       'en': 'Settings',
+    },
+    '7a1rqnxi': {
+      'pt': 'Enviar Notificações',
+      'en': '',
     },
     '2cehfu5a': {
       'pt': 'Change Password',

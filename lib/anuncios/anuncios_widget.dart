@@ -315,6 +315,7 @@ class _AnunciosWidgetState extends State<AnunciosWidget>
                                           }
                                           final listViewAllAdvertsSelectAdvertsResponse =
                                               snapshot.data!;
+
                                           return Builder(
                                             builder: (context) {
                                               final lVAllAdvertsSearch =
@@ -330,6 +331,7 @@ class _AnunciosWidgetState extends State<AnunciosWidget>
                                                           .withoutNulls
                                                           .toList() ??
                                                       [];
+
                                               return ListView.separated(
                                                 padding: EdgeInsets.zero,
                                                 shrinkWrap: true,

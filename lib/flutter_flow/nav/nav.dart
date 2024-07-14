@@ -9,6 +9,7 @@ import '/backend/schema/structs/index.dart';
 import '/auth/base_auth_user_provider.dart';
 
 import '/index.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
 export 'package:go_router/go_router.dart';
@@ -205,6 +206,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             prmLevelValue: params.getParam(
               'prmLevelValue',
               ParamType.int,
+            ),
+            prmLevelList: params.getParam<int>(
+              'prmLevelList',
+              ParamType.int,
+              isList: true,
             ),
           ),
         ),
@@ -408,10 +414,14 @@ class FFRoute {
               : builder(context, ffParams);
           final child = appStateNotifier.loading
               ? Container(
-                  color: Colors.transparent,
-                  child: Image.asset(
-                    'assets/images/jesus_4.jpeg',
-                    fit: BoxFit.fill,
+                  color: FlutterFlowTheme.of(context).primaryBackground,
+                  child: Center(
+                    child: Image.asset(
+                      'assets/images/jesus_4.jpeg',
+                      width: double.infinity,
+                      height: double.infinity,
+                      fit: BoxFit.fill,
+                    ),
                   ),
                 )
               : page;

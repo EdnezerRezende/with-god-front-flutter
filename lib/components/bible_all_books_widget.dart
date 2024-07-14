@@ -119,6 +119,7 @@ class _BibleAllBooksWidgetState extends State<BibleAllBooksWidget>
                         }
                         List<BibleGroupRow> lVContainerGroupBibleGroupRowList =
                             snapshot.data!;
+
                         return ListView.separated(
                           padding: EdgeInsets.zero,
                           scrollDirection: Axis.horizontal,
@@ -235,6 +236,7 @@ class _BibleAllBooksWidgetState extends State<BibleAllBooksWidget>
                                   _model.varGroupId)
                               ?.toList() ??
                           [];
+
                       return GridView.builder(
                         padding: EdgeInsets.zero,
                         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

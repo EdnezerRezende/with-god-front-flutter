@@ -20,11 +20,13 @@ class QuizPerguntasWidget extends StatefulWidget {
     super.key,
     String? prmLevel,
     int? prmLevelValue,
+    required this.prmLevelList,
   })  : prmLevel = prmLevel ?? 'Fácil',
         prmLevelValue = prmLevelValue ?? 1;
 
   final String prmLevel;
   final int prmLevelValue;
+  final List<int>? prmLevelList;
 
   @override
   State<QuizPerguntasWidget> createState() => _QuizPerguntasWidgetState();
@@ -42,8 +44,8 @@ class _QuizPerguntasWidgetState extends State<QuizPerguntasWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.apiResultohe = await ShowDoCristaoGroup.getQuizCall.call(
-        level: widget.prmLevelValue,
+      _model.apiResultohe = await ShowCristaoNewGroup.nivelCall.call(
+        levelList: widget.prmLevelList,
       );
 
       // AtualizaListaPerguntas
@@ -217,6 +219,7 @@ class _QuizPerguntasWidgetState extends State<QuizPerguntasWidget> {
                     builder: (context) {
                       final lVopcoes =
                           _model.pergutaAtual?.alternativas.toList() ?? [];
+
                       return ListView.separated(
                         padding: EdgeInsets.zero,
                         shrinkWrap: true,

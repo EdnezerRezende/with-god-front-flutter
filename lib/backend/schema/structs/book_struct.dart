@@ -23,7 +23,7 @@ class BookStruct extends BaseStruct {
   set abbrev(AbbrevStruct? val) => _abbrev = val;
 
   void updateAbbrev(Function(AbbrevStruct) updateFn) {
-    updateFn(abbrev ??= AbbrevStruct());
+    updateFn(_abbrev ??= AbbrevStruct());
   }
 
   bool hasAbbrev() => _abbrev != null;

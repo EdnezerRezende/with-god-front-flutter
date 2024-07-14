@@ -124,7 +124,7 @@ class AdvertsStruct extends BaseStruct {
   set fotos(List<String>? val) => _fotos = val;
 
   void updateFotos(Function(List<String>) updateFn) {
-    updateFn(fotos ??= []);
+    updateFn(_fotos ??= []);
   }
 
   bool hasFotos() => _fotos != null;

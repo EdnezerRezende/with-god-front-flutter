@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_ad_banner.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -222,6 +223,7 @@ class _QuizWidgetState extends State<QuizWidget> {
                                 }
                                 List<LevelQuizRow> gridViewLevelQuizRowList =
                                     snapshot.data!;
+
                                 return GridView.builder(
                                   padding: EdgeInsets.zero,
                                   gridDelegate:
@@ -252,6 +254,45 @@ class _QuizWidgetState extends State<QuizWidget> {
                                             'prmLevelValue': serializeParam(
                                               gridViewLevelQuizRow.valueLevel,
                                               ParamType.int,
+                                            ),
+                                            'prmLevelList': serializeParam(
+                                              () {
+                                                if (gridViewLevelQuizRow
+                                                        .valueLevel ==
+                                                    1) {
+                                                  return List.generate(
+                                                      random_data.randomInteger(
+                                                          1, 4),
+                                                      (index) => random_data
+                                                          .randomInteger(1, 4));
+                                                } else if (gridViewLevelQuizRow
+                                                        .valueLevel ==
+                                                    2) {
+                                                  return List.generate(
+                                                      random_data.randomInteger(
+                                                          4, 8),
+                                                      (index) => random_data
+                                                          .randomInteger(5, 8));
+                                                } else if (gridViewLevelQuizRow
+                                                        .valueLevel ==
+                                                    3) {
+                                                  return List.generate(
+                                                      random_data.randomInteger(
+                                                          8, 12),
+                                                      (index) => random_data
+                                                          .randomInteger(
+                                                              9, 12));
+                                                } else {
+                                                  return List.generate(
+                                                      random_data.randomInteger(
+                                                          12, 15),
+                                                      (index) => random_data
+                                                          .randomInteger(
+                                                              13, 15));
+                                                }
+                                              }(),
+                                              ParamType.int,
+                                              isList: true,
                                             ),
                                           }.withoutNulls,
                                         );

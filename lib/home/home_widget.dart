@@ -200,8 +200,6 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                       await selectMediaWithSourceBottomSheet(
                                     context: context,
                                     storageFolderPath: 'fotos',
-                                    maxWidth: 36.00,
-                                    maxHeight: 36.00,
                                     imageQuality: 100,
                                     allowPhoto: true,
                                   );
@@ -416,6 +414,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                                   )
                                                   ?.toList() ??
                                               [];
+
                                       return ListView.separated(
                                         padding: EdgeInsets.zero,
                                         scrollDirection: Axis.horizontal,
@@ -588,6 +587,89 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
+                              context.pushNamed(
+                                'Notifications',
+                                extra: <String, dynamic>{
+                                  kTransitionInfoKey: const TransitionInfo(
+                                    hasTransition: true,
+                                    transitionType:
+                                        PageTransitionType.rightToLeft,
+                                  ),
+                                },
+                              );
+
+                              Navigator.pop(context);
+                            },
+                            child: AnimatedContainer(
+                              duration: const Duration(milliseconds: 150),
+                              curve: Curves.easeInOut,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color: _model.mouseRegionHovered2
+                                    ? const Color(0xFFF1F4F8)
+                                    : Colors.white,
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 8.0, 0.0, 8.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    const Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          12.0, 0.0, 0.0, 0.0),
+                                      child: Icon(
+                                        Icons.edit_notifications,
+                                        color: Color(0xFF14181B),
+                                        size: 20.0,
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            12.0, 0.0, 0.0, 0.0),
+                                        child: Text(
+                                          FFLocalizations.of(context).getText(
+                                            '7a1rqnxi' /* Enviar Notificações */,
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Plus Jakarta Sans',
+                                                color: const Color(0xFF14181B),
+                                                fontSize: 14.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            12.0, 0.0, 12.0, 4.0),
+                        child: MouseRegion(
+                          opaque: false,
+                          cursor: SystemMouseCursors.basic ?? MouseCursor.defer,
+                          onEnter: ((event) async {
+                            setState(() => _model.mouseRegionHovered3 = true);
+                          }),
+                          onExit: ((event) async {
+                            setState(() => _model.mouseRegionHovered3 = false);
+                          }),
+                          child: InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
                               await showModalBottomSheet(
                                 isScrollControlled: true,
                                 backgroundColor: Colors.transparent,
@@ -616,7 +698,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                               curve: Curves.easeInOut,
                               width: double.infinity,
                               decoration: BoxDecoration(
-                                color: _model.mouseRegionHovered2
+                                color: _model.mouseRegionHovered3
                                     ? const Color(0xFFF1F4F8)
                                     : Colors.white,
                                 borderRadius: BorderRadius.circular(8.0),
@@ -846,17 +928,17 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                           opaque: false,
                           cursor: SystemMouseCursors.click ?? MouseCursor.defer,
                           onEnter: ((event) async {
-                            setState(() => _model.mouseRegionHovered3 = true);
+                            setState(() => _model.mouseRegionHovered4 = true);
                           }),
                           onExit: ((event) async {
-                            setState(() => _model.mouseRegionHovered3 = false);
+                            setState(() => _model.mouseRegionHovered4 = false);
                           }),
                           child: AnimatedContainer(
                             duration: const Duration(milliseconds: 150),
                             curve: Curves.easeInOut,
                             width: double.infinity,
                             decoration: BoxDecoration(
-                              color: _model.mouseRegionHovered3
+                              color: _model.mouseRegionHovered4
                                   ? const Color(0xFFF1F4F8)
                                   : Colors.white,
                               borderRadius: BorderRadius.circular(8.0),
@@ -1060,28 +1142,27 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Flexible(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        width: double.infinity,
-                        constraints: const BoxConstraints(
-                          maxWidth: 500.0,
-                        ),
-                        decoration: const BoxDecoration(),
-                        alignment: const AlignmentDirectional(0.0, 0.0),
-                        child: Text(
-                          FFLocalizations.of(context).getText(
-                            'ra2xp5kg' /* With God Devotionals */,
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      width: double.infinity,
+                      constraints: const BoxConstraints(
+                        maxWidth: 500.0,
+                      ),
+                      decoration: const BoxDecoration(),
+                      alignment: const AlignmentDirectional(0.0, 0.0),
+                      child: Align(
+                        alignment: const AlignmentDirectional(0.0, -1.0),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8.0),
+                          child: Image.asset(
+                            Theme.of(context).brightness == Brightness.dark
+                                ? 'assets/images/Logo.jpg'
+                                : 'assets/images/Logo.jpg',
+                            width: 396.0,
+                            height: 200.0,
+                            fit: BoxFit.cover,
                           ),
-                          textAlign: TextAlign.center,
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Montserrat',
-                                    fontSize: 24.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w600,
-                                  ),
                         ),
                       ),
                     ),
@@ -1134,6 +1215,7 @@ class _HomeWidgetState extends State<HomeWidget> with TickerProviderStateMixin {
                                   List<OptionsCardMenuRow>
                                       gridViewOptionsCardMenuRowList =
                                       snapshot.data!;
+
                                   return GridView.builder(
                                     padding: EdgeInsets.zero,
                                     gridDelegate:

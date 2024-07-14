@@ -19,7 +19,7 @@ class QuizLevelReturnStruct extends BaseStruct {
   set data(DataStruct? val) => _data = val;
 
   void updateData(Function(DataStruct) updateFn) {
-    updateFn(data ??= DataStruct());
+    updateFn(_data ??= DataStruct());
   }
 
   bool hasData() => _data != null;

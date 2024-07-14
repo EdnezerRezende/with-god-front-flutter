@@ -114,6 +114,7 @@ class _NotificacaoWidgetState extends State<NotificacaoWidget> {
                         }
                         List<NotNotificacaoRow> listViewNotNotificacaoRowList =
                             snapshot.data!;
+
                         return ListView.separated(
                           padding: EdgeInsets.zero,
                           shrinkWrap: true,
@@ -123,72 +124,107 @@ class _NotificacaoWidgetState extends State<NotificacaoWidget> {
                           itemBuilder: (context, listViewIndex) {
                             final listViewNotNotificacaoRow =
                                 listViewNotNotificacaoRowList[listViewIndex];
-                            return Container(
-                              height: 60.0,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                borderRadius: BorderRadius.circular(10.0),
-                                border: Border.all(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                ),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(4.0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Expanded(
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
+                            return Stack(
+                              children: [
+                                InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    await NotNotificacaoTable().update(
+                                      data: {
+                                        'lida': true,
+                                      },
+                                      matchingRows: (rows) => rows.eq(
+                                        'id',
+                                        listViewNotNotificacaoRow.id,
+                                      ),
+                                    );
+                                  },
+                                  child: Container(
+                                    height: 60.0,
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      border: Border.all(
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                      ),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(4.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
                                           Expanded(
-                                            child: Text(
-                                              valueOrDefault<String>(
-                                                listViewNotNotificacaoRow
-                                                    .titulo,
-                                                '-',
-                                              ),
-                                              textAlign: TextAlign.justify,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleLarge
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Expanded(
+                                                  child: Text(
+                                                    valueOrDefault<String>(
+                                                      listViewNotNotificacaoRow
+                                                          .titulo,
+                                                      '-',
+                                                    ),
+                                                    textAlign:
+                                                        TextAlign.justify,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .titleLarge
+                                                        .override(
+                                                          fontFamily: 'Outfit',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Expanded(
+                                                child: Text(
+                                                  valueOrDefault<String>(
+                                                    listViewNotNotificacaoRow
+                                                        .mensagem,
+                                                    '-',
+                                                  ),
+                                                  textAlign: TextAlign.justify,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
                                                       .override(
-                                                        fontFamily: 'Outfit',
+                                                        fontFamily: 'Manrope',
                                                         letterSpacing: 0.0,
                                                       ),
-                                            ),
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ],
                                       ),
                                     ),
-                                    Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Expanded(
-                                          child: Text(
-                                            valueOrDefault<String>(
-                                              listViewNotNotificacaoRow
-                                                  .mensagem,
-                                              '-',
-                                            ),
-                                            textAlign: TextAlign.justify,
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Manrope',
-                                                  letterSpacing: 0.0,
-                                                ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
+                                  ),
                                 ),
-                              ),
+                                if (listViewNotNotificacaoRow.lida ?? true)
+                                  Align(
+                                    alignment: const AlignmentDirectional(1.0, 0.16),
+                                    child: Icon(
+                                      Icons.mark_chat_unread_outlined,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      size: 24.0,
+                                    ),
+                                  ),
+                              ],
                             );
                           },
                         );

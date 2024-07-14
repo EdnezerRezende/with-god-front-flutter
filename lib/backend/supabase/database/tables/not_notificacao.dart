@@ -35,4 +35,7 @@ class NotNotificacaoRow extends SupabaseDataRow {
 
   String? get nome => getField<String>('nome');
   set nome(String? value) => setField<String>('nome', value);
+
+  bool? get lida => getField<bool>('lida');
+  set lida(bool? value) => setField<bool>('lida', value);
 }

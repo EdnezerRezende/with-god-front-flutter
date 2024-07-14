@@ -1181,38 +1181,45 @@ class GetQuizByLevelCall {
 
 class ShowCristaoNewGroup {
   static String getBaseUrl({
-    int? level = 6,
-    String? accessSupabaseKey = '',
+    List<int>? levelList,
+    String? accessSupabaseKey =
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5kdHVxZWxkeGxtZW9jYXFscnFpIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODEwNTM4OTYsImV4cCI6MTk5NjYyOTg5Nn0.3u03Uyu1MtL67aV2cRozb3VDKxKnv1T8JrMnDh2P4Fg',
   }) =>
-      'https://ndtuqeldxlmeocaqlrqi.supabase.co/rest/v1/perguntas';
+      'https://ndtuqeldxlmeocaqlrqi.supabase.co/rest/v1/';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',
     'Authorization': 'Bearer [ACCESS_SUPABASE_KEY]',
+    'apikey': '[ACCESS_SUPABASE_KEY]',
   };
   static NivelCall nivelCall = NivelCall();
 }
 
 class NivelCall {
   Future<ApiCallResponse> call({
-    int? level = 6,
-    String? accessSupabaseKey = '',
+    List<int>? levelList,
+    String? accessSupabaseKey =
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5kdHVxZWxkeGxtZW9jYXFscnFpIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODEwNTM4OTYsImV4cCI6MTk5NjYyOTg5Nn0.3u03Uyu1MtL67aV2cRozb3VDKxKnv1T8JrMnDh2P4Fg',
   }) async {
     final baseUrl = ShowCristaoNewGroup.getBaseUrl(
-      level: level,
+      levelList: levelList,
       accessSupabaseKey: accessSupabaseKey,
     );
+    final level = _serializeList(levelList);
 
     return ApiManager.instance.makeApiCall(
       callName: 'Nivel',
-      apiUrl: '$baseUrl?dificuldade=$level',
+      apiUrl: '${baseUrl}perguntas?dificuldade=in.(nivel)',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
         'Authorization': 'Bearer $accessSupabaseKey',
+        'apikey': '$accessSupabaseKey',
       },
-      params: {},
+      params: {
+        'nivel': level,
+      },
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,

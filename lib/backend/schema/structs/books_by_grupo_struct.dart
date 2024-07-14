@@ -46,7 +46,7 @@ class BooksByGrupoStruct extends BaseStruct {
   set livros(List<BooksStruct>? val) => _livros = val;
 
   void updateLivros(Function(List<BooksStruct>) updateFn) {
-    updateFn(livros ??= []);
+    updateFn(_livros ??= []);
   }
 
   bool hasLivros() => _livros != null;

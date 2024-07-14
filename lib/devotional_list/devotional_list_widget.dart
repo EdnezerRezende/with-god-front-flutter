@@ -114,6 +114,7 @@ class _DevotionalListWidgetState extends State<DevotionalListWidget> {
                       }
                       List<ViewDevotionalsListRow>
                           listViewViewDevotionalsListRowList = snapshot.data!;
+
                       return ListView.separated(
                         padding: EdgeInsets.zero,
                         shrinkWrap: true,

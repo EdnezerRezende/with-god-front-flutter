@@ -231,6 +231,7 @@ class _CapitulosWidgetState extends State<CapitulosWidget>
                     child: Builder(
                       builder: (context) {
                         final itensLv = _model.listaCapitulos.toList();
+
                         return ListView.separated(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
                           scrollDirection: Axis.horizontal,
@@ -517,6 +518,7 @@ class _CapitulosWidgetState extends State<CapitulosWidget>
                                           .versesByBookAndChapter?.verses
                                           .toList() ??
                                       [];
+
                                   return ListView.builder(
                                     padding: EdgeInsets.zero,
                                     shrinkWrap: true,

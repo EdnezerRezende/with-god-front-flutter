@@ -200,6 +200,7 @@ class _DevotionalsDetalheWidgetState extends State<DevotionalsDetalheWidget> {
                                     }
                                     final listViewGetAllVersesByChapterResponse =
                                         snapshot.data!;
+
                                     return Builder(
                                       builder: (context) {
                                         final lVItensVerses = APIBibliaGroup
@@ -210,6 +211,7 @@ class _DevotionalsDetalheWidgetState extends State<DevotionalsDetalheWidget> {
                                                 )
                                                 ?.toList() ??
                                             [];
+
                                         return ListView.builder(
                                           padding: EdgeInsets.zero,
                                           shrinkWrap: true,

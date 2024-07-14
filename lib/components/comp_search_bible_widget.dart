@@ -223,6 +223,7 @@ class _CompSearchBibleWidgetState extends State<CompSearchBibleWidget> {
                 child: Builder(
                   builder: (context) {
                     final lvItensSearch = _model.resultListSearch.toList();
+
                     return ListView.builder(
                       padding: EdgeInsets.zero,
                       primary: false,

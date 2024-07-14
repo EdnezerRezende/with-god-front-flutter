@@ -674,6 +674,7 @@ class _CompAnuncioEditWidgetState extends State<CompAnuncioEditWidget> {
                     Builder(
                       builder: (context) {
                         final lVImagens = _model.imagensAnuncio.toList();
+
                         return ListView.builder(
                           padding: EdgeInsets.zero,
                           primary: false,

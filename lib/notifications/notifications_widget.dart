@@ -86,6 +86,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
           );
         }
         List<UsuariosRow> notificationsUsuariosRowList = snapshot.data!;
+
         final notificationsUsuariosRow = notificationsUsuariosRowList.isNotEmpty
             ? notificationsUsuariosRowList.first
             : null;
@@ -148,168 +149,6 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Align(
-                      alignment: const AlignmentDirectional(0.0, -1.0),
-                      child: Text(
-                        FFLocalizations.of(context).getText(
-                          'p8s3pabs' /* Usuários */,
-                        ),
-                        textAlign: TextAlign.center,
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Manrope',
-                              fontSize: 26.0,
-                              letterSpacing: 0.0,
-                              fontStyle: FontStyle.italic,
-                              decoration: TextDecoration.underline,
-                            ),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Expanded(
-                            child: FutureBuilder<List<UsuariosRow>>(
-                              future: UsuariosTable().queryRows(
-                                queryFn: (q) => q,
-                              ),
-                              builder: (context, snapshot) {
-                                // Customize what your widget looks like when it's loading.
-                                if (!snapshot.hasData) {
-                                  return Center(
-                                    child: SizedBox(
-                                      width: 40.0,
-                                      height: 40.0,
-                                      child: SpinKitChasingDots(
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondary,
-                                        size: 40.0,
-                                      ),
-                                    ),
-                                  );
-                                }
-                                List<UsuariosRow> listViewUsuariosRowList =
-                                    snapshot.data!;
-                                return ListView.builder(
-                                  padding: EdgeInsets.zero,
-                                  shrinkWrap: true,
-                                  scrollDirection: Axis.vertical,
-                                  itemCount: listViewUsuariosRowList.length,
-                                  itemBuilder: (context, listViewIndex) {
-                                    final listViewUsuariosRow =
-                                        listViewUsuariosRowList[listViewIndex];
-                                    return Padding(
-                                      padding: const EdgeInsets.all(4.0),
-                                      child: Container(
-                                        width: 100.0,
-                                        height: 55.0,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                          border: Border.all(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
-                                          ),
-                                        ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(6.0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Expanded(
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.min,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Expanded(
-                                                      child: Text(
-                                                        valueOrDefault<String>(
-                                                          listViewUsuariosRow
-                                                              .nome,
-                                                          '--',
-                                                        ),
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Manrope',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                      ),
-                                                    ),
-                                                    Expanded(
-                                                      child: Text(
-                                                        valueOrDefault<String>(
-                                                          listViewUsuariosRow
-                                                              .email,
-                                                          '--',
-                                                        ),
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Manrope',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                      ),
-                                                    ),
-                                                  ].divide(
-                                                      const SizedBox(height: 8.0)),
-                                                ),
-                                              ),
-                                              InkWell(
-                                                splashColor: Colors.transparent,
-                                                focusColor: Colors.transparent,
-                                                hoverColor: Colors.transparent,
-                                                highlightColor:
-                                                    Colors.transparent,
-                                                onTap: () async {
-                                                  _model.tokenfcm =
-                                                      listViewUsuariosRow
-                                                          .fcmtoken!;
-                                                  setState(() {});
-                                                },
-                                                child: Icon(
-                                                  Icons.check,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryText,
-                                                  size: 32.0,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                );
-                              },
-                            ),
-                          ),
-                        ]
-                            .divide(const SizedBox(width: 6.0))
-                            .around(const SizedBox(width: 6.0)),
-                      ),
-                    ),
                     Padding(
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
@@ -440,6 +279,170 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                         ),
                       ),
                     ),
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: FutureBuilder<List<UsuariosRow>>(
+                              future: UsuariosTable().queryRows(
+                                queryFn: (q) => q,
+                              ),
+                              builder: (context, snapshot) {
+                                // Customize what your widget looks like when it's loading.
+                                if (!snapshot.hasData) {
+                                  return Center(
+                                    child: SizedBox(
+                                      width: 40.0,
+                                      height: 40.0,
+                                      child: SpinKitChasingDots(
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondary,
+                                        size: 40.0,
+                                      ),
+                                    ),
+                                  );
+                                }
+                                List<UsuariosRow> listViewUsuariosRowList =
+                                    snapshot.data!;
+
+                                return ListView.builder(
+                                  padding: EdgeInsets.zero,
+                                  shrinkWrap: true,
+                                  scrollDirection: Axis.vertical,
+                                  itemCount: listViewUsuariosRowList.length,
+                                  itemBuilder: (context, listViewIndex) {
+                                    final listViewUsuariosRow =
+                                        listViewUsuariosRowList[listViewIndex];
+                                    return Padding(
+                                      padding: const EdgeInsets.all(4.0),
+                                      child: Container(
+                                        width: 100.0,
+                                        height: 55.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          border: Border.all(
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                          ),
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(6.0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Expanded(
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Expanded(
+                                                      child: Text(
+                                                        valueOrDefault<String>(
+                                                          listViewUsuariosRow
+                                                              .nome,
+                                                          '--',
+                                                        ),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Manrope',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                      ),
+                                                    ),
+                                                    Expanded(
+                                                      child: Text(
+                                                        valueOrDefault<String>(
+                                                          listViewUsuariosRow
+                                                              .email,
+                                                          '--',
+                                                        ),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Manrope',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                      ),
+                                                    ),
+                                                  ].divide(
+                                                      const SizedBox(height: 8.0)),
+                                                ),
+                                              ),
+                                              if (_model.tokenfcm != '')
+                                                InkWell(
+                                                  splashColor:
+                                                      Colors.transparent,
+                                                  focusColor:
+                                                      Colors.transparent,
+                                                  hoverColor:
+                                                      Colors.transparent,
+                                                  highlightColor:
+                                                      Colors.transparent,
+                                                  onTap: () async {
+                                                    if (_model.tokenfcm == '') {
+                                                      _model.tokenfcm =
+                                                          listViewUsuariosRow
+                                                              .fcmtoken!;
+                                                      setState(() {});
+                                                    } else {
+                                                      _model.tokenfcm = '-';
+                                                      setState(() {});
+                                                    }
+                                                  },
+                                                  child: Icon(
+                                                    Icons.check,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryText,
+                                                    size: 32.0,
+                                                  ),
+                                                ),
+                                              if (_model.tokenfcm == '')
+                                                Icon(
+                                                  Icons.check_box_outline_blank,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                  size: 24.0,
+                                                ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                );
+                              },
+                            ),
+                          ),
+                        ]
+                            .divide(const SizedBox(width: 6.0))
+                            .around(const SizedBox(width: 6.0)),
+                      ),
+                    ),
                     Align(
                       alignment: const AlignmentDirectional(0.0, 0.0),
                       child: Padding(
@@ -460,7 +463,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                             });
                           },
                           text: FFLocalizations.of(context).getText(
-                            'sz34hu7s' /* Enviar Mensagem */,
+                            'sz34hu7s' /* Enviar Mensagem Usuário */,
                           ),
                           options: FFButtonOptions(
                             width: double.infinity,

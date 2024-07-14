@@ -43,6 +43,7 @@ class _CarouselImagesWidgetState extends State<CarouselImagesWidget> {
     return Builder(
       builder: (context) {
         final lvImagesPath = widget.prmImages?.toList() ?? [];
+
         return SizedBox(
           width: double.infinity,
           height: 130.0,

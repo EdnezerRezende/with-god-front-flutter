@@ -38,7 +38,7 @@ class QuizPerguntasModel extends FlutterFlowModel<QuizPerguntasWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Stores action output result for [Backend Call - API (getQuiz)] action in QuizPerguntas widget.
+  // Stores action output result for [Backend Call - API (Nivel)] action in QuizPerguntas widget.
   ApiCallResponse? apiResultohe;
   // State field(s) for Timer widget.
   final timerInitialTimeMs = 30000;

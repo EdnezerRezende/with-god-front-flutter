@@ -153,6 +153,7 @@ enum ParamType {
   FFPlace,
   FFUploadedFile,
   JSON,
+
   DataStruct,
   SupabaseRow,
 }
@@ -215,26 +216,26 @@ dynamic deserializeParam<T>(
       case ParamType.SupabaseRow:
         final data = json.decode(param) as Map<String, dynamic>;
         switch (T) {
-          case DevotionalsRow:
-            return DevotionalsRow(data);
-          case BibliaLivrosRow:
-            return BibliaLivrosRow(data);
-          case LevelQuizRow:
-            return LevelQuizRow(data);
-          case TarefasRow:
-            return TarefasRow(data);
           case BibleGroupRow:
             return BibleGroupRow(data);
-          case NotNotificacaoRow:
-            return NotNotificacaoRow(data);
+          case BibliaVersiculosRow:
+            return BibliaVersiculosRow(data);
+          case TarefasRow:
+            return TarefasRow(data);
+          case DevotionalsRow:
+            return DevotionalsRow(data);
+          case UsuariosRow:
+            return UsuariosRow(data);
+          case BibliaLivrosRow:
+            return BibliaLivrosRow(data);
           case AdvertsRow:
             return AdvertsRow(data);
           case ViewDevotionalsListRow:
             return ViewDevotionalsListRow(data);
-          case UsuariosRow:
-            return UsuariosRow(data);
-          case BibliaVersiculosRow:
-            return BibliaVersiculosRow(data);
+          case LevelQuizRow:
+            return LevelQuizRow(data);
+          case NotNotificacaoRow:
+            return NotNotificacaoRow(data);
           case OptionsCardMenuRow:
             return OptionsCardMenuRow(data);
           case ViewDevotionalsDetailsRow:

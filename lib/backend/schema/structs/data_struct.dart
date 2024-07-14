@@ -47,7 +47,7 @@ class DataStruct extends BaseStruct {
   set alternativas(List<AlternativasStruct>? val) => _alternativas = val;
 
   void updateAlternativas(Function(List<AlternativasStruct>) updateFn) {
-    updateFn(alternativas ??= []);
+    updateFn(_alternativas ??= []);
   }
 
   bool hasAlternativas() => _alternativas != null;
